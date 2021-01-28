@@ -1,0 +1,398 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "cards": {
+        "cardPadding": null,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "rgb(1, 252, 207)",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateGreens",
+        "exponent": 0.5,
+        "max": 10,
+        "mode": "spectrum"
+      },
+      "dataFormat": "tsbuckets",
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "heatmap": {},
+      "hideZeroBuckets": true,
+      "highlightCards": true,
+      "id": 10,
+      "legend": {
+        "show": false
+      },
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",type=~\"^alerts{0,}$\"}[5m])) by (level)",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "Level {{ level }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "OSSEC Alert 5m Rate",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": null,
+        "format": "short",
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "middle",
+      "yBucketNumber": null,
+      "yBucketSize": null
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.3.0-beta1",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "ossec_metrics_active_agents",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Active Agents",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 8
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "pluginVersion": "6.3.0-beta1",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "ossec_metrics_total_agents",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Agents",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 20,
+        "w": 18,
+        "x": 6,
+        "y": 8
+      },
+      "id": 8,
+      "options": {
+        "content": "\n# Alert Levels\n\n00 - Ignored - No action taken. Used to avoid false positives. These rules are scanned before all the others. They include events with no security relevance.\n\n01 - None\n\n02 - System low priority notification - System notification or status messages. They have no security relevance.\n\n03 - Successful/Authorized events - They include successful login attempts, firewall allow events, etc.\n\n04 - System low priority error - Errors related to bad configurations or unused devices/applications. They have no security relevance and are usually caused by default installations or software testing.\n\n05 - User generated error - They include missed passwords, denied actions, etc. By itself they have no security relevance.\n\n06 - Low relevance attack - They indicate a worm or a virus that have no affect to the system (like code red for apache servers, etc). They also include frequently IDS events and frequently errors.\n\n07 - “Bad word” matching. They include words like “bad”, “error”, etc. These events are most of the time unclassified and may have some security relevance.\n\n08 - First time seen - Include first time seen events. First time an IDS event is fired or the first time an user logged in. If you just started using OSSEC HIDS these messages will probably be frequently. After a while they should go away, It also includes security relevant actions (like the starting of a sniffer or something like that).\n\n09 - Error from invalid source - Include attempts to login as an unknown user or from an invalid source. May have security relevance (specially if repeated). They also include errors regarding the “admin” (root) account.\n\n10 - Multiple user generated errors - They include multiple bad passwords, multiple failed logins, etc. They may indicate an attack or may just be that a user just forgot his credentials.\n\n11 - Integrity checking warning - They include messages regarding the modification of binaries or the presence of rootkits (by rootcheck). If you just modified your system configuration you should be fine regarding the “syscheck” messages. They may indicate a successful attack. Also included IDS events that will be ignored (high number of repetitions).\n\n12 - High importance event - They include error or warning messages from the system, kernel, etc. They may indicate an attack against a specific application.\n\n13 - Unusual error (high importance) - Most of the times it matches a common attack pattern.\n\n14 - High importance security event. Most of the times done with correlation and it indicates an attack.\n\n15 - Severe attack - No chances of false positives. Immediate attention is necessary.\n\n\n\n\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "7.3.7",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Panel Title",
+      "type": "text"
+    },
+    {
+      "cacheTimeout": null,
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 17,
+        "w": 6,
+        "x": 0,
+        "y": 11
+      },
+      "id": 2,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show Logs",
+          "linkUrl": "explore?orgId=1&left=%5B%22$__from%22,%22$__to%22,%22Loki%22,%7B%22expr%22:%22%7Bjob%3D%5C%22ossec%5C%22,level%3D%5C%22${__cell_0}%5C%22%7D%22%7D,%7B%22mode%22:%22Logs%22%7D,%7B%22ui%22:%5Btrue,true,true,%22none%22%5D%7D%5D",
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\"}[$__range])) by (level)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{ level }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts Per Interval",
+      "transform": "timeseries_aggregations",
+      "type": "table-old"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "OSSEC Summary",
+  "uid": "Mir2RJHWz",
+  "version": 12
+}
