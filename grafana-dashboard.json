@@ -279,7 +279,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 20,
+        "h": 24,
         "w": 18,
         "x": 6,
         "y": 8
@@ -312,7 +312,7 @@
       },
       "fontSize": "100%",
       "gridPos": {
-        "h": 17,
+        "h": 7,
         "w": 6,
         "x": 0,
         "y": 11
@@ -361,7 +361,77 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Alerts Per Interval",
+      "title": "Alerts By Level",
+      "transform": "timeseries_aggregations",
+      "type": "table-old"
+    },
+    {
+      "cacheTimeout": null,
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 0,
+        "y": 18
+      },
+      "id": 11,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show Logs",
+          "linkUrl": "explore?orgId=1&left=%5B%22$__from%22,%22$__to%22,%22Loki%22,%7B%22expr%22:%22%7Bjob%3D%5C%22ossec%5C%22,host%3D%5C%22${__cell_0}%5C%22%7D%22%7D,%7B%22mode%22:%22Logs%22%7D,%7B%22ui%22:%5Btrue,true,true,%22none%22%5D%7D%5D",
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\"}[$__range])) by (host)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{ level }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Hosts by Alert",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     }
@@ -394,5 +464,5 @@
   "timezone": "",
   "title": "OSSEC Summary",
   "uid": "Mir2RJHWz",
-  "version": 12
+  "version": 16
 }
