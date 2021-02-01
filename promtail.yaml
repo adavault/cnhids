@@ -1,0 +1,105 @@
+server:
+  http_listen_port: 8080
+  grpc_listen_port: 0
+
+positions:
+  filename: /var/ossec/logs/alerts/promtail_positions.yaml
+
+clients:
+  - url: http://localhost:3100/api/prom/push
+
+scrape_configs:
+- job_name: ossec_alerts
+  pipeline_stages:
+  - json:
+      expressions:
+        # Extract the timestamp, level, group, host, app, srcuser and dstuser from the JSON into the extracted map
+        timestamp: TimeStamp
+        level: rule.level
+        group: rule.group
+        host: hostname
+        application: program_name
+        srcuser: srcuser
+        dstuser: dstuser
+  - regex:
+      # The host is wrapped in parens, extract just the string and essentially strip the parens
+      source: host
+      expression: '^\((?P<host>\S+)\)'
+  - template:
+      # Pad the level with leading zeros so that grafana will sort the levels in increasing order
+      source: level
+      template: '{{ printf "%02s" .Value }}'
+  - labels:
+      # Set labels for level, group, host and application
+      level: ''
+      group: ''
+      host: ''
+      application: ''
+      srcuser: ''
+      dstuser: ''
+  - timestamp:
+      # Set the timestamp
+      source: timestamp
+      format: UnixMs
+  - metrics:
+      # Export a metric of alerts, it will use the labels set above
+      ossec_alerts_total:
+        type: Counter
+        description: count of alerts
+        source: level
+        config:
+          action: inc
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: ossec
+      type: alert
+      __path__: /var/ossec/logs/alerts/alerts.json
+- job_name: ossec_firewall
+  pipeline_stages:
+  - regex:
+      # The firewall log is not JSON, this regex will match all the parts and extract the groups into extracted data
+      expression: '(?P<timestamp>\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}) (?P<host>\S+) {0,1}\S{0,} (?P<action>\w+) (?P<pro>
+  - regex:
+      # This will match host entries that are wrapped in parens and strip the parens
+      source: host
+      expression: '^\((?P<host>\S+)\)'
+  - regex:
+      # Some hosts are in the format `ossec -> ...` this will match those and only return the host name
+      source: host
+      expression: '^(?P<host>\S+)->'
+  - template:
+      # Force the action (DROP or ALLOW) to lowercase
+      source: action
+      template: '{{ .Value | ToLower }}'
+  - template:
+      # Force the protocol to lowercase
+      source: protocol
+      template: '{{ .Value | ToLower }}'
+  - labels:
+      # Set labels for action, protocol, and host
+      action: ''
+      protocol: ''
+      host: ''
+  - timestamp:
+      # Set the timestamp, we have to force the timezone because it doesn't exist in the log timestamp, update this for>
+      source: timestamp
+      format: '2006 Jan 02 15:04:05'
+      location: 'Europe/London'
+  - metrics:
+      # Export a metric of firewall events, it will use the labels set above
+      ossec_firewall_total:
+        type: Counter
+        description: count of firewall events
+        source: action
+        config:
+          action: inc
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: ossec
+      type: firewall
+      __path__: /var/ossec/logs/firewall/firewall.log
+      
