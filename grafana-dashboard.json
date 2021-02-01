@@ -271,6 +271,76 @@
       "valueName": "avg"
     },
     {
+      "cacheTimeout": null,
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 12,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show Logs",
+          "linkUrl": "explore?orgId=1&left=%5B%22$__from%22,%22$__to%22,%22Loki%22,%7B%22expr%22:%22%7Bjob%3D%5C%22ossec%5C%22,application%3D%5C%22${__cell_0}%5C%22%7D%22%7D,%7B%22mode%22:%22Logs%22%7D,%7B%22ui%22:%5Btrue,true,true,%22none%22%5D%7D%5D",
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",application!=\"\"}[$__range])) by (application)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{application}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts by Application",
+      "transform": "timeseries_aggregations",
+      "type": "table-old"
+    },
+    {
       "datasource": null,
       "fieldConfig": {
         "defaults": {
@@ -280,8 +350,8 @@
       },
       "gridPos": {
         "h": 24,
-        "w": 18,
-        "x": 6,
+        "w": 12,
+        "x": 12,
         "y": 8
       },
       "id": 8,
@@ -431,7 +501,147 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Hosts by Alert",
+      "title": "Alerts by Host",
+      "transform": "timeseries_aggregations",
+      "type": "table-old"
+    },
+    {
+      "cacheTimeout": null,
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 18
+      },
+      "id": 13,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show Logs",
+          "linkUrl": "explore?orgId=1&left=%5B%22$__from%22,%22$__to%22,%22Loki%22,%7B%22expr%22:%22%7Bjob%3D%5C%22ossec%5C%22,srcuser%3D%5C%22${__cell_0}%5C%22%7D%22%7D,%7B%22mode%22:%22Logs%22%7D,%7B%22ui%22:%5Btrue,true,true,%22none%22%5D%7D%5D",
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",srcuser!=\"\"}[$__range])) by (srcuser)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{srcuser}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts by Source User",
+      "transform": "timeseries_aggregations",
+      "type": "table-old"
+    },
+    {
+      "cacheTimeout": null,
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 25
+      },
+      "id": 14,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show Logs",
+          "linkUrl": "explore?orgId=1&left=%5B%22$__from%22,%22$__to%22,%22Loki%22,%7B%22expr%22:%22%7Bjob%3D%5C%22ossec%5C%22,dstuser%3D%5C%22${__cell_0}%5C%22%7D%22%7D,%7B%22mode%22:%22Logs%22%7D,%7B%22ui%22:%5Btrue,true,true,%22none%22%5D%7D%5D",
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",dstuser!=\"\"}[$__range])) by (dstuser)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{ level }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts by Destination User",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     }
@@ -444,7 +654,7 @@
     "list": []
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -464,5 +674,5 @@
   "timezone": "",
   "title": "OSSEC Summary",
   "uid": "Mir2RJHWz",
-  "version": 16
+  "version": 28
 }
