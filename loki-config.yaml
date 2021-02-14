@@ -26,10 +26,10 @@ schema_config:
 
 storage_config:
   boltdb:
-    directory: /home/cyberruss/loki/index
+    directory: /opt/cardano/monitoring/loki/index
 
   filesystem:
-    directory: /home/cyberruss/loki/chunks
+    directory: /opt/cardano/monitoring/loki/chunks
 
 limits_config:
   enforce_metric_name: false
