@@ -60,7 +60,7 @@ scrape_configs:
   pipeline_stages:
   - regex:
       # The firewall log is not JSON, this regex will match all the parts and extract the groups into extracted data
-      expression: '(?P<timestamp>\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}) (?P<host>\S+) {0,1}\S{0,} (?P<action>\w+) (?P<pro>
+      expression: '(?P<timestamp>\d{4} \w{3} \d{2} \d{2}:\d{2}:\d{2}) (?P<host>\S+) {0,1}\S{0,} (?P<action>\w+) (?P<dest>[\d.:]+)'
   - regex:
       # This will match host entries that are wrapped in parens and strip the parens
       source: host
