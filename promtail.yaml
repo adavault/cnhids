@@ -83,7 +83,7 @@ scrape_configs:
       protocol: ''
       host: ''
   - timestamp:
-      # Set the timestamp, we have to force the timezone because it doesn't exist in the log timestamp, update this for>
+      # Set the timestamp, we have to force the timezone because it doesn't exist in the log timestamp, update this for your location
       source: timestamp
       format: '2006 Jan 02 15:04:05'
       location: 'Europe/London'
