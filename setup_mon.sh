@@ -530,6 +530,10 @@ if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
    sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
    #Get the conf file, apply then restart
    $DBG dl "$OSSEC_CONF_URL"
+   if [["$INSTALL_OSSEC_AGENTS" == true ]] ; then
+      CNODE_DIRS = '<directories check_all="yes">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all="yes">/home/cardano/.cabal/bin</directories>'
+      sed -i "s+<!--Add_cardano_dirs_here-->+$CNODE_DIRS+" "$TMP_DIR"/$(basename "$OSSEC_CONF_URL")
+   fi
    sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    sudo /var/ossec/bin/ossec-control restart
    echo "INSTALL CNHIDS SERVER: End"
@@ -554,7 +558,6 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    # Create install dirs
    mkdir -p "$PROMTAIL_DIR" "$LOKI_DIR" "$OSSEC_METRICS_DIR"
    # Unzip files (strip leading component of path)
-   #unzip -d "$PROMTAIL_DIR" "$TMP_DIR"/*promta*zip && f=("$PROMTAIL_DIR"/*) && mv "$PROMTAIL_DIR"/*/* "$PROMTAIL_DIR" && rmdir "${f[@]}"
    unzip "$TMP_DIR/promtail-${ARCHS[IDX]}.zip" -d "$PROMTAIL_DIR"
    unzip "$TMP_DIR/loki-${ARCHS[IDX]}.zip" -d "$LOKI_DIR"
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-metrics*gz
