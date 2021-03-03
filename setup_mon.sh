@@ -325,7 +325,16 @@ Recommended responses for OSSEC server and agent installs (hybrid installs serve
    3.5- Do you want to enable remote syslog (port 514 udp)? (y/n) [y]: n
 
 Once you have installed the server, you will need to install and register the agents
-To Do: Add details here...
+   1) Install the agent using the setup_mon.sh -A option 
+   2) On the server open a terminal session and run: sudo /var/ossec/bin/manage_agents
+   3) Add the agent using 'a', you will need to know the IP address
+   4) Extract the agent key with 'e', and copy this
+   5) Run the same process on the agent: sudo /var/ossec/bin/manage_agents
+   6) Register using the key, the hash has server details included
+   6) Restart services if its the first agent: sudo /var/ossec/bin/ossec-control restart
+
+Check firewall rules allow 1514 from agents to server (UDP port 1514)
+Agents should show up on the dashboard within 2 minutes or less
 
 " >&2
 fi
@@ -555,11 +564,11 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    # Get tokenised conf files from Github, and replace tokens
    # Promtail
    $DBG dl "$PROMTAIL_CONF_URL"
-   sed -i 's+Europe/London+$TIMEZONE+' "$TMP_DIR"/$(basename "$PROMTAIL_CONF_URL")
+   sed -i "s+Europe/London+$TIMEZONE+" "$TMP_DIR"/$(basename "$PROMTAIL_CONF_URL")
    cp "$TMP_DIR"/$(basename "$PROMTAIL_CONF_URL") "$PROMTAIL_DIR"
    # Loki
    $DBG dl "$LOKI_CONF_URL"
-   sed -i 's+/opt/cardano/monitoring+$PROJ_PATH+g' "$TMP_DIR"/$(basename "$LOKI_CONF_URL")
+   sed -i "s+/opt/cardano/monitoring+$PROJ_PATH+g" "$TMP_DIR"/$(basename "$LOKI_CONF_URL")
    cp "$TMP_DIR"/$(basename "$LOKI_CONF_URL") "$LOKI_DIR"
    # OSSEC-metrics
    sudo apt install golang-go
