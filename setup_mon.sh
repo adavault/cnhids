@@ -287,20 +287,13 @@ while getopts :i:p:d:MHNA: opt; do
     p ) CNODE_PORT="$OPTARG" ;;
     d ) PROJ_PATH="$OPTARG" ;;
     M ) INSTALL_MON=true
-        INSTALL_CNHIDS=false
-        INSTALL_NODE_EXP=false
-        INSTALL_OSSEC_AGENT=false
         ;;
     H ) INSTALL_CNHIDS=true
-        INSTALL_MON=true
-        INSTALL_NODE_EXP=false
-        INSTALL_AGENT=false
         ;;
     N ) INSTALL_NODE_EXP=true
-        INSTALL_CNHIDS=false
-        INSTALL_MON=false
         ;;
     A )
+        #We should never need to install the agent with the servers
         INSTALL_OSSEC_AGENT=true
         INSTALL_CNHIDS=false
         INSTALL_MON=false
@@ -392,7 +385,7 @@ OSSEC_METRICS_URL="https://github.com/slim-bean/ossec-metrics/archive/v$OSSEC_ME
 echo "MAIN INSTALL SEQUENCE: Start"
 
 #Base Monitoring start --->
-if [[ "$INSTALL_MON" == "true" || "$INSTALL_CNHIDS" == "true" ]]; then
+if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    echo "INSTALL MONITORING BASE LAYER: Start"
    PROM_SERVICE=true
    GRAF_SERVICE=true
