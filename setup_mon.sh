@@ -540,7 +540,6 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    mv ossec-metrics "$OSSEC_METRICS_DIR"
    echo "INSTALL CNHIDS DEPENDENCIES: End"
 fi
-exit
 
 if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    echo "INSTALL NODE EXPORTER: Start"
