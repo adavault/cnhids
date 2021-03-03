@@ -21,10 +21,11 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-                                            # Defaults (equivalent to a local installation on a single node)- these can also be overridden by args
+                                            # Default to a remote monitoring/cnHids installation
+                                            # these can also be overridden by args
 #INSTALL_MON=true                           # Install base monitoring (Prometheus/Grafana/Dashboards)
 #INSTALL_CNHIDS=true                        # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
-#INSTALL_NODE_EXP=true                      # Install Node Exporter for base OS metrics
+#INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
 #CURL_TIMEOUT=60                            # Maximum time in seconds that you allow the file download operation to take before aborting (Default: 60s)
@@ -100,7 +101,7 @@ echo "IP ADDRESS:$IP_ADDRESS"
 
 [[ -z ${INSTALL_MON} ]] && INSTALL_MON=true
 [[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=true
-[[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=true
+[[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=false
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
 
 
@@ -174,7 +175,7 @@ usage() {
 setup_mon.sh version "${SETUP_MON_VERSION}"
 Usage: $(basename "$0") [-d directory] [-i IP/FQDN[,IP/FQDN]] [-p port] [M|H|N|A]
 Setup monitoring packages for cnTools (Prometheus, Grafana, Node Exporter,
-and cnHids packages like OSSEC, Promtail, LOKI).
+and cnHids packages like OSSEC, Promtail, Loki).
 There are no dependencies for this script.
 -d directory      Top level directory where you'd like to deploy the packages:
                   prometheus , node exporter, grafana, ossec etc
@@ -228,31 +229,6 @@ myExit () {
   exit_msg="$2"
   cleanup "$1"
 }
-
-#######################################################
-# Version Check                                       #
-#######################################################
-
-# Check if setup_mon.sh update is available
-PARENT="$(dirname $0)"
-if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
-  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
-  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
-  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
-    if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
-      cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
-      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
-      printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
-      {
-        mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
-        chmod 755 "${PARENT}"/setup_mon.sh && \
-        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n";
-      } || {
-        myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub";
-      }
-    fi
-  fi
-fi
 
 
 ######################################################
@@ -331,9 +307,49 @@ done
 if [[ "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
 You have chosen to install cnHids and we still need to automate this part of the answer script
-TODO: Add some details here on OSSEC options to select during install until automated...
+Recommended responses for OSSEC server and agent installs (hybrid installs server and agent)
+   1- What kind of installation do you want (server, agent, local, hybrid or help)? server|agent
+   2- Choose where to install the OSSEC HIDS [/var/ossec]:/var/ossec
+   3.1- Do you want e-mail notification? (y/n) [y]: n
+   3.2- Do you want to run the integrity check daemon? (y/n) [y]: y
+   3.3- Do you want to run the rootkit detection engine? (y/n) [y]: y
+   3.4- Do you want to enable active response? (y/n) [y]: n
+   3.5- Do you want to enable remote syslog (port 514 udp)? (y/n) [y]: n
+
+Once you have installed the server, you will need to install and register the agents
+To Do: Add details here...
+
 " >&2
 fi
+
+read -p "Press any key to continue..." -n1 -s
+echo ""
+
+#######################################################
+# Version Check                                       #
+#######################################################
+
+# Check if setup_mon.sh update is available
+PARENT="$(dirname $0)"
+if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
+  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
+  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
+  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
+    if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
+      cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
+      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
+      printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
+      {
+        mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
+        chmod 755 "${PARENT}"/setup_mon.sh && \
+        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n";
+      } || {
+        myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub";
+      }
+    fi
+  fi
+fi
+
 
 ######################################################
 # Main install routine                               #
@@ -783,17 +799,18 @@ fi
 
 if [[ "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
-cnHids installed:
+cnHids installed and services running:
 - To start OSSEC HIDS: /var/ossec/bin/ossec-control start
 - To stop OSSEC HIDS: /var/ossec/bin/ossec-control stop
 - The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
 You will need to install agents on any remote endpoints (-A option)
+You can access the cnHids dashboard via grafana (http://$IP_ADDRESS:$GRAFANA_PORT)
 " >&2
 fi
 
 if [[ "$INSTALL_OSSEC_AGENTS" = true ]]; then
 echo -e "
-OSSEC agent installed for cnHids:
+OSSEC agent installed and services running for cnHids:
 - To start OSSEC agent: /var/ossec/bin/ossec-control start
 - To stop OSSEC agent: /var/ossec/bin/ossec-control stop
 - The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
