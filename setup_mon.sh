@@ -531,7 +531,7 @@ if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
    #Get the conf file, apply then restart
    $DBG dl "$OSSEC_CONF_URL"
    if [["$INSTALL_OSSEC_AGENTS" == true ]] ; then
-      CNODE_DIRS = '<directories check_all="yes">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all="yes">/home/cardano/.cabal/bin</directories>'
+      CNODE_DIRS = "<directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>"
       sed -i "s+<!--Add_cardano_dirs_here-->+$CNODE_DIRS+" "$TMP_DIR"/$(basename "$OSSEC_CONF_URL")
    fi
    sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
@@ -650,7 +650,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=cnhids
+User=$(whoami)
 ExecStart=$LOKI_DIR/loki-linux-amd64 -config.file loki-config.yaml
 WorkingDirectory=$LOKI_DIR
 Restart=always
