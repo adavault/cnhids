@@ -293,6 +293,12 @@ for i in "${CNODE_IP[@]}"; do
     echo "$i"
 done
 
+if [[ "$INSTALL_CNHIDS" = true ]]; then
+echo -e "
+You chose to install cnHids and we still need to automate this part of the answer script
+Add some details here on OSSEC options to select during install until automated...
+" >&2
+fi
 #exit
 
 #######################################################
@@ -379,7 +385,7 @@ if [[ "$INSTALL_MON" = true ]]; then
    echo -e "Downloading grafana v$GRAF_VER..." >&2
    $DBG dl "$GRAF_URL"
    echo -e "Downloading grafana dashboard(s)..." >&2
-   #Other dashboards are out of date...
+   #Other dashboards seem out of date...
    #echo -e "  - SKYLight Monitoring Dashboard" >&2
    #$DBG dl "$SKY_DB_URL"
    #echo -e "  - IOHK Monitoring Dashboard" >&2
@@ -482,15 +488,14 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENTS" = true ]] ; then
    # Add install code here for OSSEC
    # Is it possible to remove the manual choices? Can we provide an answer file?
    # For now we just launch
-   tar xzf 3.6.0.tar.gz
-   tar zxC "$TMP_DIR" -f "$TMP_DIR"/v"$OSSEC_VER"*gz --strip-components 1
-   cd "$TMP_DIR"
-   sudo ./install.sh
+   #tar xzf 3.6.0.tar.gz
+   tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
+   sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
    #Follow the prompts to install server version of OSSEC
    #Work out how to automate later...
    #Configure the ossec.conf- for now we just get the file and copy across
-   #sudo perl -0777 -pe 's/<global>.*?</global>/STRING3/gs' /var/ossec/etc/ossec.conf
-   #sed 's/\(.*|<global>|\).*\(|STRING3|.*\)/\1</global>\2/' /var/ossec/etc/ossec.conf > /var/ossec/etc/ossec.conf
+   ###sudo perl -0777 -pe 's/<global>.*?</global>/STRING3/gs' /var/ossec/etc/ossec.conf
+   ###sed 's/\(.*|<global>|\).*\(|STRING3|.*\)/\1</global>\2/' /var/ossec/etc/ossec.conf > /var/ossec/etc/ossec.conf
    $DBG dl "$OSSEC_CONF_URL"
    sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    sudo /var/ossec/bin/ossec-control restart
@@ -511,12 +516,13 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    # Create install dirs
    mkdir -p "$PROMTAIL_DIR" "$LOKI_DIR" "$OSSEC_METRICS_DIR"
    # Unzip files (strip leading component of path)
-   unzip -d "$PROMTAIL_DIR" "$TMP_DIR"/*promta*zip && f=("$PROMTAIL_DIR"/*) && mv "$PROMTAIL_DIR"/*/* "$PROMTAIL_DIR" && rmdir "${f[@]}"
-   unzip -d "$LOKI_DIR" "$TMP_DIR"/*loki*zip && f=("$LOKI_DIR"/*) && mv "$LOKI_DIR"/*/* "$LOKI_DIR" && rmdir "${f[@]}"
-   tar zxC "$TMP_DIR" -f "$TMP_DIR"/v"$OSSEC_METRICS_VER"*gz --strip-components 1
-
+   #unzip -d "$PROMTAIL_DIR" "$TMP_DIR"/*promta*zip && f=("$PROMTAIL_DIR"/*) && mv "$PROMTAIL_DIR"/*/* "$PROMTAIL_DIR" && rmdir "${f[@]}"
+   unzip "$TMP_DIR/promtail-${ARCHS[IDX]}.zip" -d "$PROMTAIL_DIR"
+   unzip "$TMP_DIR/loki-${ARCHS[IDX]}.zip" -d "$LOKI_DIR"
+   tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-metrics*gz
    # Set as executable
-   chmod +x "$PROMTAIL_DIR"/promtail-linux-amd64
+   chmod +x "$PROMTAIL_DIR/promtail-${ARCHS[IDX]}"
+   chmod +x "$LOKI_DIR/loki-${ARCHS[IDX]}"
    # Get tokenised conf files from Github, and replace tokens
    # Promtail
    $DBG dl "$PROMTAIL_CONF_URL"
@@ -534,6 +540,7 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    mv ossec-metrics "$OSSEC_METRICS_DIR"
    echo "INSTALL CNHIDS DEPENDENCIES: End"
 fi
+exit
 
 if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    echo "INSTALL NODE EXPORTER: Start"
@@ -765,6 +772,14 @@ You need to do the following to configure grafana:
 2. Add \"prometheus\" (all lowercase) datasource (http://$PROM_HOST:$PROM_PORT)
 3. Create a new dashboard by importing dashboards (left plus sign).
   - Sometimes, the individual panel's \"prometheus\" datasource needs to be refreshed.
+" >&2
+fi
+
+if [[ "$INSTALL_CNHIDS" = true ]]; then
+echo -e "
+- To start OSSEC HIDS: /var/ossec/bin/ossec-control start
+- To stop OSSEC HIDS: /var/ossec/bin/ossec-control stop
+- The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
 " >&2
 fi
 
