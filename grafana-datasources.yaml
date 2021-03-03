@@ -8,7 +8,7 @@ deleteDatasources:
 
 # # list of datasources to insert/update depending
 # # on what's available in the database
-#datasources:
+datasources:
 #   # <string, required> name of the datasource. Required
  - name: prometheus
 #   # <string, required> datasource type. Required
@@ -16,7 +16,7 @@ deleteDatasources:
 #   # <string, required> access mode. direct or proxy. Required
    access: proxy
 #   # <int> org id. will default to orgId 1 if not specified
-   orgId: 1
+#   orgId: 1
 #   # <string> url
    url: http://localhost:8080
 #   # <string> database password, if used
