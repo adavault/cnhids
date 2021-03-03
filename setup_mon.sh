@@ -7,25 +7,41 @@
 # Common variables set in env file   #
 ######################################
 
-NO_INTERNET_MODE="N"                       # To skip checking for auto updates or make outgoing connections to guild-operators github repository
+NO_INTERNET_MODE="N"                        # To skip checking for auto updates or make outgoing connections to guild-operators github repository
 
-#CNODE_NAME='cnode'                        # Alternate name for top level folder, non alpha-numeric chars will be replaced with underscore (Default: cnode)
-CNODE_IP=127.0.0.1                         # Default IP/FQDN or pass multiple as comma delimited string with no whitespace e.g. host1.domain,host2.domain
-CNODE_PORT=12798                           # Default monitoring port used by node for metrics (can be edited in config.json on node)
-GRAFANA_HOST=0.0.0.0                       # Default IP address for Grafana (bind to server public interface)
-GRAFANA_PORT=5000                          # Default port used by Grafana
-PROM_HOST=127.0.0.1                        # Default Prometheus host (bind to localhost as only accessed by Grafana)
-PROM_PORT=9090                             # Default Prometheus port (only accessed by Grafana)
-NEXP_PORT=9091                             # Default Node Exporter port
+#CNODE_IP=127.0.0.1                         # Default IP/FQDN or pass multiple as args comma delimited string with no whitespace e.g. host1.domain,host2.domain
+#CNODE_PORT=12798                           # Default monitoring port used by node for metrics (can be edited in config.json on node)
+#GRAFANA_HOST=0.0.0.0                       # Default IP address for Grafana (bind to server public interface)
+#GRAFANA_PORT=5000                          # Default port used by Grafana
+#PROM_HOST=127.0.0.1                        # Default Prometheus host (bind to localhost as only accessed by Grafana)
+#PROM_PORT=9090                             # Default Prometheus port (only accessed by Grafana)
+#NEXP_PORT=9091                             # Default Node Exporter port
 
-PROJ_PATH=/opt/cardano/monitoring          # Default install path
+#PROJ_PATH=/opt/cardano/monitoring          # Default install path
+#TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
+#BRANCH="master"                            # Default branch in repo
 
-TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
+                                            # Defaults (equivalent to a local installation on a single node)- these can also be overridden by args
+#INSTALL_MON=true                           # Install base monitoring (Prometheus/Grafana/Dashboards)
+#INSTALL_CNHIDS=true                        # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
+#INSTALL_NODE_EXP=true                      # Install Node Exporter for base OS metrics
+#INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
+
+#CURL_TIMEOUT=60                            # Maximum time in seconds that you allow the file download operation to take before aborting (Default: 60s)
+#UPDATE_CHECK='Y'                           # Check if there is an updated version of prereqs.sh script to download
+#SUDO='Y'                                   # Used by docker builds to disable sudo, leave unchanged if unsure.
+
+######################################
+# Do NOT modify code below           #
+######################################
 
 ######################################
 # Static Variables                   #
 ######################################
+DEBUG="N"
+SETUP_MON_VERSION=2.0.0
 
+# version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
 PROM_VER=2.24.1
@@ -36,6 +52,9 @@ PROMTAIL_VER=2.1.0
 LOKI_VER=2.1.0
 OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
+
+dirs -c # clear dir stack
+[[ -z "${BRANCH}" ]] && BRANCH="master"
 
 # guildops URLs
 REPO="https://github.com/cardano-community/guild-operators"
@@ -59,40 +78,59 @@ ADV_DB_URL="https://raw.githubusercontent.com/cyber-russ/adavault-dashboard/main
 # cnHids dashboard URL
 CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-dashboard.json"
 
-#Why is this export statement here?...presumably so spawned processes have access to vars...
+#Why is this export statement here?...presumably so spawned processes have access to vars? Check....
 export CNODE_IP CNODE_PORT PROJ_PATH TMP_DIR
-
-# Install defaults (equivalent to a local installation on a single node)- these are overridden by args
-INSTALL_MON=true
-INSTALL_CNHIDS=true
-INSTALL_NODE_EXP=true
-INSTALL_OSSEC_AGENT=false
-
-######################################
-# Do NOT modify code below           #
-######################################
-DEBUG="N"
-SETUP_MON_VERSION=2.0.0
 
 IP_ADDRESS=$(hostname -I)
 echo "IP ADDRESS:$IP_ADDRESS"
 
-dirs -c # clear dir stack
-CNODE_PATH="/opt/cardano"
-CNODE_HOME=${CNODE_PATH}/${CNODE_NAME}
-CNODE_VNAME=$(echo "$CNODE_NAME" | awk '{print toupper($0)}')
-[[ -z "${BRANCH}" ]] && BRANCH="master"
+#Override with defaults as needed...
+[[ -z ${PROJ_PATH} ]] && PROJ_PATH=/opt/cardano/monitoring
+[[ -z ${FORCE_OVERWRITE} ]] && FORCE_OVERWRITE='N'
+[[ -z ${CNODE_IP} ]] && CNODE_IP=127.0.0.1
+[[ -z ${GRAFANA_HOST} ]] && GRAFANA_HOST=0.0.0.0
+[[ -z ${GRAFANA_PORT} ]] && GRAFANA_PORT=5000
+[[ -z ${PROM_HOST} ]] && PROM_HOST=9090
+[[ -z ${PROM_PORT} ]] && PROM_PORT=9090
+[[ -z ${NEXP_PORT} ]] && NEXP_PORT=9091
+[[ -z ${TIMEZONE} ]] && TIMEZONE="Europe/London
+[[ -z ${CURL_TIMEOUT} ]] && CURL_TIMEOUT=60
+[[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK='Y'
+[[ -z ${SUDO} ]] && SUDO='Y'
 
-######################################
-# Functions                          #
-######################################
+[[ -z ${INSTALL_MON} ]] && INSTALL_MON=true
+[[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=true
+[[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=true
+[[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
 
-#clean_up () {
-#    echo "Cleaning up..." >&2
-#    $DBG rm -rf "$TMP_DIR"
-#    RES=$1
-#    exit "${RES:=127}"
-#}
+#######################################################
+# Version Check                                       #
+#######################################################
+
+# Check if setup_mon.sh update is available
+PARENT="$(dirname $0)"
+if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
+  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
+  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
+  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
+    if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
+      cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
+      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
+      printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
+      {
+        mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
+        chmod 755 "${PARENT}"/setup_mon.sh && \
+        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n"
+      } || {
+        myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub"
+      }
+    fi
+  fi
+fi
+
+######################################################
+# Functions                                          #
+######################################################
 
 get_input() {
   printf "%s (default: %s): " "$1" "$2" >&2; read -r answer
@@ -157,24 +195,38 @@ dl() {
 
 usage() {
   cat <<EOF >&2
+setup_mon.sh version "${SETUP_MON_VERSION}"
 Usage: $(basename "$0") [-d directory] [-i IP/FQDN[,IP/FQDN]] [-p port] [M|H|N|A]
-Setup monitoring packages for cnTools (Prometheus, Grafana, Node Exporter, and cnHids packages like OSSEC, Promtail, LOKI)
-Depends on prereqs.sh.
--d directory      Top level directory where you'd like to deploy the packages for prometheus , node exporter, grafana, ossec etc
-                      (default directory is /opt/cardano/monitoring)
--i IP/hostname    IPv4 address(es) or a FQDN/DNS name(s) where your cardano-node (relay/bpn) is running
-                      (check for hasPrometheus in config.json on node; eg: 127.0.0.1 to make sure bound to 0.0.0.0 for remote monitoring)
-                      to pass muliple nodes use , delimiter e.g -i relay1.domain,relay2.domain,bpn.domain
--p port           Port at which your cardano-node(s) is exporting stats (check for hasPrometheus in config.json; default=12798)
--[M|H|N|A]        Install specific configuration; performance (M)onitoring only, perf + cn(H)ids monitoring, (N)ode exporter, OSSEC (A)gent
+Setup monitoring packages for cnTools (Prometheus, Grafana, Node Exporter,
+and cnHids packages like OSSEC, Promtail, LOKI).
+There are no dependencies for this script.
+-d directory      Top level directory where you'd like to deploy the packages:
+                  prometheus , node exporter, grafana, ossec etc
+                  (default directory is /opt/cardano/monitoring)
+-i IP/hostname    IPv4 address(es) or a FQDN/DNS name(s) for remote cardano-node(s) (relay/bpn)
+                  (check for hasPrometheus in config.json on node;
+                  eg: 127.0.0.1 to make sure bound to 0.0.0.0 for remote monitoring)
+                  to pass muliple nodes comma delimit e.g -i relay1.domain,relay2.domain,bpn.domain
+                  (default is 127.0.0.1 or localhost)
+-p port           Port at which your cardano-node(s) is exporting stats
+                  check for hasPrometheus in config.json
+                  (default=12798)
+-[M|H|N|A]        Install specific configuration;
+                  - [M]onitoring perfomance (Grafana/Prometheus)
+                  - cn[H]ids monitoring (Grafana/Prometheus/OSSEC/Dependencies)
+                  - [N]ode exporter (needed to report base O/S performance metrics)
+                  - OSSEC [A]gent (needed to report to OSSEC server)
                   (upgrade option to be added- preserve monitoring data)
-                  Deployment patterns are: 1) Monitoring and agents installed on single cardano node (default),
-                                           2) Install monitoring remotely and install agents on nodes.
-                  We recommend installing monitoring on a seperate instance e.g. perf monitoring and HIDS connected to relay1 and bpn;
-                      ./setup_mon.sh -H -i relay1.domain,bpn.domain
+                  Recommended deployment patterns are:
+                  1) Monitoring and agents installed on single cardano node.
+                  2) Install monitoring remotely and install agents on nodes.
+                  We recommend installing monitoring on a seperate instance
+                  e.g. perf monitoring and HIDS connected to remote nodes;
+                  ./setup_mon.sh -MH -i relay1.domain,bpn.domain
                   ...then install node exporter and OSSEC agents on relay1 and bpn cnode instances;
-                      ./setup_mon.sh -NA
-                  -M on remote server implies -N on nodes, -H on remote server implies -NA on nodes.
+                  ./setup_mon.sh -NA
+                  -M on remote server implies -N on nodes
+                  -H on remote server implies -NA on nodes.
 EOF
   exit 1
 }
@@ -201,9 +253,9 @@ myExit () {
   cleanup "$1"
 }
 
-######################################################################
-# Check variables and args
-######################################################################
+######################################################
+# Check environment and args                         #
+######################################################
 
 if [[ "${DEBUG}" == "Y" ]]; then
   DBG=echo
@@ -218,30 +270,17 @@ if  [ -z "$DL" ]; then
     myExit 3 'You need to have "wget" or "curl" to be installed\nand accessable by PATH environment to continue...\nExiting.'
 fi
 
-[[ -z ${FORCE_OVERWRITE} ]] && FORCE_OVERWRITE='N'
-[[ -z ${CNODE_NAME} ]] && CNODE_NAME='cnode'
-[[ -z ${INTERACTIVE} ]] && INTERACTIVE='N'
-[[ -z ${CURL_TIMEOUT} ]] && CURL_TIMEOUT=60
-[[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK='Y'
-[[ -z ${SUDO} ]] && SUDO='Y'
 [[ "${SUDO}" = 'Y' ]] && sudo="sudo" || sudo=""
 [[ "${SUDO}" = 'Y' && $(id -u) -eq 0 ]] && myExit 1 "Please run as non-root user."
 
-# if using CNODE_HOME
-# DOES THIS CHANGE IF WE USE ENV??
-# Changes now CNODE_IP can be a comma delimited string
-# We already exported these vars earlier!!! Check
-if [[ -f "$CNODE_HOME/scripts/env" ]]; then
-  CNODE_IP=$(jq -r .hasPrometheus[0] "$CONFIG" 2>/dev/null)
-  CNODE_PORT=$(jq -r .hasPrometheus[1] "$CONFIG" 2>/dev/null)
-  PROJ_PATH="$(cd "$CNODE_HOME/../monitoring 2>/dev/null";pwd)"
-fi
+# For who runs the script within containers and running it as root.
+U_ID=$(id -u)
+G_ID=$(id -g)
 
 while getopts :i:p:d:MHNA: opt; do
   case ${opt} in
     i )
       IFS=',' read -ra CNODE_IP <<< "$OPTARG"
-      ;;
     p ) CNODE_PORT="$OPTARG" ;;
     d ) PROJ_PATH="$OPTARG" ;;
     M ) INSTALL_MON=true
@@ -262,7 +301,6 @@ while getopts :i:p:d:MHNA: opt; do
         INSTALL_OSSEC_AGENT=true
         INSTALL_CNHIDS=false
         INSTALL_MON=false
-        ;;
     \? )
       usage
       exit
@@ -271,7 +309,7 @@ while getopts :i:p:d:MHNA: opt; do
 done
 shift "$((OPTIND -1))"
 
-## Test code- remove?
+## Test code to show ags- remove?
 if [ "$INSTALL_MON" = true ] ; then
     echo 'INSTALL_MON = true'
 fi
@@ -295,41 +333,14 @@ done
 
 if [[ "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
-You chose to install cnHids and we still need to automate this part of the answer script
-Add some details here on OSSEC options to select during install until automated...
+You have chosen to install cnHids and we still need to automate this part of the answer script
+TODO: Add some details here on OSSEC options to select during install until automated...
 " >&2
 fi
-#exit
 
-#######################################################
-# Version Check                                       #
-#######################################################
-
-# Check if setup_mon.sh update is available
-PARENT="$(dirname $0)"
-if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
-  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
-  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
-  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
-    if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
-      cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
-      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
-      printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
-      {
-        mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
-        chmod 755 "${PARENT}"/setup_mon.sh && \
-        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n"
-      } || {
-        myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub"
-      }
-    fi
-  fi
-fi
-
-
-#########################################
-# Main
-#########################################
+######################################################
+# Main install routine                               #
+######################################################
 
 #Check whether the install path already exists and exit if so (this needs to change once upgrade is supported)
 if [ -e "$PROJ_PATH" ]; then
@@ -374,9 +385,11 @@ PROMTAIL_URL="https://github.com/grafana/loki/releases/download/v$PROMTAIL_VER/p
 OSSEC_URL="https://github.com/ossec/ossec-hids/archive/$OSSEC_VER.tar.gz"
 OSSEC_METRICS_URL="https://github.com/slim-bean/ossec-metrics/archive/v$OSSEC_METRICS_VER.tar.gz"
 
-echo ""
-if [[ "$INSTALL_MON" = true ]]; then
-   echo "INSTALL MONITORING: Start"
+echo "MAIN INSTALL SEQUENCE: Start"
+
+#Base Monitoring start --->
+if [[ "$INSTALL_MON" = true ]] ] | [[ "$INSTALL_CNHIDS" = true ]]; then
+   echo "INSTALL MONITORING BASE LAYER: Start"
    PROM_SERVICE=true
    GRAF_SERVICE=true
    echo -e "Downloading base packages..." >&2
@@ -385,13 +398,15 @@ if [[ "$INSTALL_MON" = true ]]; then
    echo -e "Downloading grafana v$GRAF_VER..." >&2
    $DBG dl "$GRAF_URL"
    echo -e "Downloading grafana dashboard(s)..." >&2
-   #Other dashboards seem out of date...
-   #echo -e "  - SKYLight Monitoring Dashboard" >&2
-   #$DBG dl "$SKY_DB_URL"
-   #echo -e "  - IOHK Monitoring Dashboard" >&2
-   #$DBG dl "$IOHK_DB_URL"
-   echo -e "  - ADAvault Monitoring Dashboard" >&2
-   $DBG dl "$ADV_DB_URL"
+   if [[ "$INSTALL_MON" = true ]]; then
+      #Other dashboards seem out of date...
+      #echo -e "  - SKYLight Monitoring Dashboard" >&2
+      #$DBG dl "$SKY_DB_URL"
+      #echo -e "  - IOHK Monitoring Dashboard" >&2
+      #$DBG dl "$IOHK_DB_URL"
+      echo -e "  - ADAvault Monitoring Dashboard" >&2
+      $DBG dl "$ADV_DB_URL"
+   fi
    if [[ "$INSTALL_CNHIDS" = true ]]; then
       echo -e "  - cnHids Dashboard" >&2
       $DBG dl "CNHIDS_DB_URL"
@@ -418,64 +433,57 @@ if [[ "$INSTALL_MON" = true ]]; then
    HOSTNAME=$(hostname)
    sed -e "s/http_addr.*/http_addr = $GRAFANA_HOST/g" -e "s/http_port = 3000/http_port = $GRAFANA_PORT/g" "$GRAF_DIR"/conf/defaults.ini -i
 
-#RW 02032021 Replace with tokenised yml below...needs loop for multiple targets
-#   sed -e "s#\(^scrape_configs:.*\)#\1\n\
-#  - job_name: '${HOSTNAME}_cardano_node'\n\
-#    static_configs:\n\
-#    - targets: ['$CNODE_IP:$CNODE_PORT']\n\
-#  - job_name: '${HOSTNAME}_node_exporter'\n\
-#    static_configs:\n\
-#    - targets: ['$CNODE_IP:$NEXP_PORT']#g" -e "s#localhost:9090#$PROM_HOST:$PROM_PORT#g" "$PROM_DIR"/prometheus.yml -i
-
    # Setup Prometheus config...append to conf file
    $DBG dl "$PROM_CONF_URL"
-#Loop for multiple nodes
-for i in "${CNODE_IP[@]}"; do
-cat >> "$TMP_DIR"/prometheus.yml <<EOF
-  - job_name: '${i}_cardano_node'
-    static_configs:
-    - targets: ['$i:$CNODE_PORT']
-  - job_name: '${i}_node_exporter'
-    static_configs:
-    - targets: ['$i:$NEXP_PORT']
-EOF
-done
+   #Loop for multiple nodes
+   for i in "${CNODE_IP[@]}"; do
+   cat >> "$TMP_DIR"/prometheus.yml <<EOF
+    - job_name: '${i}_cardano_node'
+      static_configs:
+      - targets: ['$i:$CNODE_PORT']
+    - job_name: '${i}_node_exporter'
+      static_configs:
+      - targets: ['$i:$NEXP_PORT']
+   EOF
+   done
    #Check to see if we need add scrapes for cnHids
    if [[ "$INSTALL_CNHIDS" = true ]]; then
    cat >> "$TMP_DIR"/prometheus.yml <<EOF
-  - job_name: 'ossec'
-    static_configs:
-    - targets: ['localhost:8080']
-  - job_name: 'ossec-metrics'
-    static_configs:
-    - targets: ['localhost:7070']
-  - job_name: 'loki'
-    static_configs:
-    - targets: ['localhost:3100']
-EOF
+    - job_name: 'ossec'
+      static_configs:
+      - targets: ['localhost:8080']
+    - job_name: 'ossec-metrics'
+      static_configs:
+      - targets: ['localhost:7070']
+    - job_name: 'loki'
+      static_configs:
+      - targets: ['localhost:3100']
+    EOF
    fi
    cp "$TMP_DIR"/prometheus.yml "$PROM_DIR"
 
    # Change icons - change these to your icons, example for ADAvault
    # Add code here
 
-#provision the dashboards
-cat > "$GRAF_DIR"/conf/provisioning/dashboards/guildops.yaml <<EOF
-# config file version
-apiVersion: 1
+   #provision the dashboards
+   cat > "$GRAF_DIR"/conf/provisioning/dashboards/guildops.yaml <<EOF
+   # config file version
+   apiVersion: 1
 
-providers:
- - name: 'GuildOps'
-   orgId: 1
-   folder: ''
-   folderUid: ''
-   type: file
-   options:
-     path: $DASH_DIR
-EOF
-   echo "INSTALL MONITORING: End"
+   providers:
+   - name: 'GuildOps'
+     orgId: 1
+     folder: ''
+     folderUid: ''
+     type: file
+      options:
+       path: $DASH_DIR
+   EOF
+   echo "INSTALL MONITORING BASE LAYER: End"
 fi
+#<---Base Monitoring end
 
+#cnHids Server/Agents start --->
 #Fetch OSSEC for cnHids server and agents installs
 if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENTS" = true ]] ; then
    echo "INSTALL CNHIDS SERVER: Start"
@@ -483,25 +491,20 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENTS" = true ]] ; then
    sudo apt install gcc make libevent-dev zlib1g-dev libssl-dev libpcre2-dev wget tar unzip -y
    echo -e "Downloading OSSEC server/agent" >&2
    $DBG dl "$OSSEC_URL"
-   # Create install dirs NOT NEEDED FOR OSSEC?
-   #mkdir -p "$OSSEC_DIR"
-   # Add install code here for OSSEC
-   # Is it possible to remove the manual choices? Can we provide an answer file?
-   # For now we just launch
-   #tar xzf 3.6.0.tar.gz
+   # Install OSSEC server
+   # Is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
-   sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
    #Follow the prompts to install server version of OSSEC
-   #Work out how to automate later...
-   #Configure the ossec.conf- for now we just get the file and copy across
-   ###sudo perl -0777 -pe 's/<global>.*?</global>/STRING3/gs' /var/ossec/etc/ossec.conf
-   ###sed 's/\(.*|<global>|\).*\(|STRING3|.*\)/\1</global>\2/' /var/ossec/etc/ossec.conf > /var/ossec/etc/ossec.conf
+   sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
+   #Get the conf file, apply then restart
    $DBG dl "$OSSEC_CONF_URL"
    sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    sudo /var/ossec/bin/ossec-control restart
-    echo "INSTALL CNHIDS SERVER: End"
+   echo "INSTALL CNHIDS SERVER: End"
 fi
+#<---cnHids Server/Agents end
 
+#cnHids Dependencies start --->
 if [[ "$INSTALL_CNHIDS" = true ]] ; then
    echo "INSTALL CNHIDS DEPENDENCIES: Start"
    PROMTAIL_SERVICE=true
@@ -540,7 +543,9 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    mv ossec-metrics "$OSSEC_METRICS_DIR"
    echo "INSTALL CNHIDS DEPENDENCIES: End"
 fi
+#<---cnHids Dependencies end
 
+#Node exporter start --->
 if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    echo "INSTALL NODE EXPORTER: Start"
    NEXP_SERVICE=true
@@ -559,11 +564,11 @@ if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    # Get tokenised conf files from Github, and replace tokens 
    echo "INSTALL NODE EXPORTER: End"
 fi
+#<---Node Exporter end
 
-
-##########################################
-# Set up the service definitions
-##########################################
+######################################################
+# Set up the service definitions for systemd         #
+######################################################
 
 #Promtail start --->
 if [[ "$PROMTAIL_SERVICE" = true ]] ; then
@@ -748,6 +753,7 @@ echo "INSTALL GRAFANA SERVICE: End"
 fi
 #<---Grafana end
 
+echo "MAIN INSTALL SEQUENCE: End"
 
 #############################################
 # Finish the install
@@ -757,34 +763,51 @@ fi
 
 echo -e "
 =====================================================
-Installation is completed
+INSTALLATION: Completed
 =====================================================
 " >&2
 
 if [[ "$INSTALL_MON" = true ]]; then
 echo -e "
-- Prometheus (default): http://$PROM_HOST:$PROM_PORT/metrics
-- Grafana (default):    http://$IP_ADDRESS:$GRAFANA_PORT
+Base Monitoring layer installed:
+- Prometheus    : http://$PROM_HOST:$PROM_PORT/metrics
+- Grafana       : http://$IP_ADDRESS:$GRAFANA_PORT
+- cnode metrics : http://$CNODE_IP:$CNODE_PORT
+
 You need to do the following to configure grafana:
-0. The services should already be started, verify if you can login to grafana, and prometheus. If using 127.0.0.1 as IP, you can check via curl
+0. The services should already be started, verify if you can login to grafana, and prometheus.
+You can check via curl at the addresses above (127.0.0.1 will not allow remote access)
 1. Login to grafana as admin/admin (http://$IP_ADDRESS:$GRAFANA_PORT)
-2. Add \"prometheus\" (all lowercase) datasource (http://$PROM_HOST:$PROM_PORT)
-3. Create a new dashboard by importing dashboards (left plus sign).
+2. A \"prometheus\" (all lowercase) datasource has been added (http://$PROM_HOST:$PROM_PORT)
+3. A base dashboard has been provisioned or import an existing dashboard (left plus sign).
   - Sometimes, the individual panel's \"prometheus\" datasource needs to be refreshed.
 " >&2
 fi
 
 if [[ "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
+cnHids installed:
 - To start OSSEC HIDS: /var/ossec/bin/ossec-control start
 - To stop OSSEC HIDS: /var/ossec/bin/ossec-control stop
 - The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
+You will need to install agents on any remote endpoints (-A option)
+" >&2
+fi
+
+if [[ "$INSTALL_OSSEC_AGENTS" = true ]]; then
+echo -e "
+OSSEC agent installed for cnHids:
+- To start OSSEC agent: /var/ossec/bin/ossec-control start
+- To stop OSSEC agent: /var/ossec/bin/ossec-control stop
+- The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
+You will need to restart the OSSEC server for the first agent installed
+Make sure you have port 1514 UDP open from agent to server on any firewalls
 " >&2
 fi
 
 if [[ "$INSTALL_NODE_EXP" = true ]]; then
 echo -e "
-- Node metrics:       http://$CNODE_IP:$CNODE_PORT
+Node Exporter installed:
 - Node exp metrics:   http://$CNODE_IP:$NEXP_PORT
 " >&2
 fi
