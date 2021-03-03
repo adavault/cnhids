@@ -546,15 +546,15 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    PROMTAIL_SERVICE=true
    LOKI_SERVICE=true
    OSSEC_METRICS_SERVICE=true
-   sudo systemctl stop loki
+   echo "INSTALL CNHIDS DEPENDENCIES: Stopping services loki, promtail, ossec-metrics"
    sudo systemctl stop promtail
+   sudo systemctl stop loki
    sudo systemctl stop ossec-metrics
-   echo -e "Downloading cnHids packages..." >&2
+   echo "INSTALL CNHIDS DEPENDENCIES: Downloading packages..." >&2
    $DBG dl "$PROMTAIL_URL"
    $DBG dl "$LOKI_URL"
    $DBG dl "$OSSEC_METRICS_URL"
-
-   echo -e "Configuring components" >&2
+   echo "INSTALL CNHIDS DEPENDENCIES: Configuring components" >&2
    # Create install dirs
    mkdir -p "$PROMTAIL_DIR" "$LOKI_DIR" "$OSSEC_METRICS_DIR"
    # Unzip files (strip leading component of path)
