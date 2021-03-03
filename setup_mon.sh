@@ -542,11 +542,11 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    # Get tokenised conf files from Github, and replace tokens
    # Promtail
    $DBG dl "$PROMTAIL_CONF_URL"
-   sed -i 's+Europe/London+"$TIMEZONE"+' "$TMP_DIR"/$(basename "$PROMTAIL_CONF_URL")
+   sed -i 's+Europe/London+$TIMEZONE+' "$TMP_DIR"/$(basename "$PROMTAIL_CONF_URL")
    cp "$TMP_DIR"/$(basename "$PROMTAIL_CONF_URL") "$PROMTAIL_DIR"
    # Loki
    $DBG dl "$LOKI_CONF_URL"
-   sed -i 's+/opt/cardano/monitoring+"$PROJ_PATH"+g' "$TMP_DIR"/$(basename "$LOKI_CONF_URL")
+   sed -i 's+/opt/cardano/monitoring+$PROJ_PATH+g' "$TMP_DIR"/$(basename "$LOKI_CONF_URL")
    cp "$TMP_DIR"/$(basename "$LOKI_CONF_URL") "$LOKI_DIR"
    # OSSEC-metrics
    sudo apt install golang-go
@@ -585,8 +585,8 @@ fi
 
 #Promtail start --->
 if [[ "$PROMTAIL_SERVICE" = true ]] ; then
-echo "INSTALL PROMTAIL SERVICE: Start"
-cat > "$SYSD_DIR"/promtail.service <<EOF
+   echo "INSTALL PROMTAIL SERVICE: Start"
+   cat > "$SYSD_DIR"/promtail.service <<EOF
 [Unit]
 Description=Promtail Loki Agent
 After=loki.service
@@ -603,20 +603,22 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-#Copy over the files and start services
-echo "Creating Promtail service definitions as root..."
-sudo cp "$SYSD_DIR"/promtail.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable promtail
-sudo systemctl start promtail
-echo "INSTALL PROMTAIL SERVICE: End"
+   #Copy over the files and start services
+   echo "INSTALL PROMTAIL SERVICE: copying definition and starting"
+   sudo cp "$SYSD_DIR"/promtail.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable promtail
+   sudo systemctl start promtail
+   echo "INSTALL PROMTAIL SERVICE: End"
+else
+   sudo systemctl disable promtail
 fi
 #<---Promtail end
 
 #LOKI start --->
 if [[ "$LOKI_SERVICE" = true ]] ; then
-echo "INSTALL LOKI SERVICE: Start"
-cat > "$SYSD_DIR"/loki.service <<EOF
+   echo "INSTALL LOKI SERVICE: Start"
+   cat > "$SYSD_DIR"/loki.service <<EOF
 [Unit]
 Description=Loki Log Aggregator
 After=network.target
@@ -633,20 +635,22 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-#Copy over the files and start services
-echo "Creating loki service definitions as root..."
-sudo cp "$SYSD_DIR"/loki.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable loki
-sudo systemctl start loki
-echo "INSTALL LOKI SERVICE: End"
+   #Copy over the files and start services
+   echo "INSTALL LOKI SERVICE: copying definition and starting"
+   sudo cp "$SYSD_DIR"/loki.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable loki
+   sudo systemctl start loki
+   echo "INSTALL LOKI SERVICE: End"
+else
+   sudo systemctl disable loki
 fi
 #<---LOKI end
 
 #OSSEC_METRICS start --->
 if [[ "$OSSEC_METRICS_SERVICE" = true ]] ; then
-echo "INSTALL OSSEC_METRICS SERVICE: Start"
-cat > "$SYSD_DIR"/ossec-metrics.service <<EOF
+   echo "INSTALL OSSEC_METRICS SERVICE: Start"
+   cat > "$SYSD_DIR"/ossec-metrics.service <<EOF
 [Unit]
 Description=Ossec Metrics exposes OSSEC info for prometheus to scrape
 After=network.target
@@ -663,20 +667,22 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-#Copy over the files and start services
-echo "Creating ossec-metrics service definitions as root..."
-sudo cp "$SYSD_DIR"/ossec-metrics.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable ossec-metrics
-sudo systemctl start ossec-metrics
-echo "INSTALL OSSEC_METRICS SERVICE: End"
+   #Copy over the files and start services
+   echo "INSTALL OSSEC_METRICS SERVICE: copying definition and starting"
+   sudo cp "$SYSD_DIR"/ossec-metrics.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable ossec-metrics
+   sudo systemctl start ossec-metrics
+   echo "INSTALL OSSEC_METRICS SERVICE: End"
+else
+   sudo systemctl disable ossec-metrics
 fi
 #<---OSSEC_METRICS end
 
 #Prometheus start --->
-if [[ "$PROM_SERVICE" = true ]] ; then
-echo "INSTALL PROMETHEUS SERVICE: Start"
-cat > "$SYSD_DIR"/prometheus.service <<EOF
+   if [[ "$PROM_SERVICE" = true ]] ; then
+   echo "INSTALL PROMETHEUS SERVICE: Start"
+   cat > "$SYSD_DIR"/prometheus.service <<EOF
 [Unit]
 Description=Prometheus Server
 Documentation=https://prometheus.io/docs/introduction/overview/
@@ -695,20 +701,22 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-#Copy over the files and start services
-echo "Creating Prometheus service definitions as root..."
-sudo cp "$SYSD_DIR"/prometheus.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable prometheus
-sudo systemctl start prometheus
-echo "INSTALL PROMETHEUS SERVICE: End"
+   #Copy over the files and start services
+   echo "INSTALL PROMETHEUS SERVICE: copying definition and starting"
+   sudo cp "$SYSD_DIR"/prometheus.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable prometheus
+   sudo systemctl start prometheus
+   echo "INSTALL PROMETHEUS SERVICE: End"
+else
+   sudo systemctl disable prometheus
 fi
 #<---Prometheus end
 
 #Node Exporter --->
-if [[ "$NEXP_SERVICE" = true ]] ; then
-echo "INSTALL NODE EXPORTER SERVICE: Start"
-cat > "$SYSD_DIR"/node-exporter.service <<EOF
+   if [[ "$NEXP_SERVICE" = true ]] ; then
+   echo "INSTALL NODE EXPORTER SERVICE: Start"
+   cat > "$SYSD_DIR"/node-exporter.service <<EOF
 [Unit]
 Description=Node Exporter
 Wants=network-online.target
@@ -725,20 +733,22 @@ LimitNOFILE=3500
 WantedBy=default.target
 EOF
 
-#Copy over the files and start services
-echo "Creating Node exporter service definitions as root..."
-sudo cp "$SYSD_DIR"/node-exporter.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable node-exporter
-sudo systemctl start node-exporter
-echo "INSTALL NODE EXPORTER SERVICE: End"
+   #Copy over the files and start services
+   echo "INSTALL NODE EXPORTER SERVICE: copying definitions and starting"
+   sudo cp "$SYSD_DIR"/node-exporter.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable node-exporter
+   sudo systemctl start node-exporter
+   echo "INSTALL NODE EXPORTER SERVICE: End"
+else
+   sudo systemctl disable node-exporter
 fi
 #<---Node Exporter end
 
 #Grafana start --->
-if [[ "$GRAF_SERVICE" = true ]] ; then
-echo "INSTALL GRAFANA SERVICE: Start"
-cat > "$SYSD_DIR"/grafana.service <<EOF
+   if [[ "$GRAF_SERVICE" = true ]] ; then
+   echo "INSTALL GRAFANA SERVICE: Start"
+   cat > "$SYSD_DIR"/grafana.service <<EOF
 [Unit]
 Description=Grafana instance
 Documentation=http://docs.grafana.org
@@ -756,13 +766,15 @@ LimitNOFILE=10000
 WantedBy=default.target
 EOF
 
-#Copy over the files and start services
-echo "Creating Grafana service definitions as root..."
-sudo cp "$SYSD_DIR"/grafana.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable grafana
-sudo systemctl start grafana
-echo "INSTALL GRAFANA SERVICE: End"
+   #Copy over the files and start services
+   echo "INSTALL GRAFANA SERVICE: copying definitions and starting"
+   sudo cp "$SYSD_DIR"/grafana.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable grafana
+   sudo systemctl start grafana
+   echo "INSTALL GRAFANA SERVICE: End"
+else
+   sudo systemctl disable grafana
 fi
 #<---Grafana end
 
