@@ -23,8 +23,8 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
-#INSTALL_MON=true                           # Install base monitoring (Prometheus/Grafana/Dashboards)
-#INSTALL_CNHIDS=true                        # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
+#INSTALL_MON=false                           # Install base monitoring (Prometheus/Grafana/Dashboards)
+#INSTALL_CNHIDS=false                        # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
@@ -82,7 +82,7 @@ CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-
 #Why is this export statement here?...presumably so spawned processes have access to vars? Check....
 export CNODE_IP CNODE_PORT PROJ_PATH TMP_DIR
 
-IP_ADDRESS=$(hostname -I)
+IP_ADDRESS=$(hostname -I | xargs)
 echo "IP ADDRESS:$IP_ADDRESS"
 
 #Override with defaults as needed...
@@ -91,7 +91,7 @@ echo "IP ADDRESS:$IP_ADDRESS"
 [[ -z ${CNODE_IP} ]] && CNODE_IP=127.0.0.1
 [[ -z ${GRAFANA_HOST} ]] && GRAFANA_HOST=0.0.0.0
 [[ -z ${GRAFANA_PORT} ]] && GRAFANA_PORT=5000
-[[ -z ${PROM_HOST} ]] && PROM_HOST=9090
+[[ -z ${PROM_HOST} ]] && PROM_HOST=127.0.0.1
 [[ -z ${PROM_PORT} ]] && PROM_PORT=9090
 [[ -z ${NEXP_PORT} ]] && NEXP_PORT=9091
 [[ -z ${TIMEZONE} ]] && TIMEZONE="Europe/London"
@@ -99,8 +99,8 @@ echo "IP ADDRESS:$IP_ADDRESS"
 [[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK='Y'
 [[ -z ${SUDO} ]] && SUDO='Y'
 
-[[ -z ${INSTALL_MON} ]] && INSTALL_MON=true
-[[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=true
+[[ -z ${INSTALL_MON} ]] && INSTALL_MON=false
+[[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=false
 [[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=false
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
 
@@ -235,6 +235,8 @@ myExit () {
 # Check environment and args                         #
 ######################################################
 
+unset name
+
 if [[ "${DEBUG}" == "Y" ]]; then
   DBG=echo
 else
@@ -281,6 +283,12 @@ while getopts :i:p:d:MHNA: opt; do
   esac
 done
 shift "$((OPTIND -1))"
+
+# If no options were specified then show usage
+if [[ "$INSTALL_MON" = false ]] && [[ "$INSTALL_CNHIDS" = false ]] && [[ "$INSTALL_OSSEC_AGENT" = false ]] && [[ "$INSTALL_NODE_EXP" = false ]] ; then
+   usage
+   exit
+fi
 
 ## Test code to show ags- remove?
 if [ "$INSTALL_MON" = true ] ; then
@@ -405,6 +413,8 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    echo "INSTALL MONITORING BASE LAYER: Start"
    PROM_SERVICE=true
    GRAF_SERVICE=true
+   sudo systemctl stop prometheus
+   sudo systemctl stop grafana
    echo -e "Downloading base packages..." >&2
    echo -e "Downloading prometheus v$PROM_VER..." >&2
    $DBG dl "$PROM_URL"
@@ -480,17 +490,17 @@ EOF
 
    #provision the dashboards
    cat > "$GRAF_DIR"/conf/provisioning/dashboards/guildops.yaml <<EOF
-   # config file version
-   apiVersion: 1
+# # config file version
+apiVersion: 1
 
-   providers:
-   - name: 'GuildOps'
-     orgId: 1
-     folder: ''
-     folderUid: ''
-     type: file
-      options:
-       path: $DASH_DIR
+providers:
+ - name: 'Cardano Node'
+   orgId: 1
+   folder: ''
+   folderUid: ''
+   type: file
+   options:
+     path: $DASH_DIR
 EOF
    echo "INSTALL MONITORING BASE LAYER: End"
 fi
@@ -523,6 +533,9 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    PROMTAIL_SERVICE=true
    LOKI_SERVICE=true
    OSSEC_METRICS_SERVICE=true
+   sudo systemctl stop loki
+   sudo systemctl stop promtail
+   sudo systemctl stop ossec-metrics
    echo -e "Downloading cnHids packages..." >&2
    $DBG dl "$PROMTAIL_URL"
    $DBG dl "$LOKI_URL"
@@ -604,7 +617,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL PROMTAIL SERVICE: copying definition and starting"
+   echo "INSTALL PROMTAIL SERVICE: starting promtail.service"
    sudo cp "$SYSD_DIR"/promtail.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable promtail
@@ -636,7 +649,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL LOKI SERVICE: copying definition and starting"
+   echo "INSTALL LOKI SERVICE: starting loki.service"
    sudo cp "$SYSD_DIR"/loki.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable loki
@@ -668,7 +681,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL OSSEC_METRICS SERVICE: copying definition and starting"
+   echo "INSTALL OSSEC_METRICS SERVICE: starting ossec-metrics.service"
    sudo cp "$SYSD_DIR"/ossec-metrics.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable ossec-metrics
@@ -702,7 +715,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL PROMETHEUS SERVICE: copying definition and starting"
+   echo "INSTALL PROMETHEUS SERVICE: starting prometheus.service"
    sudo cp "$SYSD_DIR"/prometheus.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable prometheus
@@ -734,7 +747,7 @@ WantedBy=default.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL NODE EXPORTER SERVICE: copying definitions and starting"
+   echo "INSTALL NODE EXPORTER SERVICE: starting node-exporter.service"
    sudo cp "$SYSD_DIR"/node-exporter.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable node-exporter
@@ -767,7 +780,7 @@ WantedBy=default.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL GRAFANA SERVICE: copying definitions and starting"
+   echo "INSTALL GRAFANA SERVICE: starting grafana.service"
    sudo cp "$SYSD_DIR"/grafana.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable grafana
@@ -780,11 +793,10 @@ fi
 
 echo "MAIN INSTALL SEQUENCE: End"
 
-#############################################
-# Finish the install
-#############################################
 
-#Make the output conditional based on what was selected
+######################################################
+# Set up the service definitions for systemd         #
+######################################################
 
 echo -e "
 =====================================================
@@ -799,12 +811,12 @@ Base Monitoring layer installed:
 - Grafana       : http://$IP_ADDRESS:$GRAFANA_PORT
 - cnode metrics : http://$CNODE_IP:$CNODE_PORT
 
-You need to do the following to configure grafana:
-0. The services should already be started, verify if you can login to grafana, and prometheus.
-You can check via curl at the addresses above (127.0.0.1 will not allow remote access)
+Prometheus and Grafana services should already be started.
+You can check via curl at the addresses above.
+Use sudo systemctl status grafana.service or prometheus.service to check status.
 1. Login to grafana as admin/admin (http://$IP_ADDRESS:$GRAFANA_PORT)
 2. A \"prometheus\" (all lowercase) datasource has been added (http://$PROM_HOST:$PROM_PORT)
-3. A base dashboard has been provisioned or import an existing dashboard (left plus sign).
+3. A base dashboard has been provisioned or you can import an existing dashboard.
   - Sometimes, the individual panel's \"prometheus\" datasource needs to be refreshed.
 " >&2
 fi
@@ -838,5 +850,5 @@ Node Exporter installed:
 " >&2
 fi
 
-myExit 1 "END: Thanks for watching. This has been a GuildOps Production."
+myExit 1 "END: Script complete"
 
