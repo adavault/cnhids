@@ -13,7 +13,7 @@ https://adavault.com/index.php/2021/01/28/cardano-node-security-monitoring/
 
 Improvements planned:
 
--preserve prometheus data when installing/upgrading
--more HIDS use cases
--remove/reduce manual interaction to install OSSEC elements
--customise grafana dashboard with logo etc
+- preserve prometheus data when installing/upgrading
+- more HIDS use cases
+- remove/reduce manual interaction to install OSSEC elements
+- customise grafana dashboard with logo etc
