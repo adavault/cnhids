@@ -93,7 +93,7 @@ echo "IP ADDRESS:$IP_ADDRESS"
 [[ -z ${PROM_HOST} ]] && PROM_HOST=9090
 [[ -z ${PROM_PORT} ]] && PROM_PORT=9090
 [[ -z ${NEXP_PORT} ]] && NEXP_PORT=9091
-[[ -z ${TIMEZONE} ]] && TIMEZONE="Europe/London
+[[ -z ${TIMEZONE} ]] && TIMEZONE="Europe/London"
 [[ -z ${CURL_TIMEOUT} ]] && CURL_TIMEOUT=60
 [[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK='Y'
 [[ -z ${SUDO} ]] && SUDO='Y'
@@ -103,30 +103,6 @@ echo "IP ADDRESS:$IP_ADDRESS"
 [[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=true
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
 
-#######################################################
-# Version Check                                       #
-#######################################################
-
-# Check if setup_mon.sh update is available
-PARENT="$(dirname $0)"
-if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
-  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
-  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
-  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
-    if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
-      cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
-      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
-      printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
-      {
-        mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
-        chmod 755 "${PARENT}"/setup_mon.sh && \
-        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n"
-      } || {
-        myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub"
-      }
-    fi
-  fi
-fi
 
 ######################################################
 # Functions                                          #
@@ -139,7 +115,7 @@ get_input() {
 
 get_answer() {
   printf "%s (yes/no): " "$*" >&2; read -r answer
-  while : 
+  while :
   do
     case $answer in
     [Yy]*)
@@ -253,6 +229,32 @@ myExit () {
   cleanup "$1"
 }
 
+#######################################################
+# Version Check                                       #
+#######################################################
+
+# Check if setup_mon.sh update is available
+PARENT="$(dirname $0)"
+if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
+  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
+  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
+  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
+    if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
+      cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
+      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
+      printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
+      {
+        mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
+        chmod 755 "${PARENT}"/setup_mon.sh && \
+        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n";
+      } || {
+        myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub";
+      }
+    fi
+  fi
+fi
+
+
 ######################################################
 # Check environment and args                         #
 ######################################################
@@ -281,6 +283,7 @@ while getopts :i:p:d:MHNA: opt; do
   case ${opt} in
     i )
       IFS=',' read -ra CNODE_IP <<< "$OPTARG"
+      ;;
     p ) CNODE_PORT="$OPTARG" ;;
     d ) PROJ_PATH="$OPTARG" ;;
     M ) INSTALL_MON=true
@@ -301,6 +304,7 @@ while getopts :i:p:d:MHNA: opt; do
         INSTALL_OSSEC_AGENT=true
         INSTALL_CNHIDS=false
         INSTALL_MON=false
+        ;;
     \? )
       usage
       exit
@@ -388,7 +392,7 @@ OSSEC_METRICS_URL="https://github.com/slim-bean/ossec-metrics/archive/v$OSSEC_ME
 echo "MAIN INSTALL SEQUENCE: Start"
 
 #Base Monitoring start --->
-if [[ "$INSTALL_MON" = true ]] ] | [[ "$INSTALL_CNHIDS" = true ]]; then
+if [[ "$INSTALL_MON" == "true" || "$INSTALL_CNHIDS" == "true" ]]; then
    echo "INSTALL MONITORING BASE LAYER: Start"
    PROM_SERVICE=true
    GRAF_SERVICE=true
@@ -444,7 +448,7 @@ if [[ "$INSTALL_MON" = true ]] ] | [[ "$INSTALL_CNHIDS" = true ]]; then
     - job_name: '${i}_node_exporter'
       static_configs:
       - targets: ['$i:$NEXP_PORT']
-   EOF
+EOF
    done
    #Check to see if we need add scrapes for cnHids
    if [[ "$INSTALL_CNHIDS" = true ]]; then
@@ -458,7 +462,7 @@ if [[ "$INSTALL_MON" = true ]] ] | [[ "$INSTALL_CNHIDS" = true ]]; then
     - job_name: 'loki'
       static_configs:
       - targets: ['localhost:3100']
-    EOF
+EOF
    fi
    cp "$TMP_DIR"/prometheus.yml "$PROM_DIR"
 
@@ -478,14 +482,14 @@ if [[ "$INSTALL_MON" = true ]] ] | [[ "$INSTALL_CNHIDS" = true ]]; then
      type: file
       options:
        path: $DASH_DIR
-   EOF
+EOF
    echo "INSTALL MONITORING BASE LAYER: End"
 fi
 #<---Base Monitoring end
 
 #cnHids Server/Agents start --->
 #Fetch OSSEC for cnHids server and agents installs
-if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENTS" = true ]] ; then
+if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
    echo "INSTALL CNHIDS SERVER: Start"
    #prereqs for OSSEC- move into prereqs?
    sudo apt install gcc make libevent-dev zlib1g-dev libssl-dev libpcre2-dev wget tar unzip -y
@@ -561,7 +565,7 @@ if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    mv "$TMP_DIR/node_exporter" "$NEXP_DIR/"
    chmod +x "$NEXP_DIR"/*
    # Add install code here
-   # Get tokenised conf files from Github, and replace tokens 
+   # Get tokenised conf files from Github, and replace tokens
    echo "INSTALL NODE EXPORTER: End"
 fi
 #<---Node Exporter end
