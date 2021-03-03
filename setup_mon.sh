@@ -432,7 +432,7 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    fi
    if [[ "$INSTALL_CNHIDS" = true ]]; then
       echo -e "  - cnHids Dashboard" >&2
-      $DBG dl "CNHIDS_DB_URL"
+      $DBG dl "$CNHIDS_DB_URL"
    fi
 
    echo -e "Configuring components" >&2
