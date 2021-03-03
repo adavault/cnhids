@@ -23,8 +23,8 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
-#INSTALL_MON=false                           # Install base monitoring (Prometheus/Grafana/Dashboards)
-#INSTALL_CNHIDS=false                        # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
+#INSTALL_MON=false                          # Install base monitoring (Prometheus/Grafana/Dashboards)
+#INSTALL_CNHIDS=false                       # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
@@ -257,24 +257,22 @@ fi
 U_ID=$(id -u)
 G_ID=$(id -g)
 
-while getopts :i:p:d:MHNA: opt; do
-  case ${opt} in
+while getopts ":i:p:d:MHNA" opt; do
+  case "${opt}" in
     i )
-      IFS=',' read -ra CNODE_IP <<< "$OPTARG"
+      IFS=',' read -ra CNODE_IP <<< ${OPTARG}
       ;;
-    p ) CNODE_PORT="$OPTARG" ;;
-    d ) PROJ_PATH="$OPTARG" ;;
+    p ) CNODE_PORT=${OPTARG} ;;
+    d ) PROJ_PATH=${OPTARG} ;;
     M ) INSTALL_MON=true
         ;;
     H ) INSTALL_CNHIDS=true
         ;;
     N ) INSTALL_NODE_EXP=true
         ;;
-    A )
-        #We should never need to install the agent with the servers
-        INSTALL_OSSEC_AGENT=true
-        INSTALL_CNHIDS=false
+    A ) INSTALL_OSSEC_AGENT=true
         INSTALL_MON=false
+        INSTALL_CNHIDS=false
         ;;
     \? )
       usage
@@ -285,7 +283,7 @@ done
 shift "$((OPTIND -1))"
 
 # If no options were specified then show usage
-if [[ "$INSTALL_MON" = false ]] && [[ "$INSTALL_CNHIDS" = false ]] && [[ "$INSTALL_OSSEC_AGENT" = false ]] && [[ "$INSTALL_NODE_EXP" = false ]] ; then
+if [ "$INSTALL_MON" = false ] && [ "$INSTALL_CNHIDS" = false ] && [ "$INSTALL_OSSEC_AGENT" = false ] && [ "$INSTALL_NODE_EXP" = false ] ; then
    usage
    exit
 fi
@@ -312,7 +310,7 @@ for i in "${CNODE_IP[@]}"; do
     echo "$i"
 done
 
-if [[ "$INSTALL_CNHIDS" = true ]]; then
+if [[ "$INSTALL_CNHIDS" = true ]] || [[ "$INSTALL_OSSEC_AGENT" = true ]]; then
 echo -e "
 You have chosen to install cnHids and we still need to automate this part of the answer script
 Recommended responses for OSSEC server and agent installs (hybrid installs server and agent)
