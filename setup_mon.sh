@@ -714,6 +714,7 @@ Documentation=https://prometheus.io/docs/introduction/overview/
 After=network-online.target
 
 [Service]
+Type=simple
 User=$(whoami)
 Restart=on-failure
 ExecStart=$PROM_DIR/prometheus \
@@ -748,6 +749,7 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
+Type=simple
 User=$(whoami)
 Restart=on-failure
 ExecStart=$NEXP_DIR/node_exporter --web.listen-address="$CNODE_IP:$NEXP_PORT"
@@ -781,6 +783,7 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
+Type=simple
 User=$(whoami)
 Restart=on-failure
 ExecStart=$GRAF_DIR/bin/grafana-server web
