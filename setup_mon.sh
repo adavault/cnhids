@@ -45,7 +45,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.1
+SETUP_MON_VERSION=2.0.5
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
