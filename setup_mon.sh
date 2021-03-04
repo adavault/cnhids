@@ -55,7 +55,7 @@ OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
 
 dirs -c # clear dir stack
-[[ -z "${BRANCH}" ]] && BRANCH="master"
+[[ -z ${BRANCH} ]] && BRANCH="master"
 
 # guildops URLs
 REPO="https://github.com/cardano-community/guild-operators"
@@ -89,6 +89,7 @@ echo "IP ADDRESS:$IP_ADDRESS"
 [[ -z ${PROJ_PATH} ]] && PROJ_PATH=/opt/cardano/monitoring
 [[ -z ${FORCE_OVERWRITE} ]] && FORCE_OVERWRITE='N'
 [[ -z ${CNODE_IP} ]] && CNODE_IP=127.0.0.1
+[[ -z ${CNODE_PORT} ]] && CNODE_PORT=12798
 [[ -z ${GRAFANA_HOST} ]] && GRAFANA_HOST=0.0.0.0
 [[ -z ${GRAFANA_PORT} ]] && GRAFANA_PORT=5000
 [[ -z ${PROM_HOST} ]] && PROM_HOST=127.0.0.1
