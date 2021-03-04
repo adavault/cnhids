@@ -16,7 +16,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
   "links": [
     {
       "$$hashKey": "object:258",
@@ -88,7 +87,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(time()_metrics_nodeStartTime_int)/3600",
+          "expr": "(time()-cardano_node_metrics_nodeStartTime_int)/3600",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -141,7 +140,9 @@
     },
     {
       "aliasColors": {
-        "Est. error(s)": "light-blue"
+        "Est. error(s)": "light-blue",
+        "Max. Error (s)": "rgb(80, 113, 164)",
+        "Offset: Node vs. Ref.": "rgb(151, 100, 176)"
       },
       "bars": false,
       "dashLength": 10,
@@ -199,12 +200,12 @@
         },
         {
           "alias": "Est. error(s)",
-          "color": "#FFEE52",
+          "color": "#91E5F6",
           "fill": 10
         },
         {
           "alias": "Offset: Node vs. Ref.",
-          "color": "#8F3BB8",
+          "color": "#33415C",
           "fillGradient": 7
         }
       ],
@@ -379,7 +380,11 @@
         "_metrics_connectedPeers_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_connectedPeers_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -428,7 +433,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_connectedPeers_int",
+          "expr": "cardano_node_metrics_connectedPeers_int",
           "interval": "",
           "legendFormat": "",
           "refId": "B"
@@ -483,22 +488,27 @@
         "{cpu=\"0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
         "{cpu=\"0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
         "{cpu=\"0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"1\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
         "{cpu=\"1\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
         "{cpu=\"1\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"2\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
         "{cpu=\"2\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
         "{cpu=\"2\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"3\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
         "{cpu=\"3\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
         "{cpu=\"3\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"4\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
         "{cpu=\"4\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
         "{cpu=\"4\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
         "{cpu=\"5\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
         "{cpu=\"5\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
@@ -730,9 +740,13 @@
     {
       "aliasColors": {
         "{instance=\"vducdn11.skynet:12798\", job=\"c1_rn1_cdn11\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "{instance=\"vducdn22.skynet:12798\", job=\"c2_rn2_cdn22\"}": "semi-dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "{instance=\"vducdn36.skynet:12798\", job=\"c3_rn3_cdn36\"}": "light-blue",
-        "{instance=\"vducdn47.skynet:12798\", job=\"c4_rn4_cdn47\"}": "super-light-blue"
+        "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"c4_rn4_cdn47\"}": "super-light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -781,7 +795,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate _metrics_blockNum_int[150s]) *60",
+          "expr": "rate (cardano_node_metrics_blockNum_int[150s]) *60",
           "interval": "",
           "legendFormat": "",
           "refId": "B"
@@ -882,7 +896,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate_metrics_txsProcessedNum_int [60m])",
+          "expr": "rate(cardano_node_metrics_txsProcessedNum_int [60m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1051,7 +1065,11 @@
         "_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1100,7 +1118,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_density_real",
+          "expr": "cardano_node_metrics_density_real",
           "interval": "",
           "legendFormat": "",
           "refId": "B"
@@ -1152,7 +1170,11 @@
         "_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1201,7 +1223,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_slotNum_int",
+          "expr": "cardano_node_metrics_slotNum_int",
           "interval": "",
           "legendFormat": "",
           "refId": "B"
@@ -1253,7 +1275,11 @@
         "_metrics_txsProcessedNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_txsProcessedNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1302,7 +1328,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_txsProcessedNum_int",
+          "expr": "cardano_node_metrics_txsProcessedNum_int",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1354,7 +1380,11 @@
         "_metrics_txsInMempool_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_txsInMempool_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1405,7 +1435,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_txsInMempool_int",
+          "expr": "cardano_node_metrics_txsInMempool_int",
           "interval": "",
           "legendFormat": "",
           "refId": "C"
@@ -1458,7 +1488,11 @@
         "_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1508,7 +1542,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_epoch_int",
+          "expr": "cardano_node_metrics_epoch_int",
           "interval": "",
           "legendFormat": "",
           "refId": "B"
@@ -1563,7 +1597,11 @@
         "_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
         "_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1612,7 +1650,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "_metrics_slotInEpoch_int",
+          "expr": "cardano_node_metrics_slotInEpoch_int",
           "interval": "",
           "legendFormat": "",
           "refId": "B"
@@ -2201,7 +2239,11 @@
         "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
         "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
         "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -2310,8 +2352,15 @@
       "aliasColors": {
         "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
         "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
         "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "light-blue",
-        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue"
+        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
