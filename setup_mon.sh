@@ -28,6 +28,11 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
+GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
+#GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
+#GRAFANA_IPHONE6-PLUS-ICON-URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone-6-Plus.png"
+#GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon-32x32.png"
+
 #CURL_TIMEOUT=60                            # Maximum time in seconds that you allow the file download operation to take before aborting (Default: 60s)
 #UPDATE_CHECK='Y'                           # Check if there is an updated version of prereqs.sh script to download
 #SUDO='Y'                                   # Used by docker builds to disable sudo, leave unchanged if unsure.
@@ -74,7 +79,7 @@ OSSEC_METRICS_CONF_URL=""
 SKY_DB_URL="https://raw.githubusercontent.com/Oqulent/SkyLight-Pool/master/Haskel_Node_SKY_Relay1_Dash.json"
 IOHK_DB="cardano-application-dashboard-v2.json"
 IOHK_DB_URL="https://raw.githubusercontent.com/input-output-hk/cardano-ops/master/modules/grafana/cardano/$IOHK_DB"
-ADV_DB_URL="https://raw.githubusercontent.com/cyber-russ/adavault-dashboard/main/adv-dashboard-grafana.json"
+ADV_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-dashboard.json"
 
 # cnHids dashboard URL
 CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-dashboard.json"
@@ -104,6 +109,11 @@ echo "IP ADDRESS:$IP_ADDRESS"
 [[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=false
 [[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=false
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
+
+[[ -z ${GRAFANA_CUSTOM_ICONS} ]] && GRAFANA_CUSTOM_ICONS=false
+[[ -z ${GRAFANA_FAVICON_SVG_URL} ]] && GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
+[[ -z ${GRAFANA_IPHONE6-PLUS-ICON-URL} ]] && GRAFANA_IPHONE6-PLUS-ICON-URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone-6-Plus.png"
+[[ -z ${GRAFANA_FAVICON_32x32_URL} ]] && GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon-32x32.png"
 
 
 ######################################################
@@ -493,8 +503,22 @@ EOF
    fi
    cp "$TMP_DIR"/prometheus.yml "$PROM_DIR"
 
-   # Change icons - change these to your icons, example for ADAvault
-   # Add code here
+   # Change icons - default example provided for ADAvault
+   $DBG dl "$GRAFANA_FAVICON_SVG_URL"
+   $DBG dl "$GRAFANA_IPHONE6-PLUS-ICON-URL"
+   $DBG dl "$GRAFANA_FAVICON_32x32_URL"
+   #Copy over icons to replace grafana icon assets
+   cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_icon.svg
+   cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon.svg
+   cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon_white.svg
+   cp "$TMP_DIR"/iPhone-6-Plus.png /opt/cardano/monitoring/grafana/public/img/apple-touch-icon.png
+   cp "$TMP_DIR"/favicon-32x32.png /opt/cardano/monitoring/grafana/public/img/fav32.png
+
+   #Modify templates to remove orange color override
+   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error.html
+   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error-template.html
+   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index-template.html
+   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index.html
 
    #provision the dashboards
    cat > "$GRAF_DIR"/conf/provisioning/dashboards/guildops.yaml <<EOF
