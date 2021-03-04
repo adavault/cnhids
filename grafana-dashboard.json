@@ -200,12 +200,12 @@
         },
         {
           "alias": "Est. error(s)",
-          "color": "#91E5F6",
+          "color": "#33415C",
           "fill": 10
         },
         {
           "alias": "Offset: Node vs. Ref.",
-          "color": "#33415C",
+          "color": "#91E5F6",
           "fillGradient": 7
         }
       ],
