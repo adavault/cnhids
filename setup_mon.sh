@@ -516,12 +516,12 @@ fi
 #cnHids Server/Agents start --->
 #Fetch OSSEC for cnHids server and agents installs
 if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
-   echo "INSTALL CNHIDS SERVER: Start"
-   #prereqs for OSSEC- move into prereqs?
+   echo "INSTALL OSSEC SERVER/AGENTS: Start"
+   #prereqs for OSSEC
    sudo apt install gcc make libevent-dev zlib1g-dev libssl-dev libpcre2-dev wget tar unzip -y
-   echo -e "Downloading OSSEC server/agent" >&2
+   echo -e "INSTALL OSSEC SERVER/AGENTS: Downloading OSSEC server/agent" >&2
    $DBG dl "$OSSEC_URL"
-   # Install OSSEC server
+   # Install OSSEC server/agents
    # Is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
@@ -534,7 +534,7 @@ if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
    fi
    sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    sudo /var/ossec/bin/ossec-control restart
-   echo "INSTALL CNHIDS SERVER: End"
+   echo "INSTALL OSSEC SERVER/AGENTS: End"
 fi
 #<---cnHids Server/Agents end
 
