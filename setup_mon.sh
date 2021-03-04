@@ -28,10 +28,11 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
-GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
+#GRAFANA_CUSTOM_ICONS=false                 # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
 #GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
-#GRAFANA_IPHONE6-PLUS-ICON-URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone-6-Plus.png"
-#GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon-32x32.png"
+#GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
+#GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
+                                            #favicon should be 96x96px, iPhone6Plus format is 180x180px, favicon32x32 is obvious...
 
 #CURL_TIMEOUT=60                            # Maximum time in seconds that you allow the file download operation to take before aborting (Default: 60s)
 #UPDATE_CHECK='Y'                           # Check if there is an updated version of prereqs.sh script to download
@@ -88,7 +89,7 @@ CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-
 export CNODE_IP CNODE_PORT PROJ_PATH TMP_DIR
 
 IP_ADDRESS=$(hostname -I | xargs)
-echo "IP ADDRESS:$IP_ADDRESS"
+echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 
 #Override with defaults as needed...
 [[ -z ${PROJ_PATH} ]] && PROJ_PATH=/opt/cardano/monitoring
@@ -112,8 +113,8 @@ echo "IP ADDRESS:$IP_ADDRESS"
 
 [[ -z ${GRAFANA_CUSTOM_ICONS} ]] && GRAFANA_CUSTOM_ICONS=false
 [[ -z ${GRAFANA_FAVICON_SVG_URL} ]] && GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
-[[ -z ${GRAFANA_IPHONE6-PLUS-ICON-URL} ]] && GRAFANA_IPHONE6-PLUS-ICON-URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone-6-Plus.png"
-[[ -z ${GRAFANA_FAVICON_32x32_URL} ]] && GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon-32x32.png"
+[[ -z ${GRAFANA_IPHONE6_PLUS_ICON_URL} ]] && GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
+[[ -z ${GRAFANA_FAVICON_32x32_URL} ]] && GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
 
 
 ######################################################
@@ -301,24 +302,24 @@ fi
 
 ## Test code to show ags- remove?
 if [ "$INSTALL_MON" = true ] ; then
-    echo 'INSTALL_MON = true'
+    echo 'INSTALL_MON = true' >&2
 fi
 
 if [ "$INSTALL_CNHIDS" = true ] ; then
-    echo 'INSTALL_CNHIDS = true'
+    echo 'INSTALL_CNHIDS = true' >&2
 fi
 
 if [ "INSTALL_OSSEC_AGENT" = true ] ; then
-    echo 'INSTALL_OSSEC_AGENT = true'
+    echo 'INSTALL_OSSEC_AGENT = true' >&2
 fi
 
 if [ "INSTALL_NODE_EXP" = true ] ; then
-    echo 'INSTALL_MON = true'
+    echo 'INSTALL_MON = true' >&2
 fi
 
 echo 'CNODE_IP'
 for i in "${CNODE_IP[@]}"; do
-    echo "$i"
+    echo "$i" >&2
 done
 
 if [[ "$INSTALL_CNHIDS" = true ]] || [[ "$INSTALL_OSSEC_AGENT" = true ]]; then
@@ -403,17 +404,17 @@ DASH_DIR="$PROJ_PATH/dashboards"
 SYSD_DIR="$PROJ_PATH/systemd"
 
 # Create base directory and set permissions
-echo "CREATE BASE DIRECTORY: Start"
+echo "CREATE BASE DIRECTORY: Start" >&2
 mkdir -p "$PROJ_PATH" 2>/dev/null
 rc=$?
 if [[ "$rc" != 0 ]]; then
-  echo "NOTE: Could not create directory as $(whoami), attempting sudo .."
+  echo "NOTE: Could not create directory as $(whoami), attempting sudo .." >&2
   sudo mkdir -p "$PROJ_PATH" || message "WARN:Could not create folder $PROJ_PATH , please ensure that you have access to create it"
   sudo chown "$(whoami)":"$(id -g)" "$PROJ_PATH"
   chmod 750 "$PROJ_PATH"
-  echo "NOTE: No worries, sudo worked !! Moving on .."
+  echo "NOTE: No worries, sudo worked !! Moving on .." >&2
 fi
-echo "CREATE BASE DIRECTORY: End"
+echo "CREATE BASE DIRECTORY: End" >&2
 
 # Set up URLs for downloads
 PROM_URL="https://github.com/prometheus/prometheus/releases/download/v$PROM_VER/prometheus-$PROM_VER.${ARCHS[IDX]}.tar.gz"
@@ -433,27 +434,27 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    GRAF_SERVICE=true
    sudo systemctl stop prometheus
    sudo systemctl stop grafana
-   echo -e "Downloading base packages..." >&2
-   echo -e "Downloading prometheus v$PROM_VER..." >&2
+   echo -e "INSTALL MONITORING BASE LAYER: Downloading base packages..." >&2
+   echo -e "INSTALL MONITORING BASE LAYER: Downloading prometheus v$PROM_VER..." >&2
    $DBG dl "$PROM_URL"
-   echo -e "Downloading grafana v$GRAF_VER..." >&2
+   echo -e "INSTALL MONITORING BASE LAYER: Downloading grafana v$GRAF_VER..." >&2
    $DBG dl "$GRAF_URL"
-   echo -e "Downloading grafana dashboard(s)..." >&2
+   echo -e "INSTALL MONITORING BASE LAYER: Downloading grafana dashboard(s)..." >&2
    if [[ "$INSTALL_MON" = true ]]; then
       #Other dashboards seem out of date...
-      #echo -e "  - SKYLight Monitoring Dashboard" >&2
+      #echo -e "INSTALL MONITORING BASE LAYER: SKYLight Monitoring Dashboard" >&2
       #$DBG dl "$SKY_DB_URL"
-      #echo -e "  - IOHK Monitoring Dashboard" >&2
+      #echo -e "INSTALL MONITORING BASE LAYER: IOHK Monitoring Dashboard" >&2
       #$DBG dl "$IOHK_DB_URL"
-      echo -e "  - ADAvault Monitoring Dashboard" >&2
+      echo -e "INSTALL MONITORING BASE LAYER: ADAvault Monitoring Dashboard" >&2
       $DBG dl "$ADV_DB_URL"
    fi
    if [[ "$INSTALL_CNHIDS" = true ]]; then
-      echo -e "  - cnHids Dashboard" >&2
+      echo -e "INSTALL MONITORING BASE LAYER: cnHids Dashboard" >&2
       $DBG dl "$CNHIDS_DB_URL"
    fi
 
-   echo -e "Configuring components" >&2
+   echo -e "INSTALL MONITORING BASE LAYER: Configuring components" >&2
    # Create install dirs
    mkdir -p "$PROM_DIR" "$GRAF_DIR" "$DASH_DIR" "$SYSD_DIR"
    # Untar files (strip leading component of path)
@@ -462,7 +463,7 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    # Add install code here
    # Get tokenised conf files from Github, and replace tokens
    # Setup Grafana config- register datasource
-   echo "Registering Prometheus as datasource in Grafana.."
+   echo "INSTALL MONITORING BASE LAYER: Registering Prometheus as datasource in Grafana.." >&2
    $DBG dl "$GRAF_CONF_URL"
    sed -i "s+localhost:8080+$PROM_HOST:$PROM_PORT+" "$TMP_DIR"/grafana-datasources.yaml
    cp "$TMP_DIR"/grafana-datasources.yaml "$GRAF_DIR"//conf/provisioning/datasources/grafana-datasources.yaml
@@ -475,6 +476,7 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    sed -e "s/http_addr.*/http_addr = $GRAFANA_HOST/g" -e "s/http_port = 3000/http_port = $GRAFANA_PORT/g" "$GRAF_DIR"/conf/defaults.ini -i
 
    # Setup Prometheus config...append to conf file
+   echo "INSTALL MONITORING BASE LAYER: Setup Prometheus config file to scrape nodes" >&2
    $DBG dl "$PROM_CONF_URL"
    #Loop for multiple nodes
    for i in "${CNODE_IP[@]}"; do
@@ -503,24 +505,29 @@ EOF
    fi
    cp "$TMP_DIR"/prometheus.yml "$PROM_DIR"
 
-   # Change icons - default example provided for ADAvault
-   $DBG dl "$GRAFANA_FAVICON_SVG_URL"
-   $DBG dl "$GRAFANA_IPHONE6-PLUS-ICON-URL"
-   $DBG dl "$GRAFANA_FAVICON_32x32_URL"
-   #Copy over icons to replace grafana icon assets
-   cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_icon.svg
-   cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon.svg
-   cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon_white.svg
-   cp "$TMP_DIR"/iPhone-6-Plus.png /opt/cardano/monitoring/grafana/public/img/apple-touch-icon.png
-   cp "$TMP_DIR"/favicon-32x32.png /opt/cardano/monitoring/grafana/public/img/fav32.png
+   if [[ "$GRAFANA_CUSTOM_ICONS" = true ]]; then
+     echo "INSTALL MONITORING BASE LAYER: Setting up custom icons" >&2
+     # Change icons - default example provided for ADAvault
+     $DBG dl "$GRAFANA_FAVICON_SVG_URL"
+     $DBG dl "$GRAFANA_IPHONE6_PLUS_ICON_URL"
+     $DBG dl "$GRAFANA_FAVICON_32x32_URL"
 
-   #Modify templates to remove orange color override
-   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error.html
-   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error-template.html
-   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index-template.html
-   sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index.html
+     #Copy over icons to replace grafana icon assets
+     cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_icon.svg
+     cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon.svg
+     cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon_white.svg
+     cp "$TMP_DIR"/iPhone6Plus.png /opt/cardano/monitoring/grafana/public/img/apple-touch-icon.png
+     cp "$TMP_DIR"/favicon32x32.png /opt/cardano/monitoring/grafana/public/img/fav32.png
+
+     #Modify templates to remove orange color override
+     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error.html
+     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error-template.html
+     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index-template.html
+     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index.html
+   fi
 
    #provision the dashboards
+   echo "INSTALL MONITORING BASE LAYER: Provisioning dashboards" >&2
    cat > "$GRAF_DIR"/conf/provisioning/dashboards/guildops.yaml <<EOF
 # # config file version
 apiVersion: 1
@@ -534,14 +541,14 @@ providers:
    options:
      path: $DASH_DIR
 EOF
-   echo "INSTALL MONITORING BASE LAYER: End"
+   echo "INSTALL MONITORING BASE LAYER: End" >&2
 fi
 #<---Base Monitoring end
 
 #cnHids Server/Agents start --->
 #Fetch OSSEC for cnHids server and agents installs
 if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
-   echo "INSTALL OSSEC SERVER/AGENTS: Start"
+   echo "INSTALL OSSEC SERVER/AGENTS: Start" >&2
    #prereqs for OSSEC
    sudo apt install gcc make libevent-dev zlib1g-dev libssl-dev libpcre2-dev wget tar unzip -y
    echo -e "INSTALL OSSEC SERVER/AGENTS: Downloading OSSEC server/agent" >&2
@@ -559,17 +566,17 @@ if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
    fi
    sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    sudo /var/ossec/bin/ossec-control restart
-   echo "INSTALL OSSEC SERVER/AGENTS: End"
+   echo "INSTALL OSSEC SERVER/AGENTS: End" >&2
 fi
 #<---cnHids Server/Agents end
 
 #cnHids Dependencies start --->
 if [[ "$INSTALL_CNHIDS" = true ]] ; then
-   echo "INSTALL CNHIDS DEPENDENCIES: Start"
+   echo "INSTALL CNHIDS DEPENDENCIES: Start" >&2
    PROMTAIL_SERVICE=true
    LOKI_SERVICE=true
    OSSEC_METRICS_SERVICE=true
-   echo "INSTALL CNHIDS DEPENDENCIES: Stopping services loki, promtail, ossec-metrics"
+   echo "INSTALL CNHIDS DEPENDENCIES: Stopping services loki, promtail, ossec-metrics" >&2
    sudo systemctl stop promtail
    sudo systemctl stop loki
    sudo systemctl stop ossec-metrics
@@ -602,13 +609,13 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    go build -o ossec-metrics cmd/ossec-metrics/main.go
    chmod +x ossec-metrics
    mv ossec-metrics "$OSSEC_METRICS_DIR"
-   echo "INSTALL CNHIDS DEPENDENCIES: End"
+   echo "INSTALL CNHIDS DEPENDENCIES: End" >&2
 fi
 #<---cnHids Dependencies end
 
 #Node exporter start --->
 if [[ "$INSTALL_NODE_EXP" = true ]] ; then
-   echo "INSTALL NODE EXPORTER: Start"
+   echo "INSTALL NODE EXPORTER: Start" >&2
    NEXP_SERVICE=true
    echo -e "Downloading exporter v$NEXP_VER..." >&2
    $DBG dl "$NEXP_URL"
@@ -623,7 +630,7 @@ if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    chmod +x "$NEXP_DIR"/*
    # Add install code here
    # Get tokenised conf files from Github, and replace tokens
-   echo "INSTALL NODE EXPORTER: End"
+   echo "INSTALL NODE EXPORTER: End" >&2
 fi
 #<---Node Exporter end
 
@@ -633,7 +640,7 @@ fi
 
 #Promtail start --->
 if [[ "$PROMTAIL_SERVICE" = true ]] ; then
-   echo "INSTALL PROMTAIL SERVICE: Start"
+   echo "INSTALL PROMTAIL SERVICE: Start" >&2
    cat > "$SYSD_DIR"/promtail.service <<EOF
 [Unit]
 Description=Promtail Loki Agent
@@ -652,7 +659,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL PROMTAIL SERVICE: starting promtail.service"
+   echo "INSTALL PROMTAIL SERVICE: starting promtail.service" >&2
    sudo cp "$SYSD_DIR"/promtail.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable promtail
@@ -665,7 +672,7 @@ fi
 
 #LOKI start --->
 if [[ "$LOKI_SERVICE" = true ]] ; then
-   echo "INSTALL LOKI SERVICE: Start"
+   echo "INSTALL LOKI SERVICE: Start" >&2
    cat > "$SYSD_DIR"/loki.service <<EOF
 [Unit]
 Description=Loki Log Aggregator
@@ -684,7 +691,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL LOKI SERVICE: starting loki.service"
+   echo "INSTALL LOKI SERVICE: starting loki.service" >&2
    sudo cp "$SYSD_DIR"/loki.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable loki
@@ -697,7 +704,7 @@ fi
 
 #OSSEC_METRICS start --->
 if [[ "$OSSEC_METRICS_SERVICE" = true ]] ; then
-   echo "INSTALL OSSEC_METRICS SERVICE: Start"
+   echo "INSTALL OSSEC_METRICS SERVICE: Start" >&2
    cat > "$SYSD_DIR"/ossec-metrics.service <<EOF
 [Unit]
 Description=Ossec Metrics exposes OSSEC info for prometheus to scrape
@@ -716,7 +723,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL OSSEC_METRICS SERVICE: starting ossec-metrics.service"
+   echo "INSTALL OSSEC_METRICS SERVICE: starting ossec-metrics.service" >&2
    sudo cp "$SYSD_DIR"/ossec-metrics.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable ossec-metrics
@@ -729,7 +736,7 @@ fi
 
 #Prometheus start --->
    if [[ "$PROM_SERVICE" = true ]] ; then
-   echo "INSTALL PROMETHEUS SERVICE: Start"
+   echo "INSTALL PROMETHEUS SERVICE: Start" >&2
    cat > "$SYSD_DIR"/prometheus.service <<EOF
 [Unit]
 Description=Prometheus Server
@@ -751,7 +758,7 @@ WantedBy=multi-user.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL PROMETHEUS SERVICE: starting prometheus.service"
+   echo "INSTALL PROMETHEUS SERVICE: starting prometheus.service" >&2
    sudo cp "$SYSD_DIR"/prometheus.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable prometheus
@@ -764,7 +771,7 @@ fi
 
 #Node Exporter --->
    if [[ "$NEXP_SERVICE" = true ]] ; then
-   echo "INSTALL NODE EXPORTER SERVICE: Start"
+   echo "INSTALL NODE EXPORTER SERVICE: Start" >&2
    cat > "$SYSD_DIR"/node-exporter.service <<EOF
 [Unit]
 Description=Node Exporter
@@ -784,12 +791,12 @@ WantedBy=default.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL NODE EXPORTER SERVICE: starting node-exporter.service"
+   echo "INSTALL NODE EXPORTER SERVICE: starting node-exporter.service" >&2
    sudo cp "$SYSD_DIR"/node-exporter.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable node-exporter
    sudo systemctl start node-exporter
-   echo "INSTALL NODE EXPORTER SERVICE: End"
+   echo "INSTALL NODE EXPORTER SERVICE: End" >&2
 else
    sudo systemctl disable node-exporter
 fi
@@ -797,7 +804,7 @@ fi
 
 #Grafana start --->
    if [[ "$GRAF_SERVICE" = true ]] ; then
-   echo "INSTALL GRAFANA SERVICE: Start"
+   echo "INSTALL GRAFANA SERVICE: Start" >&2
    cat > "$SYSD_DIR"/grafana.service <<EOF
 [Unit]
 Description=Grafana instance
@@ -818,18 +825,18 @@ WantedBy=default.target
 EOF
 
    #Copy over the files and start services
-   echo "INSTALL GRAFANA SERVICE: starting grafana.service"
+   echo "INSTALL GRAFANA SERVICE: starting grafana.service" >&2
    sudo cp "$SYSD_DIR"/grafana.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable grafana
    sudo systemctl start grafana
-   echo "INSTALL GRAFANA SERVICE: End"
+   echo "INSTALL GRAFANA SERVICE: End" >&2
 else
    sudo systemctl disable grafana
 fi
 #<---Grafana end
 
-echo "MAIN INSTALL SEQUENCE: End"
+echo "MAIN INSTALL SEQUENCE: End" >&2
 
 
 ######################################################
