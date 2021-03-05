@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -30,7 +30,7 @@ PROM_RETENTION=25GB                        # Default is 15 days, set this to rot
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
-GRAFANA_CUSTOM_ICONS=true                 # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
+GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
 #GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
 #GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
 #GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
