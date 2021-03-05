@@ -365,7 +365,7 @@ echo ""
 
 # Check if setup_mon.sh update is available
 PARENT="$(dirname $0)"
-if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/scripts/cnode-helper-scripts/setup_mon.sh 2>/dev/null; then
+if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/setup_mon.sh 2>/dev/null; then
   TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
   TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
   if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
