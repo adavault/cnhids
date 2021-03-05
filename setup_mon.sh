@@ -21,6 +21,8 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
+#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
 #INSTALL_MON=false                          # Install base monitoring (Prometheus/Grafana/Dashboards)
@@ -105,6 +107,8 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 [[ -z ${CURL_TIMEOUT} ]] && CURL_TIMEOUT=60
 [[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK='Y'
 [[ -z ${SUDO} ]] && SUDO='Y'
+
+[[ -z ${PROM_RETENTION} ]] && PROM_RETENTION=false
 
 [[ -z ${INSTALL_MON} ]] && INSTALL_MON=false
 [[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=false
@@ -737,6 +741,13 @@ fi
 #Prometheus start --->
    if [[ "$PROM_SERVICE" = true ]] ; then
    echo "INSTALL PROMETHEUS SERVICE: Start" >&2
+      #Add retention parameter if needed
+      if [[ "$PROM_RETENTION" = false ]] ; then
+         unset PROM_RETENTION_ARG
+      else
+         PROM_RETENTION_ARG=" --storage.tsdb.retention.size $PROM_RETENTION"
+         echo "INSTALL PROMETHEUS SERVICE: $PROM_RETENTION_ARG" >&2
+      fi
    cat > "$SYSD_DIR"/prometheus.service <<EOF
 [Unit]
 Description=Prometheus Server
@@ -747,7 +758,7 @@ After=network-online.target
 Type=simple
 User=$(whoami)
 Restart=on-failure
-ExecStart=$PROM_DIR/prometheus \
+ExecStart=$PROM_DIR/prometheus $PROM_RETENTION_ARG\
   --config.file=$PROM_DIR/prometheus.yml \
   --storage.tsdb.path=$PROM_DIR/data --web.listen-address=$PROM_HOST:$PROM_PORT
 WorkingDirectory=$PROM_DIR
