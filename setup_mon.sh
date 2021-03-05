@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -30,7 +30,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 
-#GRAFANA_CUSTOM_ICONS=false                 # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
+GRAFANA_CUSTOM_ICONS=true                 # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
 #GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
 #GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
 #GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
@@ -48,7 +48,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.9
+SETUP_MON_VERSION=2.0.10
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
@@ -85,10 +85,10 @@ OSSEC_METRICS_CONF_URL=""
 SKY_DB_URL="https://raw.githubusercontent.com/Oqulent/SkyLight-Pool/master/Haskel_Node_SKY_Relay1_Dash.json"
 IOHK_DB="cardano-application-dashboard-v2.json"
 IOHK_DB_URL="https://raw.githubusercontent.com/input-output-hk/cardano-ops/master/modules/grafana/cardano/$IOHK_DB"
-ADV_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-dashboard.json"
+ADV_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-performance-dashboard.json"
 
 # cnHids dashboard URL
-CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-dashboard.json"
+CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-cnhids-dashboard.json"
 
 #Why is this export statement here?...presumably so spawned processes have access to vars? Check....
 export CNODE_IP CNODE_PORT PROJ_PATH TMP_DIR
@@ -474,9 +474,11 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    $DBG dl "$GRAF_CONF_URL"
    sed -i "s+localhost:8080+$PROM_HOST:$PROM_PORT+" "$TMP_DIR"/grafana-datasources.yaml
    cp "$TMP_DIR"/grafana-datasources.yaml "$GRAF_DIR"//conf/provisioning/datasources/grafana-datasources.yaml
-   # Fix grafana's datasource in dashboards
+   # Fix grafana's datasource in dashboards and copy into provisioning directory
    sed -e "s#Prometheus#prometheus#g" "$TMP_DIR"/*.json -i
    cp -pr "$TMP_DIR"/*.json "$DASH_DIR/"
+exit
+
    #Fix grafana hostname reference in default.ini
    #Add extra default.ini fixes here
    HOSTNAME=$(hostname)
