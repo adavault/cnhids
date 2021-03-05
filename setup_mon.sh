@@ -48,11 +48,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 # Static Variables                   #
 ######################################
 DEBUG="N"
-<<<<<<< HEAD
 SETUP_MON_VERSION=2.0.9
-=======
-SETUP_MON_VERSION=2.0.8
->>>>>>> a9382338d0d408c4570ca6d8b9d212cd1ca92b1c
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
