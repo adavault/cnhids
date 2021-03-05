@@ -8,23 +8,23 @@ cnhids is a Host Intrusion Detection System for cardano node based on https://gi
 
 Run without args to see options. Some customisations via user variables at the top of the script.
 
-To install cnHids:
+To install cnHids:<br>
 ./setup_mon.sh -H
 
-To install remote agents:
+To install remote agents:<br>
 ./setup_mon.sh -A
 
 Also support installation of base performance monitoring (drop in for GuildOps setup_mon.sh script)
 
-To install remote performance monitoring for 3 nodes (that allow access to cardano node and node exporter ports):
+To install remote performance monitoring for 3 nodes (that allow access to cardano node and node exporter ports):<br>
 ./setup_mon.sh -M -i cnode1.your-domain,cnode2.your-domain,cnode3.your-domain
 
-To install node exporter on cardano nodes for remote monitoring:
+To install node exporter on cardano nodes for remote monitoring:<br>
 ./setup_mon.sh -N
 
 Tested on Ubuntu 20.04 LTS. May work on other distros and architectures, try and feedback.
 
-Details available here:
+Details available here:<br>
 https://adavault.com/index.php/2021/01/28/cardano-node-security-monitoring/
 
 Improvements planned:
