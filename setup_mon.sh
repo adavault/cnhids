@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -48,7 +48,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.10
+SETUP_MON_VERSION=2.0.12
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
@@ -289,7 +289,8 @@ while getopts ":i:p:d:MHNA" opt; do
         ;;
     N ) INSTALL_NODE_EXP=true
         ;;
-    A ) INSTALL_OSSEC_AGENT=true
+    A )
+        INSTALL_OSSEC_AGENT=true
         INSTALL_MON=false
         INSTALL_CNHIDS=false
         ;;
@@ -316,11 +317,11 @@ if [ "$INSTALL_CNHIDS" = true ] ; then
     echo 'INSTALL_CNHIDS = true' >&2
 fi
 
-if [ "INSTALL_OSSEC_AGENT" = true ] ; then
+if [ "$INSTALL_OSSEC_AGENT" = true ] ; then
     echo 'INSTALL_OSSEC_AGENT = true' >&2
 fi
 
-if [ "INSTALL_NODE_EXP" = true ] ; then
+if [ "$INSTALL_NODE_EXP" = true ] ; then
     echo 'INSTALL_MON = true' >&2
 fi
 
@@ -329,7 +330,7 @@ for i in "${CNODE_IP[@]}"; do
     echo "$i" >&2
 done
 
-if [[ "$INSTALL_CNHIDS" = true ]] || [[ "$INSTALL_OSSEC_AGENT" = true ]]; then
+if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]]; then
 echo -e "
 You have chosen to install cnHids and we still need to automate this part of the answer script
 Recommended responses for OSSEC server and agent installs (hybrid installs server and agent)
@@ -358,6 +359,7 @@ fi
 
 read -p "Press any key to continue..." -n1 -s
 echo ""
+exit
 
 #######################################################
 # Version Check                                       #
