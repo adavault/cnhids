@@ -390,10 +390,11 @@ fi
 ######################################################
 
 #Check whether the install path already exists and exit if so (this needs to change once upgrade is supported)
-if [["$INSTALL_OSSEC_AGENTS" == false && -e "$PROJ_PATH" ]]; then
+if [["$INSTALL_OSSEC_AGENTS" == false]]; then
+    if [[ -e "$PROJ_PATH" ]]; then
     myExit 1 "The \"$PROJ_PATH\" directory already exists please move or delete it.\nExiting."
+    fi
 fi
-
 #Figure out what O/S variant we are running on (need to check which ones are supported for all packages)
 IDX=$(get_idx)
 
