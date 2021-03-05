@@ -47,7 +47,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 ######################################
 # Static Variables                   #
 ######################################
-DEBUG="Y"
+DEBUG="N"
 SETUP_MON_VERSION=2.0.12
 
 # version information
