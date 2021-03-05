@@ -48,7 +48,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.6
+SETUP_MON_VERSION=2.0.8
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
@@ -65,9 +65,12 @@ NEXP="node_exporter"
 dirs -c # clear dir stack
 [[ -z ${BRANCH} ]] && BRANCH="master"
 
+# Amended for testing 05032021
 # guildops URLs
-REPO="https://github.com/cardano-community/guild-operators"
-REPO_RAW="https://raw.githubusercontent.com/cardano-community/guild-operators"
+#REPO="https://github.com/cardano-community/guild-operators"
+REPO="https://github.com/cyber-russ/cnhids"
+#REPO_RAW="https://raw.githubusercontent.com/cardano-community/guild-operators"
+REPO_RAW="https://raw.githubusercontent.com/cyber-russ/cnhids"
 URL_RAW="${REPO_RAW}/${BRANCH}"
 
 # tokenised config file URLs
