@@ -47,7 +47,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 ######################################
 # Static Variables                   #
 ######################################
-DEBUG="N"
+DEBUG="Y"
 SETUP_MON_VERSION=2.0.12
 
 # version information
@@ -359,7 +359,6 @@ fi
 
 read -p "Press any key to continue..." -n1 -s
 echo ""
-exit
 
 #######################################################
 # Version Check                                       #
@@ -367,10 +366,10 @@ exit
 
 # Check if setup_mon.sh update is available
 PARENT="$(dirname $0)"
-if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/setup_mon.sh 2>/dev/null; then
+if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/setup_mon.sh 2>/dev/null ; then
   TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
   TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
-  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]]; then
+  if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]] ; then
     if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
       cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
       STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
@@ -378,7 +377,7 @@ if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/s
       {
         mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
         chmod 755 "${PARENT}"/setup_mon.sh && \
-        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n";
+        myExit 0 "\nUpdate applied successfully, please run setup_mon again!\n" ;
       } || {
         myExit 1 "Update failed!\n\nPlease manually download latest version of setup_mon.sh script from GitHub";
       }
@@ -392,8 +391,8 @@ fi
 ######################################################
 
 #Check whether the install path already exists and exit if so (this needs to change once upgrade is supported)
-if [[ "$INSTALL_OSSEC_AGENTS" == false ]]; then
-    if [[ -e "$PROJ_PATH" ]]; then
+if [[ "$INSTALL_OSSEC_AGENT" = false ]] ; then
+    if [[ -e "$PROJ_PATH" ]] ; then
     myExit 1 "The \"$PROJ_PATH\" directory already exists please move or delete it.\nExiting."
     fi
 fi
@@ -417,7 +416,7 @@ SYSD_DIR="$PROJ_PATH/systemd"
 echo "CREATE BASE DIRECTORY: Start" >&2
 mkdir -p "$PROJ_PATH" 2>/dev/null
 rc=$?
-if [[ "$rc" != 0 ]]; then
+if [[ "$rc" != 0 ]] ; then
   echo "NOTE: Could not create directory as $(whoami), attempting sudo .." >&2
   sudo mkdir -p "$PROJ_PATH" || message "WARN:Could not create folder $PROJ_PATH , please ensure that you have access to create it"
   sudo chown "$(whoami)":"$(id -g)" "$PROJ_PATH"
@@ -438,7 +437,7 @@ OSSEC_METRICS_URL="https://github.com/slim-bean/ossec-metrics/archive/v$OSSEC_ME
 echo "MAIN INSTALL SEQUENCE: Start"
 
 #Base Monitoring start --->
-if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
+if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
    echo "INSTALL MONITORING BASE LAYER: Start"
    PROM_SERVICE=true
    GRAF_SERVICE=true
@@ -558,7 +557,7 @@ fi
 
 #cnHids Server/Agents start --->
 #Fetch OSSEC for cnHids server and agents installs
-if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
+if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    echo "INSTALL OSSEC SERVER/AGENTS: Start" >&2
    #prereqs for OSSEC
    sudo apt install gcc make libevent-dev zlib1g-dev libssl-dev libpcre2-dev wget tar unzip -y
@@ -571,7 +570,7 @@ if [[ "$INSTALL_CNHIDS" == true || "$INSTALL_OSSEC_AGENTS" == true ]] ; then
    sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
    #Get the conf file, apply then restart
    $DBG dl "$OSSEC_CONF_URL"
-   if [["$INSTALL_OSSEC_AGENTS" == true ]] ; then
+   if [[ "$INSTALL_OSSEC_AGENTS" = true ]] ; then
       CNODE_DIRS = "<directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>"
       sed -i "s+<!--Add_cardano_dirs_here-->+$CNODE_DIRS+" "$TMP_DIR"/$(basename "$OSSEC_CONF_URL")
    fi
