@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -390,7 +390,7 @@ fi
 ######################################################
 
 #Check whether the install path already exists and exit if so (this needs to change once upgrade is supported)
-if [ -e "$PROJ_PATH" ]; then
+if ["$INSTALL_OSSEC_AGENTS" == false] && [ -e "$PROJ_PATH" ]; then
     myExit 1 "The \"$PROJ_PATH\" directory already exists please move or delete it.\nExiting."
 fi
 
