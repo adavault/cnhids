@@ -477,7 +477,6 @@ if [[ "$INSTALL_MON" == true || "$INSTALL_CNHIDS" == true ]]; then
    # Fix grafana's datasource in dashboards and copy into provisioning directory
    sed -e "s#Prometheus#prometheus#g" "$TMP_DIR"/*.json -i
    cp -pr "$TMP_DIR"/*.json "$DASH_DIR/"
-exit
 
    #Fix grafana hostname reference in default.ini
    #Add extra default.ini fixes here
