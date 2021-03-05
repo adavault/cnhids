@@ -21,12 +21,20 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
+#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
 #INSTALL_MON=false                          # Install base monitoring (Prometheus/Grafana/Dashboards)
 #INSTALL_CNHIDS=false                       # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
+
+#GRAFANA_CUSTOM_ICONS=false                 # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
+#GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
+#GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
+#GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
+                                            #favicon should be 96x96px, iPhone6Plus format is 180x180px, favicon32x32 is obvious...
 
 #CURL_TIMEOUT=60                            # Maximum time in seconds that you allow the file download operation to take before aborting (Default: 60s)
 #UPDATE_CHECK='Y'                           # Check if there is an updated version of prereqs.sh script to download
@@ -40,7 +48,11 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 # Static Variables                   #
 ######################################
 DEBUG="N"
+<<<<<<< HEAD
 SETUP_MON_VERSION=2.0.9
+=======
+SETUP_MON_VERSION=2.0.8
+>>>>>>> a9382338d0d408c4570ca6d8b9d212cd1ca92b1c
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
