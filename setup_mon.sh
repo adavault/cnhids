@@ -320,7 +320,7 @@ if [ "$INSTALL_OSSEC_AGENT" = true ] ; then
 fi
 
 if [ "$INSTALL_NODE_EXP" = true ] ; then
-    echo 'INSTALL_MON = true' >&2
+    echo 'INSTALL_NODE_EXP = true' >&2
 fi
 
 echo 'CNODE_IP'
