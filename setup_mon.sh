@@ -564,17 +564,18 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    echo -e "INSTALL OSSEC SERVER/AGENTS: Downloading OSSEC server/agent" >&2
    $DBG dl "$OSSEC_URL"
    # Install OSSEC server/agents
+   # Remove the old conf file so we can add entries safely
+   sudo rm /var/ossec/etc/ossec.conf
    # Is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
    sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
-   #Get the conf file, apply then restart
-   $DBG dl "$OSSEC_CONF_URL"
-   if [[ "$INSTALL_OSSEC_AGENTS" = true ]] ; then
-      CNODE_DIRS = "<directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>"
-      sed -i "s+<!--Add_cardano_dirs_here-->+$CNODE_DIRS+" "$TMP_DIR"/$(basename "$OSSEC_CONF_URL")
+   #No need to get the conf file for agents as created and we can mod
+   #$DBG dl "$OSSEC_CONF_URL"
+   if [[ "$INSTALL_OSSEC_AGENT" = true ]] ; then
+      echo "INSTALL OSSEC SERVER/AGENTS: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
+      sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
    fi
-   sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    sudo /var/ossec/bin/ossec-control restart
    echo "INSTALL OSSEC SERVER/AGENTS: End" >&2
 fi
