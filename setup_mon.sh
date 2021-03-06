@@ -634,6 +634,12 @@ if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    echo -e "INSTALL NODE EXPORTER: Downloading exporter v$NEXP_VER..." >&2
    $DBG dl "$NEXP_URL"
    echo -e "INSTALL NODE EXPORTER: Configuring components" >&2
+   #If we are installing on the same host as monitoring server components bind to loopback else bind to public address
+   if [[ "$INSTALL_MON" = true ]] ; then
+      NEXP_IP=127.0.0.1
+   else
+      NEXP_IP=IP_ADDRESS
+   fi
    # Create install dirs
    mkdir -p "$NEXP_DIR" "$SYSD_DIR"
    # Untar files (strip leading component of path)
@@ -802,7 +808,7 @@ After=network-online.target
 Type=simple
 User=$(whoami)
 Restart=on-failure
-ExecStart=$NEXP_DIR/node_exporter --web.listen-address="$IP_ADDRESS:$NEXP_PORT"
+ExecStart=$NEXP_DIR/node_exporter --web.listen-address="$NEXP_IP:$NEXP_PORT"
 WorkingDirectory=$NEXP_DIR
 LimitNOFILE=3500
 
@@ -911,7 +917,7 @@ fi
 if [[ "$INSTALL_NODE_EXP" = true ]]; then
 echo -e "
 Node Exporter installed:
-- Node exp metrics:   http://$CNODE_IP:$NEXP_PORT
+- Node exp metrics:   http://$NEXP_IP:$NEXP_PORT
 " >&2
 fi
 
