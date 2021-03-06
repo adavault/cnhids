@@ -48,7 +48,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.15
+SETUP_MON_VERSION=2.0.16
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
@@ -629,11 +629,11 @@ fi
 #Node exporter start --->
 if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    echo "INSTALL NODE EXPORTER: Start" >&2
+   sudo systemctl stop node-exporter
    NEXP_SERVICE=true
-   echo -e "Downloading exporter v$NEXP_VER..." >&2
+   echo -e "INSTALL NODE EXPORTER: Downloading exporter v$NEXP_VER..." >&2
    $DBG dl "$NEXP_URL"
-
-   echo -e "Configuring components" >&2
+   echo -e "INSTALL NODE EXPORTER: Configuring components" >&2
    # Create install dirs
    mkdir -p "$NEXP_DIR" "$SYSD_DIR"
    # Untar files (strip leading component of path)
@@ -802,7 +802,7 @@ After=network-online.target
 Type=simple
 User=$(whoami)
 Restart=on-failure
-ExecStart=$NEXP_DIR/node_exporter --web.listen-address="$CNODE_IP:$NEXP_PORT"
+ExecStart=$NEXP_DIR/node_exporter --web.listen-address="$IP_ADDRESS:$NEXP_PORT"
 WorkingDirectory=$NEXP_DIR
 LimitNOFILE=3500
 
