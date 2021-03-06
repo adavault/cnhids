@@ -65,8 +65,7 @@ NEXP="node_exporter"
 dirs -c # clear dir stack
 [[ -z ${BRANCH} ]] && BRANCH="master"
 
-# Amended for testing 05032021
-# guildops URLs
+# Set to cnhids repo, replace with guildops URLs if integrated
 #REPO="https://github.com/cardano-community/guild-operators"
 REPO="https://github.com/cyber-russ/cnhids"
 #REPO_RAW="https://raw.githubusercontent.com/cardano-community/guild-operators"
@@ -79,7 +78,6 @@ GRAF_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-
 PROMTAIL_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/promtail.yaml"
 LOKI_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/loki-config.yaml"
 OSSEC_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/ossec.conf"
-OSSEC_METRICS_CONF_URL=""
 
 # performance dashboard URLs
 SKY_DB_URL="https://raw.githubusercontent.com/Oqulent/SkyLight-Pool/master/Haskel_Node_SKY_Relay1_Dash.json"
@@ -570,9 +568,11 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
    sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
-   #No need to get the conf file for agents as created and we can mod
-   #$DBG dl "$OSSEC_CONF_URL"
-   if [[ "$INSTALL_OSSEC_AGENT" = true ]] ; then
+   #Get conf file for server, no need to get the conf file for agents as we can mod
+   if [[ "$INSTALL_CNHIDS" = true ]] ; then
+      $DBG dl "$OSSEC_CONF_URL"
+      sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
+   elif [[ "$INSTALL_OSSEC_AGENT" = true ]] ; then
       echo "INSTALL OSSEC SERVER/AGENTS: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
       sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
    fi
