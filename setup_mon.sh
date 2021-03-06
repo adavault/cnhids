@@ -570,10 +570,11 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
    #Get conf file for server, no need to get the conf file for agents as we can mod
    if [[ "$INSTALL_CNHIDS" = true ]] ; then
+      echo "INSTALL OSSEC SERVER: downloading ossec.conf file to /var/ossec/etc/ossec.conf" >&2
       $DBG dl "$OSSEC_CONF_URL"
       sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/ossec.conf
    elif [[ "$INSTALL_OSSEC_AGENT" = true ]] ; then
-      echo "INSTALL OSSEC SERVER/AGENTS: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
+      echo "INSTALL OSSEC AGENT: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
       sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
    fi
    #Best not to restart until the agent is registered, otherwise generates errors
@@ -753,7 +754,7 @@ fi
       if [[ "$PROM_RETENTION" = false ]] ; then
          unset PROM_RETENTION_ARG
       else
-         PROM_RETENTION_ARG=" --storage.tsdb.retention.size $PROM_RETENTION"
+         PROM_RETENTION_ARG=" --storage.tsdb.retention.size=$PROM_RETENTION"
          echo "INSTALL PROMETHEUS SERVICE: $PROM_RETENTION_ARG" >&2
       fi
    cat > "$SYSD_DIR"/prometheus.service <<EOF
