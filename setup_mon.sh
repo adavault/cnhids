@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-#PROM_RETENTION=25GB                        # Default is 15 days, set this to rotate on max data set
+#PROM_RETENTION=30GB                        # Default is 15 days, set this to rotate on max data set
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -48,7 +48,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.16
+SETUP_MON_VERSION=2.0.17
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
