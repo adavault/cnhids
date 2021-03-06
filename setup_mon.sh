@@ -323,11 +323,15 @@ if [ "$INSTALL_NODE_EXP" = true ] ; then
     echo 'INSTALL_NODE_EXP = true' >&2
 fi
 
-echo 'CNODE_IP'
-for i in "${CNODE_IP[@]}"; do
-    echo "$i" >&2
-done
+#only show CNODE_IP array for monitoring server installs
+if [ "$INSTALL_MON" = true ] ; then
+   echo 'CNODE_IP(s):'
+   for i in "${CNODE_IP[@]}"; do
+      echo "$i" >&2
+   done
+fi
 
+#Only show cnHids/OSSEC blurb when needed
 if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]]; then
 echo -e "
 You have chosen to install cnHids and we still need to automate this part of the answer script
