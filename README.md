@@ -19,6 +19,8 @@ To install remote agents: ./setup_mon.sh -A
 Once agent is installed you will need to [a]dd on the server (using agent IP address) and then [e]xtract the key and copy to the agent. Use this command on both server and agents: <br>
 sudo /var/ossec/bin/manage_agents
 
+Known: Importing the key to agent shows ERROR: Cannot unlink /queue/rids/sender: No such file or directory
+You can safely ignore, known issue with OSSEC.
 
 The script also support installation of base performance monitoring (drop in for GuildOps setup_mon.sh script)
 
