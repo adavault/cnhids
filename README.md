@@ -12,7 +12,11 @@ To install cnHids: ./setup_mon.sh -H
 
 To install remote agents: ./setup_mon.sh -A
 
-Also support installation of base performance monitoring (drop in for GuildOps setup_mon.sh script)
+Once agent is installed you will need to [a]dd on the server (using agent IP address) and then [e]xtract the key and copy to the agent. Use this command on both server and agents: <br>
+sudo /var/ossec/bin/manage_agents
+
+
+The script also support installation of base performance monitoring (drop in for GuildOps setup_mon.sh script)
 
 To install remote performance monitoring for 3 nodes (that allow access to cardano node and node exporter ports):<br>
 ./setup_mon.sh -M -i cnode1.your-domain,cnode2.your-domain,cnode3.your-domain
