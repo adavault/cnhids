@@ -7,19 +7,27 @@ cnhids is a Host Intrusion Detection System for cardano node based on https://gi
 - To install download and run setup_mon.sh (run without args to see options)
 
 Download the script and make executable:<br>
+```
 wget https://raw.githubusercontent.com/cyber-russ/cnhids/main/setup_mon.sh<br>
 chmod + x setip_mon.sh
-
+```
 Run without args to see options. Some customisations via user variables at the top of the script.
 
-To install cnHids: ./setup_mon.sh -H
+To install cnHids:
+```
+./setup_mon.sh -H
+```
 
-To install remote agents: ./setup_mon.sh -A
+To install remote agents:
+```
+./setup_mon.sh -A
+```
 
 Once agent is installed you will need to [a]dd on the server (using agent IP address) and then [e]xtract the key and copy to the agent. Use this command on both server and agents: <br>
+```
 sudo /var/ossec/bin/manage_agents
-
-then: sudo /var/ossec/bin/ossec-control restart
+sudo /var/ossec/bin/ossec-control restart
+```
 
 Known issue: Importing the key to agent shows ERROR: Cannot unlink /queue/rids/sender: No such file or directory
 You can safely ignore.
@@ -27,7 +35,9 @@ You can safely ignore.
 The script also supports installation of base performance monitoring (drop in for GuildOps setup_mon.sh script)
 
 To install remote performance monitoring for 3 nodes (that allow access to cardano node and node exporter ports):<br>
+```
 ./setup_mon.sh -M -i cnode1.your-domain,cnode2.your-domain,cnode3.your-domain
+```
 
 To install node exporter on cardano nodes for remote monitoring: ./setup_mon.sh -N
 
