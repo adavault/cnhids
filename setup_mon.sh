@@ -642,7 +642,7 @@ if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    if [[ "$INSTALL_MON" = true ]] ; then
       NEXP_IP=127.0.0.1
    else
-      NEXP_IP=IP_ADDRESS
+      NEXP_IP=$IP_ADDRESS
    fi
    # Create install dirs
    mkdir -p "$NEXP_DIR" "$SYSD_DIR"
