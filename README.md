@@ -8,7 +8,7 @@ cnhids is a Host Intrusion Detection System for cardano node based on https://gi
 
 Download the script and make executable:<br>
 ```
-wget https://raw.githubusercontent.com/cyber-russ/cnhids/main/setup_mon.sh<br>
+wget https://raw.githubusercontent.com/cyber-russ/cnhids/main/setup_mon.sh
 chmod + x setip_mon.sh
 ```
 Run without args to see options. Some customisations via user variables at the top of the script.
