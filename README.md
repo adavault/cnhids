@@ -23,7 +23,7 @@ To install remote agents:
 ./setup_mon.sh -A
 ```
 
-Once agent is installed you will need to [a]dd on the server (using agent IP address) and then [e]xtract the key and copy to the agent. Use this command on both server and agents: <br>
+Once agent is installed you will need to [a]dd on the server (using agent IP address) and then [e]xtract the key and copy to the agent. Use these commands on both server and agents: <br>
 ```
 sudo /var/ossec/bin/manage_agents
 sudo /var/ossec/bin/ossec-control restart
