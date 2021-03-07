@@ -39,7 +39,10 @@ To install remote performance monitoring for 3 nodes (that allow access to carda
 ./setup_mon.sh -M -i cnode1.your-domain,cnode2.your-domain,cnode3.your-domain
 ```
 
-To install node exporter on cardano nodes for remote monitoring: ./setup_mon.sh -N
+To install node exporter on cardano nodes for remote monitoring:
+```
+./setup_mon.sh -N
+```
 
 Tested on Ubuntu 20.04 LTS. May work on other distros and architectures, try and feedback.
 
