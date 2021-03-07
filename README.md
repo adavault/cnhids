@@ -28,6 +28,7 @@ Once agent is installed you will need to [a]dd on the server (using agent IP add
 sudo /var/ossec/bin/manage_agents
 sudo /var/ossec/bin/ossec-control restart
 ```
+Make sure you have UDP port 1514 open from agent to server
 
 Known issue: Importing the key to agent shows ERROR: Cannot unlink /queue/rids/sender: No such file or directory
 You can safely ignore.
