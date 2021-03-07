@@ -44,6 +44,8 @@ To install node exporter on cardano nodes for remote monitoring:
 ./setup_mon.sh -N
 ```
 
+It's fine to combine the server install options e.g. -MH and agent install options e.g. -AN, but better to keep servers and agents on seperate instances and not to mix.
+
 Tested on Ubuntu 20.04 LTS. May work on other distros and architectures, try and feedback.
 
 Details available here:<br>
