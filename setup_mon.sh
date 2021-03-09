@@ -51,11 +51,11 @@ DEBUG="N"
 SETUP_MON_VERSION=2.0.17
 
 # version information
-ARCHS=("darwin-amd64" "linux-amd64"  "linux-armv6")
+ARCHS=("darwin-amd64" "linux-amd64"  "linux-arm64")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
 PROM_VER=2.25.0
 GRAF_VER=7.4.3
-NEXP_VER=1.1.1
+NEXP_VER=1.1.2
 OSSEC_VER=3.6.0
 PROMTAIL_VER=2.1.0
 LOKI_VER=2.1.0
