@@ -636,6 +636,7 @@ if [[ "$INSTALL_NODE_EXP" = true ]] ; then
    sudo systemctl stop node-exporter
    NEXP_SERVICE=true
    echo -e "INSTALL NODE EXPORTER: Downloading exporter v$NEXP_VER..." >&2
+   echo -e "INSTALL NODE EXPORTER: $NEXP_URL" >&2
    $DBG dl "$NEXP_URL"
    echo -e "INSTALL NODE EXPORTER: Configuring components" >&2
    #If we are installing on the same host as monitoring server components bind to loopback else bind to public address
