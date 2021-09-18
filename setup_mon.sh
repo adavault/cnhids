@@ -29,6 +29,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_CNHIDS=false                       # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
+#UPGRADE=false                              # Upgrade and preserve data (use with Monitoring and CNHIDS options)
 
 GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
 #GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
@@ -48,17 +49,17 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.18
+SETUP_MON_VERSION=2.0.19
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
-PROM_VER=2.25.0
-GRAF_VER=7.4.3
-NEXP_VER=1.1.2
+PROM_VER=2.30.0
+GRAF_VER=8.1.3
+NEXP_VER=1.2.2
 OSSEC_VER=3.6.0
-PROMTAIL_VER=2.1.0
-LOKI_VER=2.1.0
+PROMTAIL_VER=2.3.0
+LOKI_VER=2.3.0
 OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
 
@@ -115,6 +116,7 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 [[ -z ${INSTALL_CNHIDS} ]] && INSTALL_CNHIDS=false
 [[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=false
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
+[[ -z ${UPGRADE} ]] && UPGRADE=false
 
 [[ -z ${GRAFANA_CUSTOM_ICONS} ]] && GRAFANA_CUSTOM_ICONS=false
 [[ -z ${GRAFANA_FAVICON_SVG_URL} ]] && GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
@@ -192,7 +194,7 @@ dl() {
 usage() {
   cat <<EOF >&2
 setup_mon.sh version "${SETUP_MON_VERSION}"
-Usage: $(basename "$0") [-d directory] [-i IP/FQDN[,IP/FQDN]] [-p port] [M|H|N|A]
+Usage: $(basename "$0") [-d directory] [-i IP/FQDN[,IP/FQDN]] [-p port] [M|H|N|A|U]
 Setup monitoring packages for cnTools (Prometheus, Grafana, Node Exporter,
 and cnHids packages like OSSEC, Promtail, Loki).
 There are no dependencies for this script.
@@ -207,12 +209,12 @@ There are no dependencies for this script.
 -p port           Port at which your cardano-node(s) is exporting stats
                   check for hasPrometheus in config.json
                   (default=12798)
--[M|H|N|A]        Install specific configuration;
+-[M|H|N|A|U]        Install specific configuration;
                   - [M]onitoring perfomance (Grafana/Prometheus)
                   - cn[H]ids monitoring (Grafana/Prometheus/OSSEC/Dependencies)
                   - [N]ode exporter (needed to report base O/S performance metrics)
                   - OSSEC [A]gent (needed to report to OSSEC server)
-                  (upgrade option to be added- preserve monitoring data)
+                  - [U]pgrade preserving data [only tested for monitoring at this point]
                   Recommended deployment patterns are:
                   1) Monitoring and agents installed on single cardano node.
                   2) Install monitoring remotely and install agents on nodes.
@@ -276,7 +278,7 @@ fi
 U_ID=$(id -u)
 G_ID=$(id -g)
 
-while getopts ":i:p:d:MHNA" opt; do
+while getopts ":i:p:d:MHNAU" opt; do
   case "${opt}" in
     i )
       IFS=',' read -ra CNODE_IP <<< ${OPTARG}
@@ -293,6 +295,8 @@ while getopts ":i:p:d:MHNA" opt; do
         INSTALL_OSSEC_AGENT=true
         INSTALL_MON=false
         INSTALL_CNHIDS=false
+        ;;
+    U ) UPGRADE=true
         ;;
     \? )
       usage
@@ -323,6 +327,10 @@ fi
 
 if [ "$INSTALL_NODE_EXP" = true ] ; then
     echo 'INSTALL_NODE_EXP = true' >&2
+fi
+
+if [ "$UPGRADE" = true ] ; then
+    echo 'UPGRADE = true' >&2
 fi
 
 #only show CNODE_IP array for monitoring server installs
@@ -397,7 +405,11 @@ fi
 #Check whether the install path already exists and exit if so (this needs to change once upgrade is supported)
 if [[ "$INSTALL_OSSEC_AGENT" = false ]] ; then
     if [[ -e "$PROJ_PATH" ]] ; then
-    myExit 1 "The \"$PROJ_PATH\" directory already exists please move or delete it.\nExiting."
+       if [[ "$UPGRADE" = false ]] ; then
+          myExit 1 "The \"$PROJ_PATH\" directory already exists please move or delete it. If you want to upgrade and preserve data run with -U\nExiting."
+       else
+	  echo "UPGRADE: True" >&2
+       fi
     fi
 fi
 #Figure out what O/S variant we are running on (need to check which ones are supported for all packages)
@@ -453,6 +465,23 @@ if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
    echo -e "INSTALL MONITORING BASE LAYER: Downloading grafana v$GRAF_VER..." >&2
    $DBG dl "$GRAF_URL"
    echo -e "INSTALL MONITORING BASE LAYER: Downloading grafana dashboard(s)..." >&2
+
+   #if it's an upgrade backup the data and existing dashboards
+   if [[ "$UPGRADE" = true ]] ; then
+      echo "INSTALL MONITORING BASE LAYER: Upgrade selected, backup data" >&2
+      mkdir "$TMP_DIR"/grafana-backup "$TMP_DIR"/prometheus-backup "$TMP_DIR"/dashboards
+      #likely not needed as we will always build the configs from scratch again
+      mv "$DASH_DIR" "$TMP_DIR"/dashboards
+      mv "$GRAF_DIR"/conf/defaults.ini "$TMP_DIR"/grafana-backup
+      cp "$GRAF_DIR"/public/img/*.svg "$TMP_DIR"/grafana-backup/
+      cp "$GRAF_DIR"/public/img/*.png "$TMP_DIR"/grafana-backup/
+      cp "$GRAF_DIR"/public/views/*.html "$TMP_DIR"/grafana-backup/
+      mv "$PROM_DIR"/prometheus.yml "$TMP_DIR"/prometheus-backup
+      #needed for data
+      mv "$GRAF_DIR"/data/grafana.db "$TMP_DIR"/grafana-backup/
+      mv "$PROM_DIR"/data "$TMP_DIR"/prometheus-backup
+   fi
+
    if [[ "$INSTALL_MON" = true ]]; then
       #Other dashboards seem out of date...
       #echo -e "INSTALL MONITORING BASE LAYER: SKYLight Monitoring Dashboard" >&2
@@ -527,17 +556,17 @@ EOF
      $DBG dl "$GRAFANA_FAVICON_32x32_URL"
 
      #Copy over icons to replace grafana icon assets
-     cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_icon.svg
-     cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon.svg
-     cp "$TMP_DIR"/favicon.svg /opt/cardano/monitoring/grafana/public/img/grafana_mask_icon_white.svg
-     cp "$TMP_DIR"/iPhone6Plus.png /opt/cardano/monitoring/grafana/public/img/apple-touch-icon.png
-     cp "$TMP_DIR"/favicon32x32.png /opt/cardano/monitoring/grafana/public/img/fav32.png
+     cp "$TMP_DIR"/favicon.svg "$GRAF_DIR"/public/img/grafana_icon.svg
+     cp "$TMP_DIR"/favicon.svg "$GRAF_DIR"/public/img/grafana_mask_icon.svg
+     cp "$TMP_DIR"/favicon.svg "$GRAF_DIR"/public/img/grafana_mask_icon_white.svg
+     cp "$TMP_DIR"/iPhone6Plus.png "$GRAF_DIR"/public/img/apple-touch-icon.png
+     cp "$TMP_DIR"/favicon32x32.png "$GRAF_DIR"/public/img/fav32.png
 
      #Modify templates to remove orange color override
-     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error.html
-     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/error-template.html
-     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index-template.html
-     sed -i 's+ color="#F05A28"++' /opt/cardano/monitoring/grafana/public/views/index.html
+     sed -i 's+ color="#F05A28"++' "$GRAF_DIR"/public/views/error.html
+     sed -i 's+ color="#F05A28"++' "$GRAF_DIR"/public/views/error-template.html
+     sed -i 's+ color="#F05A28"++' "$GRAF_DIR"/public/views/index-template.html
+     sed -i 's+ color="#F05A28"++' "$GRAF_DIR"/public/views/index.html
    fi
 
    #provision the dashboards
@@ -555,6 +584,19 @@ providers:
    options:
      path: $DASH_DIR
 EOF
+
+   #if it's an upgrade restore data
+   if [[ "$UPGRADE" = true ]] ; then
+      echo "INSTALL MONITORING BASE LAYER: Upgrade selected, restore data" >&2
+      #not needed as we will always build the configs from scratch again
+      #mv "$TMP_DIR"/grafana-backup/defaults.ini "$GRAF_DIR"/conf/
+      #mv "$TMP_DIR"/prometheus-backup/prometheus.yml "$PROM_DIR"
+      #This directory doesnt exist until we have started Grafana and we need it
+      mkdir -p "$GRAF_DIR"/data/
+      mv "$TMP_DIR"/grafana-backup/grafana.db "$GRAF_DIR"/data/
+      mv "$TMP_DIR"/prometheus-backup/data "$PROM_DIR"
+   fi
+
    echo "INSTALL MONITORING BASE LAYER: End" >&2
 fi
 #<---Base Monitoring end
