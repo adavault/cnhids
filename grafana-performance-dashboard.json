@@ -6,7 +6,7 @@
         "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
-        "iconColor": "rgba(14, 102, 200, 1)",
+        "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
       }
@@ -16,7 +16,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
   "links": [
     {
       "$$hashKey": "object:258",
@@ -31,7 +30,10 @@
   "panels": [
     {
       "aliasColors": {
-        "{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -193,12 +195,12 @@
         },
         {
           "alias": "Max. Error (s)",
-          "color": "#8AB8FF",
+          "color": "#33415C",
           "fillGradient": 10
         },
         {
           "alias": "Est. error(s)",
-          "color": "#33415C",
+          "color": "#0466C8",
           "fill": 10
         },
         {
@@ -284,98 +286,146 @@
       }
     },
     {
+      "aliasColors": {
+        "{cpu=\"0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"1\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"1\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"1\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"2\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"2\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"2\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"3\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"3\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"3\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"4\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"4\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"5\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"5\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"5\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"6\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"6\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"6\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"6\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "displayName": "",
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "light-blue",
-                "value": null
-              },
-              {
-                "color": "light-yellow",
-                "value": 60
-              },
-              {
-                "color": "dark-red",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "percent"
+          "custom": {}
         },
         "overrides": []
       },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 12,
+        "h": 16,
         "w": 12,
         "x": 12,
         "y": 0
       },
-      "id": 39,
-      "interval": "",
-      "options": {
-        "displayMode": "lcd",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "text": {}
+      "hiddenSeries": false,
+      "id": 67,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
       },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
       "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (avg by(alias) (irate(node_cpu_seconds_total{mode=\"idle\"}[1m])) * 100)",
-          "instant": true,
+          "expr": "100-(irate(node_cpu_seconds_total{mode=\"idle\"}[1m]) * 100)",
           "interval": "",
-          "legendFormat": "CPU Load",
+          "legendFormat": "",
           "refId": "A"
-        },
-        {
-          "expr": "(1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Memory Utilization",
-          "refId": "B"
-        },
-        {
-          "expr": "(1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "SWAP Utilization",
-          "refId": "E"
-        },
-        {
-          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"})",
-          "interval": "",
-          "legendFormat": "Disk Utilization",
-          "refId": "F"
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "System Health",
-      "type": "bargauge"
+      "title": "CPU Utilisation (% per min)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:127",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:128",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {
-        "cardano_node_metrics_connectedPeers_int{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_connectedPeers_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_connectedPeers_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -475,445 +525,14 @@
     },
     {
       "aliasColors": {
-        "{cpu=\"0\", instance=\"node-name:9091\", job=\"node-name_node_exporter\", mode=\"idle\"}": "dark-blue"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 12,
-        "w": 12,
-        "x": 12,
-        "y": 12
-      },
-      "hiddenSeries": false,
-      "id": 67,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.4.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "100-(irate(node_cpu_seconds_total{mode=\"idle\"}[1m]) * 100)",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "CPU Utilisation (% per min)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:127",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "$$hashKey": "object:128",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "datasource": "prometheus",
-      "description": "The number of blocks that the node has seen since starting where it is ready to lead",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [
-            {
-              "from": "",
-              "id": 0,
-              "text": "",
-              "to": "",
-              "type": 1
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 16
-      },
-      "id": 61,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "limit": 1,
-          "values": false
-        },
-        "text": {},
-        "textMode": "value_and_name"
-      },
-      "pluginVersion": "7.4.3",
-      "targets": [
-        {
-          "expr": "cardano_node_metrics_Forge_forge_about_to_lead_int",
-          "interval": "",
-          "legendFormat": "{{job}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Forge about to lead",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
-        "y": 16
-      },
-      "id": 24,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.4.3",
-      "targets": [
-        {
-          "expr": "cardano_node_metrics_Forge_forged_int",
-          "interval": "",
-          "legendFormat": "{{job}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Blocks Forged Since Restart",
-      "type": "stat"
-    },
-    {
-      "datasource": "prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 6,
-        "x": 0,
-        "y": 24
-      },
-      "id": 57,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "limit": 1,
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.4.3",
-      "targets": [
-        {
-          "expr": "cardano_node_metrics_Forge_adopted_int",
-          "interval": "",
-          "legendFormat": "{{job}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Forged adopted (since restart)",
-      "type": "stat"
-    },
-    {
-      "datasource": "prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 6,
-        "x": 6,
-        "y": 24
-      },
-      "id": 59,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "limit": 1,
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.4.3",
-      "targets": [
-        {
-          "expr": "cardano_node_metrics_remainingKESPeriods_int",
-          "format": "time_series",
-          "interval": "",
-          "legendFormat": "{{job}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "KES remaining",
-      "type": "stat"
-    },
-    {
-      "aliasColors": {
-        "{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 24
-      },
-      "hiddenSeries": false,
-      "id": 28,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.4.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "rate (cardano_node_metrics_blockNum_int[150s]) *60",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Block sync speed (blocks / min)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "cardano_node_metrics_density_real{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -932,7 +551,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 31
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 16,
@@ -1011,7 +630,14 @@
     },
     {
       "aliasColors": {
-        "cardano_node_metrics_slotNum_int{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1030,7 +656,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 31
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 6,
@@ -1109,7 +735,115 @@
     },
     {
       "aliasColors": {
-        "{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "{instance=\"vducdn11.skynet:12798\", job=\"c1_rn1_cdn11\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"c2_rn2_cdn22\"}": "semi-dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn36.skynet:12798\", job=\"c3_rn3_cdn36\"}": "light-blue",
+        "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"c4_rn4_cdn47\"}": "super-light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "hiddenSeries": false,
+      "id": 28,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate (cardano_node_metrics_blockNum_int[150s]) *60",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Block sync speed (blocks / min)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1128,7 +862,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 63,
@@ -1207,7 +941,14 @@
     },
     {
       "aliasColors": {
-        "cardano_node_metrics_txsInMempool_int{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_txsInMempool_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_txsInMempool_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1227,7 +968,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 24
       },
       "hiddenSeries": false,
       "id": 51,
@@ -1307,7 +1048,14 @@
     },
     {
       "aliasColors": {
-        "cardano_node_metrics_txsProcessedNum_int{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_txsProcessedNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_txsProcessedNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1326,7 +1074,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 31
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1405,7 +1153,10 @@
     },
     {
       "aliasColors": {
-        "{instance=\"node-name:9091\", job=\"node-name_node_exporter\"}": "dark-blue"
+        "{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1425,7 +1176,7 @@
         "h": 9,
         "w": 6,
         "x": 0,
-        "y": 47
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 30,
@@ -1506,7 +1257,10 @@
     },
     {
       "aliasColors": {
-        "{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1515,7 +1269,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "links": []
+          "links": [],
+          "unit": "decmbytes"
         },
         "overrides": []
       },
@@ -1525,7 +1280,7 @@
         "h": 9,
         "w": 6,
         "x": 6,
-        "y": 47
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 37,
@@ -1565,7 +1320,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Node current \"residency\" (amount of live data, MBytes)",
+      "title": "Node current \"residency\" live data (GB)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1581,7 +1336,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "decmbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1605,7 +1360,14 @@
     {
       "aliasColors": {
         " ": "dark-blue",
-        "_metrics_epoch_int{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1622,10 +1384,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 6,
         "x": 12,
-        "y": 47
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 4,
@@ -1707,7 +1469,14 @@
     },
     {
       "aliasColors": {
-        "_metrics_slotInEpoch_int{instance=\"node-name:12798\", job=\"node-name_cardano_node\"}": "dark-blue"
+        "_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1723,10 +1492,10 @@
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 6,
         "x": 18,
-        "y": 47
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 18,
@@ -1820,10 +1589,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 15,
         "w": 12,
         "x": 0,
-        "y": 56
+        "y": 41
       },
       "hiddenSeries": false,
       "id": 25,
@@ -1925,7 +1694,18 @@
     },
     {
       "aliasColors": {
-        "{device=\"dm-0\", instance=\"node-name:9091\", job=\"node-name_node_exporter\"}": "dark-blue"
+        "{device=\"dm-0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"dm-0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"sr0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"sr0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"sr0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"sr0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"vda\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"vda\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"vda\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"vda\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1945,7 +1725,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 56
+        "y": 47
       },
       "hiddenSeries": false,
       "id": 8,
@@ -2026,7 +1806,10 @@
     },
     {
       "aliasColors": {
-        "node_filefd_allocated{instance=\"node-name:9091\", job=\"node-name_node_exporter\"}": "dark-blue"
+        "node_filefd_allocated{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "node_filefd_allocated{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "node_filefd_allocated{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "node_filefd_allocated{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -2044,7 +1827,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 56
+        "y": 47
       },
       "hiddenSeries": false,
       "id": 65,
@@ -2123,7 +1906,14 @@
     },
     {
       "aliasColors": {
-        "{device=\"enp1s0\", instance=\"node-name:9091\", job=\"node-name_node_exporter\"}": "dark-blue"
+        "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -2142,7 +1932,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 20,
@@ -2230,7 +2020,17 @@
     },
     {
       "aliasColors": {
-        "{device=\"enp1s0\", instance=\"node-name:9091\", job=\"node-name_node_exporter\"}": "dark-blue"
+        "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -2249,7 +2049,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 22,
@@ -2337,7 +2137,7 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -2353,7 +2153,7 @@
     ]
   },
   "timezone": "",
-  "title": "ADAvault Stake Pool Copy",
-  "uid": "cZIvoGUMz",
-  "version": 3
+  "title": "ADAvault Stake Pool",
+  "uid": "xk_kORVMk",
+  "version": 5
 }
