@@ -49,13 +49,13 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.19
+SETUP_MON_VERSION=2.0.20
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
 PROM_VER=2.30.0
-GRAF_VER=8.1.3
+GRAF_VER=8.1.4
 NEXP_VER=1.2.2
 OSSEC_VER=3.6.0
 PROMTAIL_VER=2.3.0
