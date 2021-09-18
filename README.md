@@ -17,6 +17,10 @@ To install cnHids:
 ```
 ./setup_mon.sh -H
 ```
+To upgrade monitoring (prometheus and grafana) and keep data:
+```
+./setup_mon.sh -i monitoredserver1,monitoredserver2 -MU
+```
 
 To install remote agents:
 ```
