@@ -612,7 +612,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    #install OSSEC server/agents
    #move the old conf file so we can add entries safely
    echo -e "INSTALL OSSEC SERVER/AGENTS: Backing up ossec.conf to ${TMP_DIR}" >&2
-   sudo mv /var/ossec/etc/ossec.conf "$TMP_DIR"
+   sudo cp /var/ossec/etc/ossec.conf "$TMP_DIR"
    #is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
@@ -622,7 +622,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          #if it's an upgrade restore data
          if [[ "$UPGRADE" = true ]] ; then
 	    echo "INSTALL OSSEC SERVER: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            sudo mv "$TMP_DIR"/ossec.conf /var/ossec/etc/
+            sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
          else
 	    echo "INSTALL OSSEC SERVER: downloading ossec.conf file to /var/ossec/etc/ossec.conf" >&2
             $DBG dl "$OSSEC_CONF_URL"
@@ -631,7 +631,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    elif [[ "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
 	    echo "INSTALL OSSEC AGENT: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            sudo mv "$TMP_DIR"/ossec.conf /var/ossec/etc/
+            sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
          else
             echo "INSTALL OSSEC AGENT: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
             sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
