@@ -6,7 +6,7 @@
         "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
+        "iconColor": "rgba(14, 102, 200, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
       }
@@ -30,10 +30,18 @@
   "panels": [
     {
       "aliasColors": {
-        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -140,8 +148,8 @@
     },
     {
       "aliasColors": {
-        "Est. error(s)": "light-blue",
-        "Max. Error (s)": "rgb(80, 113, 164)",
+        "Est. error(s)": "rgb(80, 113, 164)",
+        "Max. Error (s)": "rgb(20, 40, 100)",
         "Offset: Node vs. Ref.": "rgb(151, 100, 176)"
       },
       "bars": false,
@@ -286,135 +294,95 @@
       }
     },
     {
-      "aliasColors": {
-        "{cpu=\"0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
-        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"1\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"1\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"1\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
-        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"2\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"2\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"2\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
-        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"3\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"3\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"3\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
-        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"4\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"4\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"4\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
-        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"5\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"5\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"5\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
-        "{cpu=\"6\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
-        "{cpu=\"6\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
-        "{cpu=\"6\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
-        "{cpu=\"6\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-yellow",
+                "value": 60
+              },
+              {
+                "color": "dark-red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "percent"
         },
         "overrides": []
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 16,
         "w": 12,
         "x": 12,
         "y": 0
       },
-      "hiddenSeries": false,
-      "id": 67,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
+      "id": 39,
+      "interval": "",
       "options": {
-        "alertThreshold": true
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
       },
-      "percentage": false,
       "pluginVersion": "7.4.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
-          "expr": "100-(irate(node_cpu_seconds_total{mode=\"idle\"}[1m]) * 100)",
+          "expr": "(1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100",
+          "hide": false,
+          "instant": false,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "CPU Utilisation (% per min)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:127",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
+          "legendFormat": "Memory {{instance}}",
+          "refId": "B"
         },
         {
-          "$$hashKey": "object:128",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
+          "expr": "(1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "SWAP {{instance}}",
+          "refId": "E"
+        },
+        {
+          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"})",
+          "interval": "",
+          "legendFormat": "Disk {{instance}}",
+          "refId": "F"
         }
       ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "System Health",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": ".skynet:9091",
+            "renamePattern": ""
+          }
+        }
+      ],
+      "type": "bargauge"
     },
     {
       "aliasColors": {
@@ -422,10 +390,18 @@
         "_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_connectedPeers_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
         "_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "cardano_node_metrics_connectedPeers_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_connectedPeers_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -524,15 +500,194 @@
       }
     },
     {
+      "datasource": "prometheus",
+      "description": "The number of blocks that the node has seen since starting where it is ready to lead",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 1
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 16
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "expr": "cardano_node_metrics_Forge_forge_about_to_lead_int",
+          "interval": "",
+          "legendFormat": "{{job}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "About to lead",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 16
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
+        {
+          "expr": "cardano_node_metrics_Forge_forged_int",
+          "interval": "",
+          "legendFormat": "{{job}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Blocks Forged (since restart)",
+      "type": "stat"
+    },
+    {
       "aliasColors": {
-        "_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "cardano_node_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "{cpu=\"0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"0\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"0\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"1\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"1\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"1\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"1\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"1\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"1\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"1\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"1\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"2\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"2\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"2\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"2\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"2\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"2\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"2\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"2\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"3\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"3\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"3\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"3\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"3\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"3\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"3\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"4\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"4\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"4\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"5\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"5\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"5\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue",
+        "{cpu=\"5\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"5\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"5\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"5\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"6\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}": "dark-blue",
+        "{cpu=\"6\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}": "semi-dark-blue",
+        "{cpu=\"6\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}": "light-blue",
+        "{cpu=\"6\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}": "super-light-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -540,8 +695,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -549,12 +703,12 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 6,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 16
       },
       "hiddenSeries": false,
-      "id": 16,
+      "id": 67,
       "legend": {
         "avg": false,
         "current": false,
@@ -581,17 +735,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cardano_node_metrics_density_real",
+          "expr": "100-(irate(node_cpu_seconds_total{mode=\"idle\"}[1m]) * 100)",
           "interval": "",
           "legendFormat": "",
-          "refId": "B"
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Density",
+      "title": "CPU Utilisation (% per min)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -607,19 +761,21 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:127",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:128",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         }
       ],
@@ -629,120 +785,140 @@
       }
     },
     {
-      "aliasColors": {
-        "_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "cardano_node_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "custom": {},
-          "links": []
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              }
+            ]
+          }
         },
         "overrides": []
       },
-      "fill": 0,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 6,
-        "x": 6,
-        "y": 16
+        "x": 0,
+        "y": 24
       },
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
+      "id": 57,
       "options": {
-        "alertThreshold": true
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "percentage": false,
       "pluginVersion": "7.4.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
-          "expr": "cardano_node_metrics_slotNum_int",
+          "expr": "cardano_node_metrics_Forge_node_is_leader_int",
           "interval": "",
-          "legendFormat": "",
-          "refId": "B"
+          "legendFormat": "{{job}}",
+          "refId": "A"
         }
       ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
-      "title": "Slot Number",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+      "title": "Node is leader (since restart)",
+      "type": "stat"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 24
+      },
+      "id": 59,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.3",
+      "targets": [
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "expr": "cardano_node_metrics_remainingKESPeriods_int",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "{{job}}",
+          "refId": "A"
         }
       ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "KES remaining",
+      "type": "stat"
     },
     {
       "aliasColors": {
+        "{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
         "{instance=\"vducdn11.skynet:12798\", job=\"c1_rn1_cdn11\"}": "dark-blue",
-        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
         "{instance=\"vducdn22.skynet:12798\", job=\"c2_rn2_cdn22\"}": "semi-dark-blue",
-        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "{instance=\"vducdn36.skynet:12798\", job=\"c3_rn3_cdn36\"}": "light-blue",
         "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
         "{instance=\"vducdn47.skynet:12798\", job=\"c4_rn4_cdn47\"}": "super-light-blue",
-        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -761,7 +937,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 24
       },
       "hiddenSeries": false,
       "id": 28,
@@ -840,10 +1016,127 @@
     },
     {
       "aliasColors": {
-        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_mempoolBytes_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 31
+      },
+      "hiddenSeries": false,
+      "id": 69,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "cardano_node_metrics_mempoolBytes_int",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Mempool bytes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -862,7 +1155,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 23
+        "y": 31
       },
       "hiddenSeries": false,
       "id": 63,
@@ -945,10 +1238,18 @@
         "_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_txsInMempool_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
         "_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "cardano_node_metrics_txsInMempool_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsInMempool_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -968,7 +1269,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 51,
@@ -1009,7 +1310,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Mempool Txs",
+      "title": "Mempool Txns",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1052,10 +1353,18 @@
         "_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
         "_metrics_txsProcessedNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
         "_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_txsProcessedNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1074,7 +1383,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 31
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1153,10 +1462,18 @@
     },
     {
       "aliasColors": {
-        "{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "light-blue",
+        "{instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "super-light-blue",
+        "{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "dark-blue",
+        "{instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "semi-dark-blue",
+        "{instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "light-blue",
+        "{instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "super-light-blue",
         "{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
+        "{instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "{instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "dark-blue",
+        "{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1173,10 +1490,10 @@
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 6,
         "x": 0,
-        "y": 32
+        "y": 47
       },
       "hiddenSeries": false,
       "id": 30,
@@ -1257,10 +1574,18 @@
     },
     {
       "aliasColors": {
-        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
         "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1277,10 +1602,10 @@
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 6,
         "x": 6,
-        "y": 32
+        "y": 47
       },
       "hiddenSeries": false,
       "id": 37,
@@ -1359,25 +1684,26 @@
     },
     {
       "aliasColors": {
-        " ": "dark-blue",
-        "_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "cardano_node_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "node_filefd_allocated{instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "dark-blue",
+        "node_filefd_allocated{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "node_filefd_allocated{instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "light-blue",
+        "node_filefd_allocated{instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "super-light-blue",
+        "node_filefd_allocated{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "dark-blue",
+        "node_filefd_allocated{instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "semi-dark-blue",
+        "node_filefd_allocated{instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "light-blue",
+        "node_filefd_allocated{instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "super-light-blue",
+        "node_filefd_allocated{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "node_filefd_allocated{instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "node_filefd_allocated{instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "dark-blue",
+        "node_filefd_allocated{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "prometheus",
-      "decimals": 0,
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1387,10 +1713,10 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 39
+        "y": 47
       },
       "hiddenSeries": false,
-      "id": 4,
+      "id": 65,
       "legend": {
         "avg": false,
         "current": false,
@@ -1417,17 +1743,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cardano_node_metrics_epoch_int",
+          "expr": "node_filefd_allocated",
           "interval": "",
           "legendFormat": "",
-          "refId": "B"
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Epoch",
+      "title": "File Descriptors Allocated",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1443,8 +1769,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:416",
-          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1453,7 +1777,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:417",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1469,14 +1792,42 @@
     },
     {
       "aliasColors": {
-        "_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
-        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
-        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
-        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
-        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue"
+        "{device=\"dm-0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "light-blue",
+        "{device=\"dm-0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"dm-0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "light-blue",
+        "{device=\"dm-0\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"dm-0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"dm-0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"dm-0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"dm-0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"sr0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "light-blue",
+        "{device=\"sr0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"sr0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"sr0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"sr0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "light-blue",
+        "{device=\"sr0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"sr0\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"sr0\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"sr0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"sr0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"sr0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "light-blue",
+        "{device=\"sr0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"vda\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"vda\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"vda\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "light-blue",
+        "{device=\"vda\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"vda\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"vda\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"vda\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"vda\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"vda\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"vda\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"vda\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"vda\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1485,7 +1836,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "links": []
+          "links": [],
+          "unit": "decbytes"
         },
         "overrides": []
       },
@@ -1495,10 +1847,10 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 39
+        "y": 47
       },
       "hiddenSeries": false,
-      "id": 18,
+      "id": 8,
       "legend": {
         "avg": false,
         "current": false,
@@ -1525,22 +1877,40 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cardano_node_metrics_slotInEpoch_int",
+          "expr": "rate(node_disk_written_bytes_total[1m])",
           "interval": "",
           "legendFormat": "",
-          "refId": "B"
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Slot in epoch",
+      "title": "Disk Write (bytes/min)",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^((?!device=\"sr0\").)*$"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^((?!device=\"vda\").)*$"
+            }
+          }
+        }
+      ],
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1551,7 +1921,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "$$hashKey": "object:562",
+          "format": "decbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1559,6 +1930,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:563",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1589,10 +1961,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 15,
+        "h": 8,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 55
       },
       "hiddenSeries": false,
       "id": 25,
@@ -1694,18 +2066,22 @@
     },
     {
       "aliasColors": {
-        "{device=\"dm-0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"dm-0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"dm-0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"dm-0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
-        "{device=\"sr0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"sr0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"sr0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"sr0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
-        "{device=\"vda\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"vda\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"vda\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"vda\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
+        "_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_density_real{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1714,21 +2090,20 @@
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "links": [],
-          "unit": "decbytes"
+          "links": []
         },
         "overrides": []
       },
-      "fill": 0,
+      "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 6,
         "x": 12,
-        "y": 47
+        "y": 55
       },
       "hiddenSeries": false,
-      "id": 8,
+      "id": 16,
       "legend": {
         "avg": false,
         "current": false,
@@ -1755,17 +2130,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(node_disk_written_bytes_total[1m])",
+          "expr": "cardano_node_metrics_density_real",
           "interval": "",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disk Write (bytes/min)",
+      "title": "Density",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1781,8 +2156,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:562",
-          "format": "decbytes",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1790,7 +2164,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:563",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1806,10 +2179,22 @@
     },
     {
       "aliasColors": {
-        "node_filefd_allocated{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "node_filefd_allocated{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "node_filefd_allocated{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "node_filefd_allocated{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
+        "_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotInEpoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -1817,20 +2202,21 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
-      "fill": 1,
+      "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 6,
         "x": 18,
-        "y": 47
+        "y": 55
       },
       "hiddenSeries": false,
-      "id": 65,
+      "id": 18,
       "legend": {
         "avg": false,
         "current": false,
@@ -1857,17 +2243,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_filefd_allocated",
+          "expr": "cardano_node_metrics_slotInEpoch_int",
           "interval": "",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "File Descriptors Allocated",
+      "title": "Slot in epoch",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1906,13 +2292,32 @@
     },
     {
       "aliasColors": {
-        "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "light-blue",
         "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
-        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "light-blue",
         "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
       },
       "bars": false,
@@ -1930,9 +2335,142 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 6,
         "x": 0,
-        "y": 56
+        "y": 63
+      },
+      "hiddenSeries": false,
+      "id": 22,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(node_network_receive_packets_total[1m])",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Packets Received (rate per min)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^((?!device=\"lo\").)*$"
+            }
+          }
+        }
+      ],
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:299",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:300",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "{device=\"enp1s0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"enp1s0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}": "super-light-blue",
+        "{device=\"lo\", instance=\"vducdn30.skynet:9091\", job=\"vducdn30.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn35.skynet:9091\", job=\"vducdn35.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "dark-blue",
+        "{device=\"lo\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}": "semi-dark-blue",
+        "{device=\"lo\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}": "light-blue",
+        "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 63
       },
       "hiddenSeries": false,
       "id": 20,
@@ -1984,7 +2522,16 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transformations": [],
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "pattern": "^((?!device=\"lo\").)*$"
+            }
+          }
+        }
+      ],
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -2020,22 +2567,29 @@
     },
     {
       "aliasColors": {
-        "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "light-blue",
-        "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "super-light-blue",
-        "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue",
-        "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}": "dark-blue",
-        "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}": "semi-dark-blue",
-        "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}": "light-blue",
-        "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}": "super-light-blue"
+        " ": "dark-blue",
+        "_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_epoch_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "prometheus",
+      "decimals": 0,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -2047,12 +2601,12 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 6,
         "x": 12,
-        "y": 56
+        "y": 63
       },
       "hiddenSeries": false,
-      "id": 22,
+      "id": 4,
       "legend": {
         "avg": false,
         "current": false,
@@ -2079,17 +2633,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(node_network_receive_packets_total[1m])",
+          "expr": "cardano_node_metrics_epoch_int",
           "interval": "",
           "legendFormat": "",
-          "refId": "A"
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Network Packets Received (rate per min)",
+      "title": "Epoch",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2105,7 +2659,8 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:299",
+          "$$hashKey": "object:416",
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2114,7 +2669,120 @@
           "show": true
         },
         {
-          "$$hashKey": "object:300",
+          "$$hashKey": "object:417",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "dark-blue",
+        "_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "semi-dark-blue",
+        "_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn10.skynet:12798\", job=\"vducdn10.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn15.skynet:12798\", job=\"vducdn15.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn20.skynet:12798\", job=\"vducdn20.skynet_cardano_node\"}": "super-light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn25.skynet:12798\", job=\"vducdn25.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn30.skynet:12798\", job=\"vducdn30.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn35.skynet:12798\", job=\"vducdn35.skynet_cardano_node\"}": "semi-dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn40.skynet:12798\", job=\"vducdn40.skynet_cardano_node\"}": "light-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn45.skynet:12798\", job=\"vducdn45.skynet_cardano_node\"}": "dark-blue",
+        "cardano_node_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}": "semi-dark-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 63
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.3",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "cardano_node_metrics_slotNum_int",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Slot Number",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2129,7 +2797,7 @@
       }
     }
   ],
-  "refresh": "15m",
+  "refresh": "1m",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [],
@@ -2137,7 +2805,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -2154,6 +2822,6 @@
   },
   "timezone": "",
   "title": "ADAvault Stake Pool",
-  "uid": "xk_kORVMk",
-  "version": 5
+  "uid": "cZIvoGUMz",
+  "version": 25
 }
