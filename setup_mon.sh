@@ -603,6 +603,7 @@ EOF
       mkdir -p "$GRAF_DIR"/data/
       mv "$TMP_DIR"/grafana-backup/grafana.db "$GRAF_DIR"/data/
       mv "$TMP_DIR"/prometheus-backup/data "$PROM_DIR"
+      cp "$TMP_DIR"/dashboards/*.json "$DASH_DIR"
    fi
 
    echo "INSTALL MONITORING BASE LAYER: End" >&2
