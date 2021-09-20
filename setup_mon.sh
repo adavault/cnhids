@@ -479,12 +479,12 @@ if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
       echo "INSTALL MONITORING BASE LAYER: Upgrade selected, backup data" >&2
       mkdir "$TMP_DIR"/grafana-backup "$TMP_DIR"/prometheus-backup "$TMP_DIR"/dashboards
       #likely not needed as we will always build the configs from scratch again
-      mv "$DASH_DIR" "$TMP_DIR"/dashboards
-      mv "$GRAF_DIR"/conf/defaults.ini "$TMP_DIR"/grafana-backup
+      cp "$DASH_DIR" "$TMP_DIR"/dashboards
+      cp "$GRAF_DIR"/conf/defaults.ini "$TMP_DIR"/grafana-backup
       cp "$GRAF_DIR"/public/img/*.svg "$TMP_DIR"/grafana-backup/
       cp "$GRAF_DIR"/public/img/*.png "$TMP_DIR"/grafana-backup/
       cp "$GRAF_DIR"/public/views/*.html "$TMP_DIR"/grafana-backup/
-      mv "$PROM_DIR"/prometheus.yml "$TMP_DIR"/prometheus-backup
+      cp "$PROM_DIR"/prometheus.yml "$TMP_DIR"/prometheus-backup
       #needed for data
       mv "$GRAF_DIR"/data/grafana.db "$TMP_DIR"/grafana-backup/
       mv "$PROM_DIR"/data "$TMP_DIR"/prometheus-backup
