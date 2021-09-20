@@ -631,7 +631,8 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
 	    #no need to restore if select update in OSSEC dialog
 	    #echo "INSTALL OSSEC SERVER: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
+	    #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
+	    echo "INSTALL OSSEC SERVER: upgrade, not changing ossec.conf" >&2
          else
 	    echo "INSTALL OSSEC SERVER: downloading ossec.conf file to /var/ossec/etc/ossec.conf" >&2
             $DBG dl "$OSSEC_CONF_URL"
@@ -642,6 +643,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
 	    #no need to restore if select update in OSSEC dialog
 	    #echo "INSTALL OSSEC AGENT: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
             #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
+	    echo "INSTALL OSSEC SERVER: upgrade, not changing ossec.conf" >&2
          else
             echo "INSTALL OSSEC AGENT: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
             sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
