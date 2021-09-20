@@ -49,7 +49,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.21
+SETUP_MON_VERSION=2.0.22
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
@@ -369,6 +369,14 @@ Agents should show up on the dashboard within 2 minutes or less
 " >&2
 fi
 
+if [[ "$UPGRADE" = true && "$INSTALL_CNHIDS" = true ]]; then
+echo -e "
+You have chosen to upgrade cnHids, make sure to select the upgrade option
+in the OSSEC dialogs opting to keep files
+
+" >&2
+fi
+
 read -p "Press any key to continue..." -n1 -s
 echo ""
 
@@ -402,7 +410,7 @@ fi
 # Main install routine                               #
 ######################################################
 
-#Check whether the install path already exists and exit if so (this needs to change once upgrade is supported)
+#Check whether the install path already exists and exit if not upgrading
 if [[ "$INSTALL_OSSEC_AGENT" = false ]] ; then
     if [[ -e "$PROJ_PATH" ]] ; then
        if [[ "$UPGRADE" = false ]] ; then
@@ -621,8 +629,9 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    if [[ "$INSTALL_CNHIDS" = true ]] ; then
          #if it's an upgrade restore data
          if [[ "$UPGRADE" = true ]] ; then
-	    echo "INSTALL OSSEC SERVER: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
+	    #no need to restore if select update in OSSEC dialog
+	    #echo "INSTALL OSSEC SERVER: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
+            #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
          else
 	    echo "INSTALL OSSEC SERVER: downloading ossec.conf file to /var/ossec/etc/ossec.conf" >&2
             $DBG dl "$OSSEC_CONF_URL"
@@ -630,8 +639,9 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          fi
    elif [[ "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
-	    echo "INSTALL OSSEC AGENT: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
+	    #no need to restore if select update in OSSEC dialog
+	    #echo "INSTALL OSSEC AGENT: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
+            #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
          else
             echo "INSTALL OSSEC AGENT: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
             sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
