@@ -477,17 +477,17 @@ if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
    #if it's an upgrade backup the data and existing dashboards
    if [[ "$UPGRADE" = true ]] ; then
       echo "INSTALL MONITORING BASE LAYER: Upgrade selected, backup data" >&2
-      mkdir "$TMP_DIR"/grafana-backup "$TMP_DIR"/prometheus-backup "$TMP_DIR"/dashboards
+      mkdir ~/grafana-backup ~/prometheus-backup ~/dashboards
       #likely not needed as we will always build the configs from scratch again
-      cp "$DASH_DIR" "$TMP_DIR"/dashboards
-      cp "$GRAF_DIR"/conf/defaults.ini "$TMP_DIR"/grafana-backup
-      cp "$GRAF_DIR"/public/img/*.svg "$TMP_DIR"/grafana-backup/
-      cp "$GRAF_DIR"/public/img/*.png "$TMP_DIR"/grafana-backup/
-      cp "$GRAF_DIR"/public/views/*.html "$TMP_DIR"/grafana-backup/
-      cp "$PROM_DIR"/prometheus.yml "$TMP_DIR"/prometheus-backup
+      cp "$DASH_DIR" ~/dashboards
+      cp "$GRAF_DIR"/conf/defaults.ini ~/grafana-backup
+      cp "$GRAF_DIR"/public/img/*.svg ~/grafana-backup/
+      cp "$GRAF_DIR"/public/img/*.png ~/grafana-backup/
+      cp "$GRAF_DIR"/public/views/*.html ~/grafana-backup/
+      cp "$PROM_DIR"/prometheus.yml ~/prometheus-backup
       #needed for data
-      mv "$GRAF_DIR"/data/grafana.db "$TMP_DIR"/grafana-backup/
-      mv "$PROM_DIR"/data "$TMP_DIR"/prometheus-backup
+      mv "$GRAF_DIR"/data/grafana.db ~/grafana-backup/
+      mv "$PROM_DIR"/data ~/prometheus-backup
    fi
 
    if [[ "$INSTALL_MON" = true ]]; then
@@ -601,9 +601,9 @@ EOF
       #mv "$TMP_DIR"/prometheus-backup/prometheus.yml "$PROM_DIR"
       #This directory doesnt exist until we have started Grafana and we need it
       mkdir -p "$GRAF_DIR"/data/
-      mv "$TMP_DIR"/grafana-backup/grafana.db "$GRAF_DIR"/data/
-      mv "$TMP_DIR"/prometheus-backup/data "$PROM_DIR"
-      cp "$TMP_DIR"/dashboards/*.json "$DASH_DIR"
+      mv ~/grafana-backup/grafana.db "$GRAF_DIR"/data/
+      mv ~/prometheus-backup/data "$PROM_DIR"
+      cp ~/dashboards/*.json "$DASH_DIR"
    fi
 
    echo "INSTALL MONITORING BASE LAYER: End" >&2
@@ -614,6 +614,7 @@ fi
 #Fetch OSSEC for cnHids server and agents installs
 if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    echo "INSTALL OSSEC SERVER/AGENTS: Start" >&2
+   sudo systemctl stop ossec.service
    #prereqs for OSSEC
    sudo apt install gcc make libevent-dev zlib1g-dev libssl-dev libpcre2-dev wget tar unzip -y
    echo -e "INSTALL OSSEC SERVER/AGENTS: Downloading OSSEC server/agent" >&2
@@ -621,7 +622,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    #install OSSEC server/agents
    #move the old conf file so we can add entries safely
    echo -e "INSTALL OSSEC SERVER/AGENTS: Backing up ossec.conf to ${TMP_DIR}" >&2
-   sudo cp /var/ossec/etc/ossec.conf "$TMP_DIR"
+   sudo mv /var/ossec/etc/ossec.conf "$TMP_DIR"
    #is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
@@ -632,8 +633,8 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
 	    #no need to restore if select update in OSSEC dialog
 	    #echo "INSTALL OSSEC SERVER: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-	    #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
-	    echo "INSTALL OSSEC SERVER: upgrade, not changing ossec.conf" >&2
+	    sudo cp ~/ossec.conf /var/ossec/etc/
+	    echo "INSTALL OSSEC SERVER: upgrade, restored ossec.conf" >&2
          else
 	    echo "INSTALL OSSEC SERVER: downloading ossec.conf file to /var/ossec/etc/ossec.conf" >&2
             $DBG dl "$OSSEC_CONF_URL"
@@ -643,8 +644,8 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
 	    #no need to restore if select update in OSSEC dialog
 	    #echo "INSTALL OSSEC AGENT: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            #sudo cp "$TMP_DIR"/ossec.conf /var/ossec/etc/
-	    echo "INSTALL OSSEC SERVER: upgrade, not changing ossec.conf" >&2
+            sudo cp ~/ossec.conf /var/ossec/etc/
+	    echo "INSTALL OSSEC SERVER: upgrade, restored ossec.conf" >&2
          else
             echo "INSTALL OSSEC AGENT: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
             sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
