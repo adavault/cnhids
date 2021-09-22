@@ -622,7 +622,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    #install OSSEC server/agents
    #move the old conf file so we can add entries safely
    echo -e "INSTALL OSSEC SERVER/AGENTS: Backing up ossec.conf to ${TMP_DIR}" >&2
-   sudo mv /var/ossec/etc/ossec.conf "$TMP_DIR"
+   sudo mv /var/ossec/etc/ossec.conf ~
    #is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
