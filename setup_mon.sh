@@ -667,6 +667,8 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    sudo systemctl stop promtail
    sudo systemctl stop loki
    sudo systemctl stop ossec-metrics
+   echo "INSTALL CNHIDS DEPENDENCIES: remove existing directories" >&2
+   rm -r "$PROMTAIL_DIR" "$LOKI_DIR" "$OSSEC_METRICS_DIR"
    echo "INSTALL CNHIDS DEPENDENCIES: Downloading packages..." >&2
    $DBG dl "$PROMTAIL_URL"
    $DBG dl "$LOKI_URL"
