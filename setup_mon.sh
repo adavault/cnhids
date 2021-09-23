@@ -59,7 +59,7 @@ GRAF_VER=8.1.4
 NEXP_VER=1.2.2
 OSSEC_VER=3.6.0
 PROMTAIL_VER=2.3.0
-LOKI_VER=2.3.0
+LOKI_VER=2.1.0
 OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
 
@@ -198,7 +198,7 @@ Usage: $(basename "$0") [-d directory] [-i IP/FQDN[,IP/FQDN]] [-p port] [M|H|N|A
 Setup monitoring packages for cnTools (Prometheus, Grafana, Node Exporter,
 and cnHids packages like OSSEC, Promtail, Loki).
 There are no dependencies for this script.
--d directory      Top level directory where you'd like to deploy the packages:
+-d directory      Top level directory where you would like to deploy the packages:
                   prometheus , node exporter, grafana, ossec etc
                   (default directory is /opt/cardano/monitoring)
 -i IP/hostname    IPv4 address(es) or a FQDN/DNS name(s) for remote cardano-node(s) (relay/bpn)
