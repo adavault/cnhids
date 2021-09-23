@@ -371,8 +371,10 @@ fi
 
 if [[ "$UPGRADE" = true && "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
-You have chosen to upgrade cnHids, select the upgrade option
-in the OSSEC dialogs opting to keep registered agents
+You have chosen to upgrade cnHids, select the update options
+in the OSSEC dialogs opting to keep registered agents:
+- You already have OSSEC installed. Do you want to update it? (y/n): y
+- Do you want to update the rules? (y/n): n
 
 " >&2
 fi
