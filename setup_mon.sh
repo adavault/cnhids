@@ -651,8 +651,8 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
             sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
          fi
    fi
-   #Best not to restart until the agent is registered, otherwise generates errors
-   #sudo /var/ossec/bin/ossec-control restart
+   #Remember to restart after the agent is registered, otherwise generates errors
+   sudo /var/ossec/bin/ossec-control start
    echo "INSTALL OSSEC SERVER/AGENTS: End" >&2
 fi
 #<---cnHids Server/Agents end
