@@ -59,7 +59,7 @@ GRAF_VER=8.1.4
 NEXP_VER=1.2.2
 OSSEC_VER=3.6.0
 PROMTAIL_VER=2.3.0
-LOKI_VER=2.1.0
+LOKI_VER=2.3.0
 OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
 
@@ -745,7 +745,7 @@ After=loki.service
 [Service]
 Type=simple
 User=root
-ExecStart=$PROMTAIL_DIR/promtail-linux-amd64 -config.file promtail.yaml
+ExecStart=$PROMTAIL_DIR/promtail-linux-amd64 -config.file $PROMTAIL_DIR/promtail.yaml
 WorkingDirectory=$PROMTAIL_DIR
 Restart=always
 RestartSec=10
@@ -777,7 +777,7 @@ After=network.target
 [Service]
 Type=simple
 User=$(whoami)
-ExecStart=$LOKI_DIR/loki-linux-amd64 -config.file loki-config.yaml
+ExecStart=$LOKI_DIR/loki-linux-amd64 -config.file $LOKI_DIR/loki-config.yaml
 WorkingDirectory=$LOKI_DIR
 Restart=always
 RestartSec=10
