@@ -666,6 +666,13 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    sudo systemctl stop promtail
    sudo systemctl stop loki
    sudo systemctl stop ossec-metrics
+   #if it's an upgrade backup the log data for loki
+   if [[ "$UPGRADE" = true ]] ; then
+      echo "INSTALL CNHIDS DEPENDENCIES: Upgrade selected, backup loki log data (chunks and index)" >&2
+      mkdir ~/loki-backup
+      mv "$LOKI_DIR"/chunks ~/loki-backup
+      mv "$LOKI_DIR"/index ~/loki-backup
+   fi
    echo "INSTALL CNHIDS DEPENDENCIES: remove existing directories" >&2
    rm -r "$PROMTAIL_DIR" "$LOKI_DIR" "$OSSEC_METRICS_DIR"
    echo "INSTALL CNHIDS DEPENDENCIES: Downloading packages..." >&2
@@ -697,6 +704,12 @@ if [[ "$INSTALL_CNHIDS" = true ]] ; then
    go build -o ossec-metrics cmd/ossec-metrics/main.go
    chmod +x ossec-metrics
    mv ossec-metrics "$OSSEC_METRICS_DIR"
+   #restore loki data as needed
+   if [[ "$UPGRADE" = true ]] ; then
+      echo "INSTALL CNHIDS DEPENDENCIES: Upgrade selected, restore loki log data (chunks and index)" >&2
+      mv ~/loki-backup/chunks "$LOKI_DIR"
+      mv ~/loki-backup/index "$LOKI_DIR"
+   fi
    echo "INSTALL CNHIDS DEPENDENCIES: End" >&2
 fi
 #<---cnHids Dependencies end
