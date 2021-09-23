@@ -958,11 +958,20 @@ echo "MAIN INSTALL SEQUENCE: End" >&2
 # Set up the service definitions for systemd         #
 ######################################################
 
+if [[ "$UPGRADE" = true ]]; then
+echo -e "
+=====================================================
+UPGRADE: Completed
+=====================================================
+" >&2
+else
 echo -e "
 =====================================================
 INSTALLATION: Completed
 =====================================================
 " >&2
+fi
+
 
 if [[ "$INSTALL_MON" = true ]]; then
 echo -e "
@@ -971,24 +980,24 @@ Base Monitoring layer installed:
 - Grafana       : http://$IP_ADDRESS:$GRAFANA_PORT
 - cnode metrics : http://$CNODE_IP:$CNODE_PORT
 
-Prometheus and Grafana services should already be started.
-You can check via curl at the addresses above.
+Prometheus and Grafana services have been started.
+You can check via curl or via browser at the addresses above.
 Use sudo systemctl status grafana.service or prometheus.service to check status.
 1. Login to grafana as admin/admin (http://$IP_ADDRESS:$GRAFANA_PORT)
 2. A \"prometheus\" (all lowercase) datasource has been added (http://$PROM_HOST:$PROM_PORT)
-3. A base dashboard has been provisioned or you can import an existing dashboard.
-  - Sometimes, the individual panel's \"prometheus\" datasource needs to be refreshed.
+3. Dashboards have been provisioned or you can import an existing dashboard.
 " >&2
 fi
 
 if [[ "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
-cnHids installed and services running:
+cnHids installed and services running.
+You can access the cnHids dashboard via grafana (http://$IP_ADDRESS:$GRAFANA_PORT)
 - To start OSSEC HIDS: /var/ossec/bin/ossec-control start
 - To stop OSSEC HIDS: /var/ossec/bin/ossec-control stop
 - The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
 You will need to install agents on any remote endpoints (-A option)
-You can access the cnHids dashboard via grafana (http://$IP_ADDRESS:$GRAFANA_PORT)
+- Add agents and export keys with /var/ossec/bin/ossec_manage
 " >&2
 fi
 
@@ -998,8 +1007,11 @@ OSSEC agent installed and services running for cnHids:
 - To start OSSEC agent: /var/ossec/bin/ossec-control start
 - To stop OSSEC agent: /var/ossec/bin/ossec-control stop
 - The configuration can be viewed or modified at /var/ossec/etc/ossec.conf
+- Import keys from the server with /var/ossec/bin/ossec_manage
 You will need to restart the OSSEC server for the first agent installed
 Make sure you have port 1514 UDP open from agent to server on any firewalls
+The server response to the agent is stateful, or if you want to allow
+the server to push updates you will need 1514 UDP both ways
 " >&2
 fi
 
