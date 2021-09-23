@@ -49,7 +49,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.22
+SETUP_MON_VERSION=2.0.23
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
@@ -371,8 +371,8 @@ fi
 
 if [[ "$UPGRADE" = true && "$INSTALL_CNHIDS" = true ]]; then
 echo -e "
-You have chosen to upgrade cnHids, make sure to select the upgrade option
-in the OSSEC dialogs opting to keep files
+You have chosen to upgrade cnHids, select the upgrade option
+in the OSSEC dialogs opting to keep registered agents
 
 " >&2
 fi
@@ -622,7 +622,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    #install OSSEC server/agents
    #move the old conf file so we can add entries safely
    echo -e "INSTALL OSSEC SERVER/AGENTS: Backing up ossec.conf to ${TMP_DIR}" >&2
-   sudo mv /var/ossec/etc/ossec.conf ~
+   sudo cp /var/ossec/etc/ossec.conf ~
    #is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
    tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
@@ -633,8 +633,8 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
 	    #no need to restore if select update in OSSEC dialog
 	    #echo "INSTALL OSSEC SERVER: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-	    sudo cp ~/ossec.conf /var/ossec/etc/
-	    echo "INSTALL OSSEC SERVER: upgrade, restored ossec.conf" >&2
+	    #sudo cp ~/ossec.conf /var/ossec/etc/
+	    echo "INSTALL OSSEC SERVER: upgrade, no need to restore ossec.conf" >&2
          else
 	    echo "INSTALL OSSEC SERVER: downloading ossec.conf file to /var/ossec/etc/ossec.conf" >&2
             $DBG dl "$OSSEC_CONF_URL"
@@ -644,14 +644,13 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
          if [[ "$UPGRADE" = true ]] ; then
 	    #no need to restore if select update in OSSEC dialog
 	    #echo "INSTALL OSSEC AGENT: restoring ossec.conf file to /var/ossec/etc/ossec.conf" >&2
-            sudo cp ~/ossec.conf /var/ossec/etc/
-	    echo "INSTALL OSSEC SERVER: upgrade, restored ossec.conf" >&2
+            #sudo cp ~/ossec.conf /var/ossec/etc/
+	    echo "INSTALL OSSEC SERVER: upgrade, no need to restore ossec.conf" >&2
          else
             echo "INSTALL OSSEC AGENT: Adding cnode directories to /var/ossec/etc/ossec.conf" >&2
             sudo sed -i '/<!-- Directories to check  (perform all possible verifications) -->/a \ \ \ \ <directories check_all=\"yes\">/opt/cardano/cnode/priv,/opt/cardano/cnode/files,/opt/cardano/cnode/scripts</directories>\n    <directories check_all=\"yes\">/home/cardano/.cabal/bin</directories>' /var/ossec/etc/ossec.conf
          fi
    fi
-   #Remember to restart after the agent is registered, otherwise generates errors
    sudo /var/ossec/bin/ossec-control start
    echo "INSTALL OSSEC SERVER/AGENTS: End" >&2
 fi
