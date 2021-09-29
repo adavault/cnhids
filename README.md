@@ -17,12 +17,8 @@ To install cnHids:
 ```
 ./setup_mon.sh -H
 ```
-To upgrade monitoring (prometheus and grafana) and keep data:
-```
-./setup_mon.sh -i monitoredserver1,monitoredserver2 -MU
-```
 
-To install remote agents:
+To install remote OSSEC agents on host to be monitored:
 ```
 ./setup_mon.sh -A
 ```
@@ -32,9 +28,9 @@ Once agent is installed you will need to [a]dd on the server (using agent IP add
 sudo /var/ossec/bin/manage_agents
 sudo /var/ossec/bin/ossec-control restart
 ```
-Make sure you have UDP port 1514 open from agent to server
+Make sure you have UDP port 1514 open from agent to server, and stateful rules to track server response.
 
-Known issue: Importing the key to agent shows ERROR: Cannot unlink /queue/rids/sender: No such file or directory
+Known issue on OSSEC: Importing the key to agent shows ERROR: Cannot unlink /queue/rids/sender: No such file or directory
 You can safely ignore.
 
 The script also supports installation of base performance monitoring (drop in for GuildOps setup_mon.sh script)
@@ -51,6 +47,11 @@ To install node exporter on cardano nodes for remote monitoring:
 
 It's fine to combine the server install options e.g. -MH and agent install options e.g. -AN, but better to keep servers and agents on seperate instances and not to mix.
 
+The script now support upgrade options preserving data e.g. to upgrade monitoring (prometheus and grafana) and cnhids and keep data:
+```
+./setup_mon.sh -i FQDN1,FQDN2,FQDN3 -MHU
+```
+
 Tested on Ubuntu 20.04 LTS. May work on other distros and architectures, try and feedback.
 
 Details available here:<br>
@@ -58,8 +59,8 @@ https://adavault.com/index.php/2021/01/28/cardano-node-security-monitoring/
 
 Improvements planned:
 
-- preserve prometheus data when installing/upgrading
+- ~~preserve prometheus data when installing/upgrading~~
 - more HIDS use cases
 - remove/reduce manual interaction to install OSSEC elements
-- customise grafana look and feel (partly completed- allows custom logos, favicons etc)
+- ~~customise grafana look and feel (partly completed- allows custom logos, favicons etc)~~
 
