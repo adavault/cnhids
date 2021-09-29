@@ -1,5 +1,5 @@
 # cnhids
-cnhids is a Host Intrusion Detection System for cardano node based on https://github.com/ossec/ossec-hids:
+cnhids is a Cardano Node Host Intrusion Detection System for cardano node based on https://github.com/ossec/ossec-hids:
 
 - cnHids aims to provide an easy way to monitor and analyse OSSEC data by feeding into Prometheus and Grafana to make a simple SIEM.
 - Some common use cases have been added to the dashboard as panels (more are expected to be developed).
