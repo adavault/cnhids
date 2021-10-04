@@ -239,7 +239,7 @@ cleanup () {
   [[ $err -eq 0 ]] && clear
   tput cnorm # restore cursor
   [[ -n ${exit_msg} ]] && echo -e "\n${exit_msg}\n" || echo -e "\nsetup_mon terminated, cleaning up...\n"
-  $DBG rm -rf "$TMP_DIR"  #remove any tmp files
+  $DBG sudo rm -rf "$TMP_DIR"  #remove any tmp files
   tput sgr0  # turn off all attributes
   exit $err
 }
