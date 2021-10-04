@@ -49,7 +49,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.25
+SETUP_MON_VERSION=2.0.26
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
@@ -403,6 +403,10 @@ if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/s
   TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
   TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
   if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]] ; then
+    GIT_VERSION=$(grep -r ^SETUP_MON_VERSION= "${PARENT}"/setup_mon.sh.tmp | cut -d'=' -f2)
+    : "${GIT_VERSION:=v0.0.0}"
+    echo "Installed Version : ${SETUP_MON_VERSION}"
+    echo "Available Version : ${GIT_VERSION}"
     if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
       cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
       STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
