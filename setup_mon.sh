@@ -1014,7 +1014,7 @@ You will need to install agents on any remote endpoints (-A option)
 " >&2
 fi
 
-if [[ "$INSTALL_OSSEC_AGENTS" = true ]]; then
+if [[ "$INSTALL_OSSEC_AGENT" = true ]]; then
 echo -e "
 OSSEC agent installed and services running for cnHids:
 - To start OSSEC agent: /var/ossec/bin/ossec-control start
