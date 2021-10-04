@@ -49,7 +49,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.24
+SETUP_MON_VERSION=2.0.25
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
@@ -274,7 +274,7 @@ CURL=$(command -v curl)
 #DL=${CURL:=$WGET}
 #if  [ -z "$DL" ]; then
 if  [ -z "$CURL" ]; then
-    myExit 3 'You need "curl" to be installed\nand accessable by PATH environment to continue...\nExiting.'
+    myExit 3 'You need "curl" to be installed and accessable by PATH environment to continue...if you are on ubuntu you can do that with:\nsudo apt install curl\nExiting.'
 fi
 
 [[ "${SUDO}" = 'Y' ]] && sudo="sudo" || sudo=""
