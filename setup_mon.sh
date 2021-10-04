@@ -332,9 +332,9 @@ fi
 if [ "$UPGRADE" = true ] ; then
     echo 'UPGRADE = true' >&2
     if [[ "$PROM_RETENTION" = false ]] ; then
-         echo "PROM_RETENTION is not set...Are you sure you want the default 15 day period???" >&2
+         echo 'PROM_RETENTION is not set...Are you sure you want the default 15 day period???' >&2
       else
-         echo "PROM_RETENTION: $PROM_RETENTION" >&2
+         echo 'PROM_RETENTION: $PROM_RETENTION' >&2
     fi
 fi
 
@@ -631,7 +631,7 @@ if [[ "$INSTALL_CNHIDS" = true || "$INSTALL_OSSEC_AGENT" = true ]] ; then
    echo -e "INSTALL OSSEC SERVER/AGENTS: Backing up ossec.conf to ${TMP_DIR}" >&2
    sudo cp /var/ossec/etc/ossec.conf ~
    #is it possible to remove the manual choices? Can we provide an answer file? For now we just launch
-   tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
+   sudo tar zxC "$TMP_DIR" -f "$TMP_DIR"/ossec-hids*gz
    #Follow the prompts to install server version of OSSEC
    sudo "$TMP_DIR"/ossec-hids-"$OSSEC_VER"/install.sh
    #Get conf file for server, no need to get the conf file for agents as we can mod
