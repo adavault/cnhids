@@ -180,15 +180,19 @@ get_idx () {
 
 dl() {
     DL_URL="${1}"
-    OUTPUT="${TMP_DIR}/$(basename "$DL_URL")"
+    #Amended to always use curl
+    #OUTPUT="${TMP_DIR}/$(basename "$DL_URL")"
     shift
 
-    case ${DL} in
-        *"wget"*)
-            wget --no-check-certificate --output-document="${OUTPUT}" "${DL_URL}";;
-        *)
-            ( cd "$TMP_DIR" && curl -JOL "$DL_URL" --silent );;
-    esac
+    #case ${DL} in
+    #    *"wget"*)
+    #        wget --no-check-certificate --output-document="${OUTPUT}" "${DL_URL}";;
+    #    *)
+    #        ( cd "$TMP_DIR" && curl -JOL "$DL_URL" --silent );;
+    #esac
+    
+    #always use CURL
+    cd "$TMP_DIR" && curl -JOL "$DL_URL" --silent
 }
 
 usage() {
@@ -264,11 +268,13 @@ else
   unset DBG
 fi
 
+#Amended to always use curl
 CURL=$(command -v curl)
-WGET=$(command -v wget)
-DL=${CURL:=$WGET}
-if  [ -z "$DL" ]; then
-    myExit 3 'You need to have "wget" or "curl" to be installed\nand accessable by PATH environment to continue...\nExiting.'
+#WGET=$(command -v wget)
+#DL=${CURL:=$WGET}
+#if  [ -z "$DL" ]; then
+if  [ -z "$CURL" ]; then
+    myExit 3 'You need "curl" to be installed\nand accessable by PATH environment to continue...\nExiting.'
 fi
 
 [[ "${SUDO}" = 'Y' ]] && sudo="sudo" || sudo=""
