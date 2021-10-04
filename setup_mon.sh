@@ -332,10 +332,10 @@ fi
 if [ "$UPGRADE" = true ] ; then
     echo 'UPGRADE = true' >&2
     if [[ "$PROM_RETENTION" = false ]] ; then
-         echo "PROM_RETENTION is not set...Are you sure you want the default 15 day period???"
+         echo "PROM_RETENTION is not set...Are you sure you want the default 15 day period???" >&2
       else
          echo "PROM_RETENTION: $PROM_RETENTION" >&2
-      fi
+    fi
 fi
 
 #only show CNODE_IP array for monitoring server installs
