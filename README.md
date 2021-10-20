@@ -8,7 +8,7 @@ cnhids is a **C**ardano **N**ode **H**ost **I**ntrusion **D**etection **S**ystem
 
 Download the script and make executable:<br>
 ```
-wget https://raw.githubusercontent.com/cyber-russ/cnhids/main/setup_mon.sh
+wget https://raw.githubusercontent.com/adavault/cnhids/main/setup_mon.sh
 chmod +x setup_mon.sh
 ```
 Run without args to see options. Some customisations also available via user variables at the top of the script.
