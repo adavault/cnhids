@@ -29,8 +29,8 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_CNHIDS=false                       # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
-#UPGRADE=false                              # Upgrade and preserve data (use with Monitoring and CNHIDS options)
-#INSTALL_INF=true                            # Install infrastructure dashboard
+#UPGRADE=true                               # Upgrade and preserve data (use with Monitoring and CNHIDS options)
+#INSTALL_INF=true                           # Install infrastructure dashboard
 
 GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
 #GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg"
@@ -122,6 +122,7 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 [[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=false
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
 [[ -z ${UPGRADE} ]] && UPGRADE=false
+[[ -z ${INSTALL_INF} ]] && INSTALL_INF=false
 
 [[ -z ${GRAFANA_CUSTOM_ICONS} ]] && GRAFANA_CUSTOM_ICONS=false
 [[ -z ${GRAFANA_FAVICON_SVG_URL} ]] && GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg"
