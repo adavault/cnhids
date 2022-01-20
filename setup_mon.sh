@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-#PROM_RETENTION=30GB                         # Default is 15 days, set this to rotate on max data set
+#PROM_RETENTION=50GB                         # Default is 15 days, set this to rotate on max data set
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -30,11 +30,12 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 #UPGRADE=false                              # Upgrade and preserve data (use with Monitoring and CNHIDS options)
+#INSTALL_INF=true                            # Install infrastructure dashboard
 
 GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
-#GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
-#GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
-#GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
+#GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg"
+#GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg/iPhone6Plus.png"
+#GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg/favicon32x32.png"
                                             #favicon should be 96x96px, iPhone6Plus format is 180x180px, favicon32x32 is obvious...
 
 #CURL_TIMEOUT=60                            # Maximum time in seconds that you allow the file download operation to take before aborting (Default: 60s)
@@ -49,17 +50,17 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.27
+SETUP_MON_VERSION=2.0.28
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
-PROM_VER=2.30.0
-GRAF_VER=8.1.5
-NEXP_VER=1.2.2
-OSSEC_VER=3.6.0
-PROMTAIL_VER=2.3.0
-LOKI_VER=2.3.0
+PROM_VER=2.32.1
+GRAF_VER=8.3.4
+NEXP_VER=1.3.1
+OSSEC_VER=3.7.0
+PROMTAIL_VER=2.4.2
+LOKI_VER=2.4.2
 OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
 
@@ -70,24 +71,28 @@ dirs -c # clear dir stack
 #REPO="https://github.com/cardano-community/guild-operators"
 REPO="https://github.com/cyber-russ/cnhids"
 #REPO_RAW="https://raw.githubusercontent.com/cardano-community/guild-operators"
-REPO_RAW="https://raw.githubusercontent.com/cyber-russ/cnhids"
+REPO_RAW="https://raw.githubusercontent.com/adavault/cnhids"
 URL_RAW="${REPO_RAW}/${BRANCH}"
 
 # tokenised config file URLs
-PROM_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/prometheus.yml"
-GRAF_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-datasources.yaml"
-PROMTAIL_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/promtail.yaml"
-LOKI_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/loki-config.yaml"
-OSSEC_CONF_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/ossec.conf"
+PROM_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/prometheus.yml"
+https://raw.githubusercontent.com/adavault/cnhids/main/prometheus.yml
+GRAF_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/grafana-datasources.yaml"
+PROMTAIL_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/promtail.yaml"
+LOKI_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/loki-config.yaml"
+OSSEC_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/ossec.conf"
 
 # performance dashboard URLs
 SKY_DB_URL="https://raw.githubusercontent.com/Oqulent/SkyLight-Pool/master/Haskel_Node_SKY_Relay1_Dash.json"
 IOHK_DB="cardano-application-dashboard-v2.json"
 IOHK_DB_URL="https://raw.githubusercontent.com/input-output-hk/cardano-ops/master/modules/grafana/cardano/$IOHK_DB"
-ADV_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-performance-dashboard.json"
+ADV_DB_URL="https://raw.githubusercontent.com/adavault/cnhids/main/grafana-performance-dashboard.json"
+if [ "$INSTALL_INF" = true ] ; then
+    ADV_DB_URL="https://raw.githubusercontent.com/adavault/cnhids/main/grafana-perf-infra-dashboard.json"
+fi
 
 # cnHids dashboard URL
-CNHIDS_DB_URL="https://raw.githubusercontent.com/cyber-russ/cnhids/main/grafana-cnhids-dashboard.json"
+CNHIDS_DB_URL="https://raw.githubusercontent.com/adavault/cnhids/main/grafana-cnhids-dashboard.json"
 
 #Why is this export statement here?...presumably so spawned processes have access to vars? Check....
 export CNODE_IP CNODE_PORT PROJ_PATH TMP_DIR
@@ -119,9 +124,9 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 [[ -z ${UPGRADE} ]] && UPGRADE=false
 
 [[ -z ${GRAFANA_CUSTOM_ICONS} ]] && GRAFANA_CUSTOM_ICONS=false
-[[ -z ${GRAFANA_FAVICON_SVG_URL} ]] && GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon.svg"
-[[ -z ${GRAFANA_IPHONE6_PLUS_ICON_URL} ]] && GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/iPhone6Plus.png"
-[[ -z ${GRAFANA_FAVICON_32x32_URL} ]] && GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/cyber-russ/adavault-icons/main/favicon32x32.png"
+[[ -z ${GRAFANA_FAVICON_SVG_URL} ]] && GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg"
+[[ -z ${GRAFANA_IPHONE6_PLUS_ICON_URL} ]] && GRAFANA_IPHONE6_PLUS_ICON_URL="https://raw.githubusercontent.com/adavault/icons/main/iPhone6Plus.png"
+[[ -z ${GRAFANA_FAVICON_32x32_URL} ]] && GRAFANA_FAVICON_32x32_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon32x32.png"
 
 
 ######################################################
