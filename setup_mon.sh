@@ -29,8 +29,9 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_CNHIDS=false                       # Install cnHids (Prometheus/Grafana/Dashboards/OSSEC server/Dependencies)
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
-#UPGRADE=true                               # Upgrade and preserve data (use with Monitoring and CNHIDS options)
-#INSTALL_INF=true                           # Install infrastructure dashboard
+#UPGRADE=false                              # Upgrade and preserve data (use with Monitoring and CNHIDS options)
+#KEEP_COPY=true                             # Keep a seperate copy of the data in /~ using cp rather than mv when restoring
+#INSTALL_INF=false                          # Install infrastructure dashboard
 
 GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
 #GRAFANA_FAVICON_SVG_URL="https://raw.githubusercontent.com/adavault/icons/main/favicon.svg"
@@ -50,7 +51,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.28
+SETUP_MON_VERSION=2.0.29
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
@@ -102,7 +103,7 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 
 #Override with defaults as needed...
 [[ -z ${PROJ_PATH} ]] && PROJ_PATH=/opt/cardano/monitoring
-[[ -z ${FORCE_OVERWRITE} ]] && FORCE_OVERWRITE='N'
+[[ -z ${FORCE_OVERWRITE} ]] && FORCE_OVERWRITE="N"
 [[ -z ${CNODE_IP} ]] && CNODE_IP=127.0.0.1
 [[ -z ${CNODE_PORT} ]] && CNODE_PORT=12798
 [[ -z ${GRAFANA_HOST} ]] && GRAFANA_HOST=0.0.0.0
@@ -112,8 +113,8 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 [[ -z ${NEXP_PORT} ]] && NEXP_PORT=9091
 [[ -z ${TIMEZONE} ]] && TIMEZONE="Europe/London"
 [[ -z ${CURL_TIMEOUT} ]] && CURL_TIMEOUT=60
-[[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK='Y'
-[[ -z ${SUDO} ]] && SUDO='Y'
+[[ -z ${UPDATE_CHECK} ]] && UPDATE_CHECK="Y"
+[[ -z ${SUDO} ]] && SUDO="Y"
 
 [[ -z ${PROM_RETENTION} ]] && PROM_RETENTION=false
 
@@ -122,6 +123,7 @@ echo "Local IP ADDRESS:$IP_ADDRESS" >&2
 [[ -z ${INSTALL_NODE_EXP} ]] && INSTALL_NODE_EXP=false
 [[ -z ${INSTALL_OSSEC_AGENT} ]] && INSTALL_OSSEC_AGENT=false
 [[ -z ${UPGRADE} ]] && UPGRADE=false
+[[ -z ${KEEP_COPY} ]] && KEEP_COPY=true
 [[ -z ${INSTALL_INF} ]] && INSTALL_INF=false
 
 [[ -z ${GRAFANA_CUSTOM_ICONS} ]] && GRAFANA_CUSTOM_ICONS=false
@@ -283,8 +285,8 @@ if  [ -z "$CURL" ]; then
     myExit 3 'You need "curl" to be installed and accessable by PATH environment to continue...if you are on ubuntu you can do that with:\nsudo apt install curl\nExiting.'
 fi
 
-[[ "${SUDO}" = 'Y' ]] && sudo="sudo" || sudo=""
-[[ "${SUDO}" = 'Y' && $(id -u) -eq 0 ]] && myExit 1 "Please run as non-root user."
+[[ "${SUDO}" = "Y" ]] && sudo="sudo" || sudo=""
+[[ "${SUDO}" = "Y" && $(id -u) -eq 0 ]] && myExit 1 "Please run as non-root user."
 
 # For who runs the script within containers and running it as root.
 U_ID=$(id -u)
@@ -293,7 +295,7 @@ G_ID=$(id -g)
 while getopts ":i:p:d:MHNAU" opt; do
   case "${opt}" in
     i )
-      IFS=',' read -ra CNODE_IP <<< ${OPTARG}
+      IFS="," read -ra CNODE_IP <<< ${OPTARG}
       ;;
     p ) CNODE_PORT=${OPTARG} ;;
     d ) PROJ_PATH=${OPTARG} ;;
@@ -326,33 +328,33 @@ fi
 
 ## Test code to show ags- remove?
 if [ "$INSTALL_MON" = true ] ; then
-    echo 'INSTALL_MON = true' >&2
+    echo "INSTALL_MON = true" >&2
 fi
 
 if [ "$INSTALL_CNHIDS" = true ] ; then
-    echo 'INSTALL_CNHIDS = true' >&2
+    echo "INSTALL_CNHIDS = true" >&2
 fi
 
 if [ "$INSTALL_OSSEC_AGENT" = true ] ; then
-    echo 'INSTALL_OSSEC_AGENT = true' >&2
+    echo "INSTALL_OSSEC_AGENT = true" >&2
 fi
 
 if [ "$INSTALL_NODE_EXP" = true ] ; then
-    echo 'INSTALL_NODE_EXP = true' >&2
+    echo "INSTALL_NODE_EXP = true" >&2
 fi
 
 if [ "$UPGRADE" = true ] ; then
-    echo 'UPGRADE = true' >&2
+    echo "UPGRADE = true" >&2
     if [[ "$PROM_RETENTION" = false ]] ; then
-         echo 'PROM_RETENTION is not set...Are you sure you want the default 15 day period???' >&2
+         echo "PROM_RETENTION is not set...Are you sure you want the default 15 day period???" >&2
       else
-         echo 'PROM_RETENTION: $PROM_RETENTION' >&2
+         echo "PROM_RETENTION: $PROM_RETENTION" >&2
     fi
 fi
 
 #only show CNODE_IP array for monitoring server installs
 if [ "$INSTALL_MON" = true ] ; then
-   echo 'CNODE_IP(s):'
+   echo "CNODE_IP(s):"
    for i in "${CNODE_IP[@]}"; do
       echo "$i" >&2
    done
@@ -405,17 +407,17 @@ echo ""
 
 # Check if setup_mon.sh update is available
 PARENT="$(dirname $0)"
-if [[ ${UPDATE_CHECK} = 'Y' ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/setup_mon.sh 2>/dev/null ; then
-  TEMPL_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh)
-  TEMPL2_CMD=$(awk '/^# Do NOT modify/,0' "${PARENT}"/setup_mon.sh.tmp)
+if [[ ${UPDATE_CHECK} = "Y" ]] && curl -s -f -m ${CURL_TIMEOUT} -o "${PARENT}"/setup_mon.sh.tmp ${URL_RAW}/setup_mon.sh 2>/dev/null ; then
+  TEMPL_CMD=$(awk "/^# Do NOT modify/,0" "${PARENT}"/setup_mon.sh)
+  TEMPL2_CMD=$(awk "/^# Do NOT modify/,0" "${PARENT}"/setup_mon.sh.tmp)
   if [[ "$(echo ${TEMPL_CMD} | sha256sum)" != "$(echo ${TEMPL2_CMD} | sha256sum)" ]] ; then
-    GIT_VERSION=$(grep -r ^SETUP_MON_VERSION= "${PARENT}"/setup_mon.sh.tmp | cut -d'=' -f2)
+    GIT_VERSION=$(grep -r ^SETUP_MON_VERSION= "${PARENT}"/setup_mon.sh.tmp | cut -d"=" -f2)
     : "${GIT_VERSION:=v0.0.0}"
     echo "Installed Version : ${SETUP_MON_VERSION}"
     echo "Available Version : ${GIT_VERSION}"
     if get_answer "A new version of setup_mon script is available, do you want to download the latest version?"; then
       cp "${PARENT}"/setup_mon.sh "${PARENT}/setup_mon.sh_bkp$(date +%s)"
-      STATIC_CMD=$(awk '/#!/{x=1}/^# Do NOT modify/{exit} x' "${PARENT}"/setup_mon.sh)
+      STATIC_CMD=$(awk "/#!/{x=1}/^# Do NOT modify/{exit} x" "${PARENT}"/setup_mon.sh)
       printf '%s\n%s\n' "$STATIC_CMD" "$TEMPL2_CMD" > "${PARENT}"/setup_mon.sh.tmp
       {
         mv -f "${PARENT}"/setup_mon.sh.tmp "${PARENT}"/setup_mon.sh && \
@@ -500,6 +502,14 @@ if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
    #if it's an upgrade backup the data and existing dashboards
    if [[ "$UPGRADE" = true ]] ; then
       echo "INSTALL MONITORING BASE LAYER: Upgrade selected, backup data" >&2
+      if test -d "$HOME/grafana-backup" || test -d "$HOME/prometheus-backup" || test -d "$HOME/dashboards" ; then
+        echo "WARNING! Backup directories already exist (~/grafana-backup ~/prometheus-backup ~/dashboards). Please delete or move then run again."
+        echo "This script will now exit"
+        exit
+      else
+        echo "No backup directories, safe to continue"
+      fi
+
       mkdir ~/grafana-backup ~/prometheus-backup ~/dashboards
       #likely not needed as we will always build the configs from scratch again
       cp "$DASH_DIR"/*.json ~/dashboards/
@@ -624,9 +634,16 @@ EOF
       #mv "$TMP_DIR"/prometheus-backup/prometheus.yml "$PROM_DIR"
       #This directory doesnt exist until we have started Grafana and we need it
       mkdir -p "$GRAF_DIR"/data/
-      mv ~/grafana-backup/grafana.db "$GRAF_DIR"/data/
-      mv ~/prometheus-backup/data "$PROM_DIR"
-      cp ~/dashboards/*.json "$DASH_DIR"
+      if [[ "$KEEP_COPY" = true ]] ; then
+        cp ~/grafana-backup/grafana.db "$GRAF_DIR"/data/
+        cp -r ~/prometheus-backup/data "$PROM_DIR"
+        cp ~/dashboards/*.json "$DASH_DIR"
+      else
+        mv ~/grafana-backup/grafana.db "$GRAF_DIR"/data/
+        mv ~/prometheus-backup/data "$PROM_DIR"
+        cp ~/dashboards/*.json "$DASH_DIR"
+      fi
+
    fi
 
    echo "INSTALL MONITORING BASE LAYER: End" >&2
