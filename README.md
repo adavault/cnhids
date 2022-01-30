@@ -47,11 +47,11 @@ To install node exporter on cardano nodes for remote monitoring:
 
 It's fine to combine the server install options e.g. -MH and agent install options e.g. -AN, but better to keep servers and agents on seperate instances and not to mix.
 
-The script now support upgrade options preserving data e.g. to upgrade monitoring (prometheus and grafana) and cnhids and keep data:
+The script now supports upgrade options preserving data e.g. to upgrade monitoring (prometheus and grafana) and cnhids and keep data:
 ```
 ./setup_mon.sh -i FQDN1,FQDN2,FQDN3 -MHU
 ```
-You must specific all hosts that will be monitored which is needed for prometheus (if just upgrading cnhids this is not needed)
+You must specific all hosts that will be monitored which is needed for prometheus (if just upgrading cnhids this is not needed). If you have BOTH installed you must upgrade BOTH at the same time. The script defaults to keeping a copy of the data during upgrade, if low on space edit variables and set to false.
 
 Tested on Ubuntu 20.04 LTS. May work on other distros and architectures, try and feedback.
 
