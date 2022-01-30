@@ -30,7 +30,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 #UPGRADE=false                              # Upgrade and preserve data (use with Monitoring and CNHIDS options)
-#KEEP_COPY=true                             # Keep a seperate copy of the data in /~ using cp rather than mv when restoring
+KEEP_COPY=true                              # When upgrading keep a seperate copy of the data in /~ using cp rather than mv when restoring
 #INSTALL_INF=false                          # Install infrastructure dashboard
 
 GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
