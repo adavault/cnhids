@@ -51,7 +51,7 @@ The script now supports upgrade options preserving data e.g. to upgrade monitori
 ```
 ./setup_mon.sh -i FQDN1,FQDN2,FQDN3 -MHU
 ```
-You must specific all hosts that will be monitored which is needed for prometheus (if just upgrading cnhids this is not needed). If you have BOTH installed you must upgrade BOTH at the same time. The script defaults to keeping a copy of the data during upgrade, if low on space edit variables and set to false.
+You must specific all hosts that will be monitored which is needed for prometheus (if just upgrading cnhids this is not needed). If you have BOTH installed you must upgrade BOTH at the same time. The script defaults to keeping a copy of the data during upgrade, if low on space set `KEEP_COPY` to false.
 
 Tested on Ubuntu 20.04 LTS. May work on other distros and architectures, try and feedback.
 
