@@ -77,7 +77,6 @@ URL_RAW="${REPO_RAW}/${BRANCH}"
 
 # tokenised config file URLs
 PROM_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/prometheus.yml"
-https://raw.githubusercontent.com/adavault/cnhids/main/prometheus.yml
 GRAF_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/grafana-datasources.yaml"
 PROMTAIL_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/promtail.yaml"
 LOKI_CONF_URL="https://raw.githubusercontent.com/adavault/cnhids/main/loki-config.yaml"
