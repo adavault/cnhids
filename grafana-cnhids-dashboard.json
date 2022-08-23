@@ -3,25 +3,32 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "cards": {
-        "cardPadding": null,
-        "cardRound": null
-      },
+      "cards": {},
       "color": {
         "cardColor": "rgb(1, 252, 207)",
         "colorScale": "sqrt",
@@ -31,10 +38,22 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          }
         },
         "overrides": []
       },
@@ -51,9 +70,51 @@
       "legend": {
         "show": false
       },
+      "options": {
+        "calculate": false,
+        "calculation": {},
+        "cellGap": 2,
+        "cellValues": {},
+        "color": {
+          "exponent": 0.5,
+          "fill": "rgb(1, 252, 207)",
+          "max": 10,
+          "mode": "scheme",
+          "scale": "exponential",
+          "scheme": "Blues",
+          "steps": 128
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "legend": {
+          "show": false
+        },
+        "rowsFrame": {
+          "layout": "unknown"
+        },
+        "showValue": "never",
+        "tooltip": {
+          "show": true,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "reverse": false,
+          "unit": "short"
+        }
+      },
+      "pluginVersion": "9.1.0",
       "reverseYBuckets": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",type=~\"^alerts{0,}$\"}[5m])) by (level)",
           "format": "time_series",
           "instant": false,
@@ -61,8 +122,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "OSSEC Alert 5m Rate",
       "tooltip": {
         "show": true,
@@ -72,44 +131,50 @@
       "xAxis": {
         "show": true
       },
-      "xBucketNumber": null,
-      "xBucketSize": null,
       "yAxis": {
-        "decimals": null,
         "format": "short",
         "logBase": 1,
-        "max": null,
-        "min": null,
-        "show": true,
-        "splitFactor": null
+        "show": true
       },
-      "yBucketBound": "middle",
-      "yBucketNumber": null,
-      "yBucketSize": null
+      "yBucketBound": "middle"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
         },
         "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -118,45 +183,29 @@
         "y": 8
       },
       "id": 4,
-      "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.3.0-beta1",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
       },
-      "tableColumn": "",
+      "pluginVersion": "9.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "ossec_metrics_active_agents",
           "instant": true,
           "interval": "",
@@ -164,44 +213,46 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Active Agents",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
+      "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
         },
         "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 3,
@@ -210,79 +261,47 @@
         "y": 8
       },
       "id": 6,
-      "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.3.0-beta1",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
       },
-      "tableColumn": "",
+      "pluginVersion": "9.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "ossec_metrics_total_agents",
           "instant": true,
           "refId": "A"
         }
       ],
-      "thresholds": "",
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total Agents",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
+      "type": "stat"
     },
     {
-      "cacheTimeout": null,
       "columns": [
         {
           "text": "Current",
           "value": "current"
         }
       ],
-      "datasource": "prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -293,7 +312,6 @@
       },
       "id": 12,
       "links": [],
-      "pageSize": null,
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -304,7 +322,6 @@
         {
           "alias": "",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -325,6 +342,10 @@
       ],
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",application!=\"\"}[$__range])) by (application)",
           "format": "time_series",
           "instant": true,
@@ -333,19 +354,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Alerts by Application",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
       },
       "gridPos": {
         "h": 24,
@@ -358,26 +374,29 @@
         "content": "\n00 - Ignored - No action taken. Used to avoid false positives. These rules are scanned before all the others. They include events with no security relevance.\n\n01 - None\n\n02 - System low priority notification - System notification or status messages. They have no security relevance.\n\n03 - Successful/Authorized events - They include successful login attempts, firewall allow events, etc.\n\n04 - System low priority error - Errors related to bad configurations or unused devices/applications. They gemerally have no security relevance and are usually caused by default installations or software testing.\n\n05 - User generated error - They include missed passwords, denied actions, etc. By themselves they have no security relevance.\n\n06 - Low relevance attack - for example a virus that has no affect on the system (like code red for apache servers, etc). They also frequently include IDS events and errors.\n\n07 - “Bad word” matching. They include words like “bad”, “error”, etc. These events are mostly unclassified and may have some security relevance.\n\n08 - First time seen - for example the first time an IDS event is fired or the first time a user logs in. If you just started using OSSEC HIDS these messages will probably be frequent. After a while they should go away, It also includes security relevant actions (like the starting of a sniffer such as tcpdump).\n\n09 - Error from invalid source - Include attempts to login as an unknown user or from an invalid source. May have security relevance (specially if repeated). They also include errors regarding the root account.\n\n10 - Multiple user generated errors - They include multiple bad passwords, multiple failed logins, etc. and may indicate an attack a user just forgot his credentials.\n\n11 - Integrity checking warning - They include messages regarding the modification of binaries or the presence of rootkits (by rootcheck). If you just modified your system configuration you should be fine regarding the “syscheck” messages. They may indicate a successful attack. Also includes IDS events that will be ignored (high number of repetitions).\n\n12 - High importance event - They include error or warning messages from the system, kernel, etc. They may indicate an attack against a specific application.\n\n13 - Unusual error (high importance) - most times this is a match against a common attack pattern.\n\n14 - High importance security event. Most times triggered due to correlation and it indicates an attack.\n\n15 - Severe attack - No chances of false positives. Immediate attention is necessary.\n\n\n\n\n",
         "mode": "markdown"
       },
-      "pluginVersion": "7.4.3",
-      "timeFrom": null,
-      "timeShift": null,
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Alert Classification",
       "type": "text"
     },
     {
-      "cacheTimeout": null,
       "columns": [
         {
           "text": "Current",
           "value": "current"
         }
       ],
-      "datasource": "prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -388,7 +407,6 @@
       },
       "id": 2,
       "links": [],
-      "pageSize": null,
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -399,7 +417,6 @@
         {
           "alias": "",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -420,6 +437,10 @@
       ],
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\"}[$__range])) by (level)",
           "format": "time_series",
           "instant": true,
@@ -428,26 +449,20 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Alerts By Level",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     },
     {
-      "cacheTimeout": null,
       "columns": [
         {
           "text": "Current",
           "value": "current"
         }
       ],
-      "datasource": "prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -458,7 +473,6 @@
       },
       "id": 11,
       "links": [],
-      "pageSize": null,
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -469,7 +483,6 @@
         {
           "alias": "",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -490,6 +503,10 @@
       ],
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\"}[$__range])) by (host)",
           "format": "time_series",
           "instant": true,
@@ -498,26 +515,20 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Alerts by Host",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     },
     {
-      "cacheTimeout": null,
       "columns": [
         {
           "text": "Current",
           "value": "current"
         }
       ],
-      "datasource": "prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -528,7 +539,6 @@
       },
       "id": 13,
       "links": [],
-      "pageSize": null,
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -539,7 +549,6 @@
         {
           "alias": "",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -560,6 +569,10 @@
       ],
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",srcuser!=\"\"}[$__range])) by (srcuser)",
           "format": "time_series",
           "instant": true,
@@ -568,21 +581,21 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Alerts by Source User",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     },
     {
-      "cacheTimeout": null,
       "columns": [
         {
           "text": "Current",
           "value": "current"
         }
       ],
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "hDcTO5H7k"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -598,7 +611,6 @@
       },
       "id": 14,
       "links": [],
-      "pageSize": null,
       "scroll": true,
       "showHeader": true,
       "sort": {
@@ -609,7 +621,6 @@
         {
           "alias": "",
           "align": "auto",
-          "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -630,6 +641,10 @@
       ],
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "hDcTO5H7k"
+          },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",dstuser!=\"\"}[$__range])) by (dstuser)",
           "format": "time_series",
           "instant": true,
@@ -638,15 +653,13 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Alerts by Destination User",
       "transform": "timeseries_aggregations",
       "type": "table-old"
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 27,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -673,5 +686,6 @@
   "timezone": "",
   "title": "cnHids Summary Dashboard",
   "uid": "Mir2RJHWz",
-  "version": 7
+  "version": 1,
+  "weekStart": ""
 }
