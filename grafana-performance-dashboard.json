@@ -20,7 +20,7 @@
   },
   "description": "Stake Pool Performance Metrics",
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [
     {
@@ -33,170 +33,22 @@
       "url": "https://adavault.com"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 0
-      },
-      "id": 53,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "8.1.5",
-      "targets": [
-        {
-          "expr": "(time()-cardano_node_metrics_nodeStartTime_int)/3600",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Node Uptime (hours)",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
+            "axisLabel": "Seconds",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
-            "gradientMode": "none",
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -206,7 +58,8 @@
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
-              "type": "linear"
+              "log": 2,
+              "type": "log"
             },
             "showPoints": "never",
             "spanNulls": true,
@@ -233,43 +86,13 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "s"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}"
+              "options": "Est. error(s)"
             },
             "properties": [
               {
@@ -284,13 +107,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}"
+              "options": "Max. Error (s)"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "super-light-blue",
+                  "fixedColor": "rgb(80, 113, 164)",
                   "mode": "fixed"
                 }
               }
@@ -299,13 +122,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}"
+              "options": "Offset: Node vs. Ref."
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "dark-blue",
+                  "fixedColor": "rgb(151, 100, 176)",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*Variation*./"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#890F02",
                   "mode": "fixed"
                 }
               }
@@ -314,62 +152,61 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}"
+              "options": "Max. Error (s)"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "semi-dark-blue",
+                  "fixedColor": "#33415C",
                   "mode": "fixed"
                 }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 20
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}"
+              "options": "Est. error(s)"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "light-blue",
+                  "fixedColor": "#0466C8",
                   "mode": "fixed"
                 }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}"
-            },
-            "properties": [
+              },
               {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
+                "id": "custom.fillOpacity",
+                "value": 100
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
+        "h": 16,
+        "w": 12,
+        "x": 0,
         "y": 0
       },
-      "id": 6,
+      "id": 47,
+      "links": [],
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "right"
         },
         "tooltip": {
           "mode": "single"
@@ -378,20 +215,40 @@
       "pluginVersion": "8.1.5",
       "targets": [
         {
-          "expr": "cardano_node_metrics_slotNum_int",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "kn57xW8Mk"
+          },
+          "exemplar": true,
+          "expr": "node_timex_estimated_error_seconds",
+          "format": "time_series",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
-          "refId": "B"
+          "intervalFactor": 2,
+          "legendFormat": "Est. error(s)",
+          "refId": "B",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "kn57xW8Mk"
+          },
+          "expr": "node_timex_maxerror_seconds",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Max. Error (s)",
+          "refId": "C",
+          "step": 240
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Slot Number",
+      "title": "Time Synchronization",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -966,14 +823,539 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU Utilisation (% per min)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 0,
+        "y": 16
+      },
+      "id": 53,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.1.5",
+      "targets": [
+        {
+          "expr": "(time()-cardano_node_metrics_nodeStartTime_int)/3600",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Node Uptime (hours)",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn46.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn11.skynet:12798\", job=\"vducdn11.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn22.skynet:12798\", job=\"vducdn22.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn36.skynet:12798\", job=\"vducdn36.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cardano_node_metrics_slotNum_int{instance=\"vducdn47.skynet:12798\", job=\"vducdn47.skynet_cardano_node\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 6,
+        "y": 16
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.1.5",
+      "targets": [
+        {
+          "expr": "cardano_node_metrics_slotNum_int",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "title": "Slot Number",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1s - vducdn47.skynet:12798"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1s - vducdn22.skynet:12798"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1s - vducdn36.skynet:12798"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1s - vducdn11.skynet:12798"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 71,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "kn57xW8Mk"
+          },
+          "exemplar": true,
+          "expr": "cardano_node_metrics_blockfetchclient_blockdelay_cdfFive{}",
+          "interval": "",
+          "legendFormat": "5s - {{instance}}",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "kn57xW8Mk"
+          },
+          "exemplar": true,
+          "expr": "cardano_node_metrics_blockfetchclient_blockdelay_cdfOne{}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "1s - {{instance}}",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "kn57xW8Mk"
+          },
+          "exemplar": true,
+          "expr": "cardano_node_metrics_blockfetchclient_blockdelay_cdfThree{}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "3s - {{instance}}",
+          "refId": "C"
+        }
+      ],
+      "title": "Block Fetch Delay 5s/3s/1s (%)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {}
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1148,10 +1530,10 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 6,
         "x": 0,
-        "y": 8
+        "y": 26
       },
       "id": 2,
       "options": {
@@ -1173,14 +1555,11 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Peers connected",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1355,10 +1734,10 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 6,
         "x": 6,
-        "y": 8
+        "y": 26
       },
       "id": 16,
       "options": {
@@ -1380,249 +1759,11 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Density",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "Seconds",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Est. error(s)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Max. Error (s)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "rgb(80, 113, 164)",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Offset: Node vs. Ref."
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "rgb(151, 100, 176)",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*Variation*./"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#890F02",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Max. Error (s)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#33415C",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Est. error(s)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#0466C8",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 100
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Offset: Node vs. Ref."
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#91E5F6",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 70
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "id": 47,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "right"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "8.1.5",
-      "targets": [
-        {
-          "expr": "node_timex_estimated_error_seconds",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Est. error(s)",
-          "refId": "B",
-          "step": 240
-        },
-        {
-          "expr": "node_timex_offset_seconds",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Offset: Node vs. Ref.",
-          "refId": "A",
-          "step": 240
-        },
-        {
-          "expr": "node_timex_maxerror_seconds",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Max. Error (s)",
-          "refId": "C",
-          "step": 240
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Time Synchronization",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1800,7 +1941,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 26
       },
       "id": 28,
       "options": {
@@ -1822,14 +1963,11 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Block sync speed (blocks / min)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1946,7 +2084,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 36
       },
       "id": 69,
       "options": {
@@ -1973,7 +2111,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2091,7 +2228,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 36
       },
       "id": 63,
       "options": {
@@ -2113,14 +2250,11 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Txns Processed per sec (30mins rolling window)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2299,7 +2433,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 44
       },
       "id": 51,
       "interval": "",
@@ -2322,14 +2456,11 @@
           "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Mempool Txs",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2507,7 +2638,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 34
+        "y": 44
       },
       "id": 14,
       "options": {
@@ -2529,14 +2660,11 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Total Txns Processed (since restart)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "Inbound and outbound data transfer across the secondary cluster",
       "fieldConfig": {
         "defaults": {
@@ -2633,7 +2761,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 42
+        "y": 52
       },
       "id": 25,
       "interval": "",
@@ -2661,14 +2789,15 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster Aggregate Data Transfer (1 hr Rolling Window)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": "prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "kn57xW8Mk"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2834,7 +2963,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 42
+        "y": 52
       },
       "id": 4,
       "options": {
@@ -2852,7 +2981,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.5",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "expr": "cardano_node_metrics_epoch_int",
@@ -2861,14 +2990,11 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Epoch",
       "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3046,7 +3172,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 42
+        "y": 52
       },
       "id": 18,
       "options": {
@@ -3068,14 +3194,11 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Slot in epoch",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3253,7 +3376,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 51
+        "y": 61
       },
       "id": 20,
       "options": {
@@ -3277,15 +3400,12 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network packets transmitted (rate per min)",
       "transformations": [],
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3523,7 +3643,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 51
+        "y": 61
       },
       "id": 8,
       "options": {
@@ -3545,14 +3665,11 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Disk Write (bytes/min)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3669,7 +3786,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 51
+        "y": 61
       },
       "id": 65,
       "options": {
@@ -3691,14 +3808,11 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "File Descriptors Allocated",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3921,7 +4035,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 69
       },
       "id": 22,
       "options": {
@@ -3944,14 +4058,11 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Packets Received (rate per min)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4069,7 +4180,7 @@
         "h": 9,
         "w": 6,
         "x": 12,
-        "y": 59
+        "y": 69
       },
       "id": 30,
       "options": {
@@ -4091,14 +4202,11 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Active Memory (GB)",
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4216,7 +4324,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 59
+        "y": 69
       },
       "id": 37,
       "options": {
@@ -4238,15 +4346,13 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Node current \"residency\" live data (GB)",
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 30,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -4271,5 +4377,6 @@
   "timezone": "",
   "title": "ADAvault Stake Pool",
   "uid": "xk_kORVMk",
-  "version": 2
+  "version": 5,
+  "weekStart": ""
 }
