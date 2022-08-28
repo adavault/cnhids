@@ -1134,6 +1134,7 @@
           }
         }
       ],
+      "transparent": true,
       "type": "timeseries"
     },
     {
@@ -1485,6 +1486,7 @@
           }
         }
       ],
+      "transparent": true,
       "type": "timeseries"
     },
     {
@@ -9928,6 +9930,6 @@
   "timezone": "",
   "title": "ADAvault Stake Pool",
   "uid": "cZIvoGUMz",
-  "version": 7,
+  "version": 9,
   "weekStart": ""
 }
