@@ -40,7 +40,7 @@
       "dataFormat": "tsbuckets",
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fieldConfig": {
         "defaults": {
@@ -113,7 +113,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",type=~\"^alerts{0,}$\"}[5m])) by (level)",
           "format": "time_series",
@@ -141,7 +141,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fieldConfig": {
         "defaults": {
@@ -204,7 +204,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "ossec_metrics_active_agents",
           "instant": true,
@@ -219,7 +219,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fieldConfig": {
         "defaults": {
@@ -282,7 +282,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "ossec_metrics_total_agents",
           "instant": true,
@@ -301,7 +301,7 @@
       ],
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -344,7 +344,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",application!=\"\"}[$__range])) by (application)",
           "format": "time_series",
@@ -361,7 +361,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "gridPos": {
         "h": 24,
@@ -379,7 +379,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "refId": "A"
         }
@@ -396,7 +396,7 @@
       ],
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -439,7 +439,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\"}[$__range])) by (level)",
           "format": "time_series",
@@ -462,7 +462,7 @@
       ],
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -505,7 +505,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\"}[$__range])) by (host)",
           "format": "time_series",
@@ -528,7 +528,7 @@
       ],
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -571,7 +571,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",srcuser!=\"\"}[$__range])) by (srcuser)",
           "format": "time_series",
@@ -594,7 +594,7 @@
       ],
       "datasource": {
         "type": "prometheus",
-        "uid": "hDcTO5H7k"
+        "uid": "-gio1V8Mz"
       },
       "fieldConfig": {
         "defaults": {
@@ -643,7 +643,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "hDcTO5H7k"
+            "uid": "-gio1V8Mz"
           },
           "expr": "sum(increase(promtail_custom_ossec_alerts_total{job=\"ossec\",dstuser!=\"\"}[$__range])) by (dstuser)",
           "format": "time_series",
@@ -686,6 +686,6 @@
   "timezone": "",
   "title": "cnHids Summary Dashboard",
   "uid": "Mir2RJHWz",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
