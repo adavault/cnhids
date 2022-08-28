@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(14, 102, 200, 1)",
@@ -20,7 +23,7 @@
   },
   "description": "Stake Pool Performance Metrics",
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [
     {
@@ -33,15 +36,21 @@
       "url": "https://adavault.com"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -105,7 +114,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-pduprx02"
             },
             "properties": [
               {
@@ -120,187 +129,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-vduweb03"
             },
             "properties": [
               {
@@ -315,7 +144,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-vduweb04"
             },
             "properties": [
               {
@@ -330,7 +159,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-vduweb93"
             },
             "properties": [
               {
@@ -345,7 +174,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-vduweb94"
             },
             "properties": [
               {
@@ -360,7 +189,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"1\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu1-pduprx02"
             },
             "properties": [
               {
@@ -375,172 +204,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu1-vduweb03"
             },
             "properties": [
               {
@@ -555,7 +219,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu1-vduweb04"
             },
             "properties": [
               {
@@ -570,7 +234,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"2\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu2-pduprx02"
             },
             "properties": [
               {
@@ -585,142 +249,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"2\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu3-pduprx02"
             },
             "properties": [
               {
@@ -735,382 +264,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"3\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"4\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"5\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"6\", instance=\"vducdn11.skynet:9091\", job=\"vducdn20.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"6\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"6\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"6\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\", mode=\"idle\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-vdumon01"
             },
             "properties": [
               {
@@ -1125,7 +279,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-vdumon02"
             },
             "properties": [
               {
@@ -1140,7 +294,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-mandalorian"
             },
             "properties": [
               {
@@ -1155,7 +309,22 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"1\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu0-skywalker"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cpu1-mandalorian"
             },
             "properties": [
               {
@@ -1170,13 +339,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{cpu=\"0\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\", mode=\"idle\"}"
+              "options": "cpu1-vdumon02"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
                   "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cpu0-mail"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-orange",
                   "mode": "fixed"
                 }
               }
@@ -1185,7 +369,7 @@
         ]
       },
       "gridPos": {
-        "h": 12,
+        "h": 8,
         "w": 12,
         "x": 0,
         "y": 0
@@ -1194,30 +378,48 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "expr": "100-(irate(node_cpu_seconds_total{mode=\"idle\"}[1m]) * 100)",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "cpu{{cpu}}-{{instance}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU Utilisation (% per min)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
+          }
+        }
+      ],
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1248,7 +450,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 16,
         "w": 12,
         "x": 12,
         "y": 0
@@ -1257,6 +459,8 @@
       "interval": "",
       "options": {
         "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1268,81 +472,83 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "8.1.5",
+      "pluginVersion": "9.1.0",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "100 - (avg by(alias) (irate(node_cpu_seconds_total{mode=\"idle\"}[1m])) * 100)",
           "instant": false,
           "interval": "",
-          "legendFormat": "CPU Load {{instance}}",
+          "legendFormat": "CPU {{instance}}",
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "(1 - (node_memory_MemAvailable_bytes / (node_memory_MemTotal_bytes)))* 100",
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "Memory Utilization {{instance}}",
+          "legendFormat": "Mem {{instance}}",
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "(1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100",
           "instant": false,
           "interval": "",
-          "legendFormat": "SWAP Utilization {{instance}}",
+          "legendFormat": "Swap {{instance}}",
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"})",
           "interval": "",
-          "legendFormat": "Disk Utilization {{instance}}",
+          "legendFormat": "Disk {{instance}}",
+          "range": true,
           "refId": "F"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "System Health",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
-            "regex": ".skynet:9091",
+            "regex": "/.skynet:9091/",
             "renamePattern": ""
           }
         },
         {
-          "id": "filterFieldsByName",
+          "id": "renameByRegex",
           "options": {
-            "include": {
-              "names": [
-                "Time",
-                "CPU Load ",
-                "Memory Utilization mail",
-                "Memory Utilization pduprx02",
-                "Memory Utilization vduweb03",
-                "Memory Utilization vduweb04",
-                "Memory Utilization vduweb93",
-                "Memory Utilization vduweb94",
-                "SWAP Utilization mail",
-                "SWAP Utilization vdudba04",
-                "SWAP Utilization vduweb03",
-                "SWAP Utilization vduweb04",
-                "SWAP Utilization vduweb93",
-                "SWAP Utilization vduweb94",
-                "Disk Utilization vdudba04",
-                "Disk Utilization vduweb03",
-                "Disk Utilization vduweb04",
-                "Disk Utilization vduweb93",
-                "Disk Utilization vduweb94",
-                "Disk Utilization pduprx02",
-                "Disk Utilization mail",
-                "Memory Utilization vdudba04"
-              ]
-            }
+            "regex": "/vdu/",
+            "renamePattern": ""
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/pdu/",
+            "renamePattern": ""
           }
         }
       ],
@@ -1350,13 +556,19 @@
       "type": "bargauge"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "super-light-orange",
+            "mode": "fixed"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1400,1372 +612,70 @@
           },
           "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mmcblk0p2\", fstype=\"ext4\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"mail.skynet:9091\", job=\"mail.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\", fstype=\"ext4\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/mmcblk0p1\", fstype=\"vfat\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\", mountpoint=\"/boot/firmware\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda2\", fstype=\"ext4\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\", mountpoint=\"/boot\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda1\", fstype=\"vfat\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\", mountpoint=\"/boot/efi\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda1\", fstype=\"vfat\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\", mountpoint=\"/boot/efi\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda5\", fstype=\"ext4\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"gvfsd-fuse\", fstype=\"fuse.gvfsd-fuse\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\", mountpoint=\"/run/user/1000/gvfs\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"gvfsd-fuse\", fstype=\"fuse.gvfsd-fuse\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\", mountpoint=\"/run/user/1000/gvfs\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filesystem_avail_bytes{device=\"/dev/vda5\", fstype=\"ext4\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\", mountpoint=\"/\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 9,
+        "w": 6,
         "x": 0,
-        "y": 12
+        "y": 8
       },
       "id": 69,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "expr": "node_filesystem_avail_bytes",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{instance}}-{{device}}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Filesystem Available Bytes",
       "transformations": [
         {
           "id": "filterFieldsByName",
           "options": {
             "include": {
-              "pattern": "^((?!tmpfs).)*$"
+              "names": [
+                "Time",
+                "mail.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "vdumon01.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "vdumon02.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "vduweb03.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "vduweb04.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "vduweb93.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "vduweb94.skynet:9091-/dev/mapper/ubuntu--vg-ubuntu--lv",
+                "pduprx02.skynet:9091-/dev/mmcblk0p1",
+                "pduprx02.skynet:9091-/dev/mmcblk0p2",
+                "mandalorian.skynet:9091-/dev/vda5",
+                "skywalker.skynet:9091-/dev/vda5"
+              ]
             }
           }
-        }
-      ],
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"mmcblk0p1\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"mmcblk0p2\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"sr0\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"mail.skynet:9091\", job=\"mail.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"dm-0\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"mmcblk0\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"vda\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 12
-      },
-      "id": 8,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      },
-      "pluginVersion": "8.1.5",
-      "targets": [
         {
-          "expr": "rate(node_disk_written_bytes_total[1m])",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Disk Write (bytes/min)",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
+          "id": "renameByRegex",
           "options": {
-            "include": {
-              "pattern": "^((?!sr0).)*$"
-            }
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
           }
         }
       ],
@@ -2773,552 +683,19 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "orange",
+            "mode": "fixed"
           },
           "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"mail.skynet:9091\", job=\"mail.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "node_filefd_allocated{instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 12
-      },
-      "id": 65,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      },
-      "pluginVersion": "8.1.5",
-      "targets": [
-        {
-          "expr": "node_filefd_allocated",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "File Descriptors Allocated",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "Seconds",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Max. Error (s)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Est. error(s)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 100
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 18,
-        "w": 6,
-        "x": 0,
-        "y": 20
-      },
-      "id": 47,
-      "links": [],
-      "options": {
-        "legend": {
-          "calcs": [
-            "mean",
-            "lastNotNull",
-            "max",
-            "min"
-          ],
-          "displayMode": "table",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "8.1.5",
-      "targets": [
-        {
-          "expr": "node_timex_estimated_error_seconds",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Est. error(s)",
-          "refId": "B",
-          "step": 240
-        },
-        {
-          "expr": "node_timex_maxerror_seconds",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Max. Error (s)",
-          "refId": "C",
-          "step": 240
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Time Synchronization",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -3363,251 +740,118 @@
           },
           "unit": "decgbytes"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_Active_bytes/1024/1024/1024",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Active Memory (GB)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "{instance=\"mail.skynet:9091\", job=\"mail.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
+              "options": "{device=\"vda\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\"}"
             },
             "properties": [
               {
@@ -3618,11 +862,222 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
           },
+          "editorMode": "code",
+          "expr": "rate(node_disk_written_bytes_total[1m])",
+          "interval": "",
+          "legendFormat": "{{device}}-{{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Disk Write (bytes/min)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 16
+      },
+      "id": 65,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "expr": "node_filefd_allocated",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "File Descriptors Allocated",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Seconds",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "{instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
+              "options": "Est. mail"
             },
             "properties": [
               {
@@ -3637,22 +1092,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\"}"
+              "options": "Est. mandalorian"
             },
             "properties": [
               {
@@ -3667,7 +1107,262 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\"}"
+              "options": "Est. pduprx02"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. skywalker"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. vdumon01"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. vdumon02"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. vduweb03"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. vduweb04"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. vduweb93"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Est. vduweb94"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. pduprx02"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. skywalker"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. vdumon01"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. vdumon02"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. vduweb03"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. vduweb04"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. vduweb93"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. vduweb94"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. mandalorian"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max. mail"
             },
             "properties": [
               {
@@ -3682,45 +1377,92 @@
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 6,
-        "y": 20
+        "h": 18,
+        "w": 12,
+        "x": 0,
+        "y": 17
       },
-      "id": 30,
+      "id": 47,
+      "links": [],
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
-          "expr": "node_memory_Active_bytes/1024/1024/1024",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "expr": "node_timex_estimated_error_seconds",
+          "format": "time_series",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "intervalFactor": 2,
+          "legendFormat": "Est. {{instance}}",
+          "range": true,
+          "refId": "B",
+          "step": 240
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "expr": "node_timex_maxerror_seconds",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Max. {{instance}}",
+          "range": true,
+          "refId": "C",
+          "step": 240
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Active Memory (GB)",
+      "title": "Time Synchronization",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
+          }
+        }
+      ],
       "transparent": true,
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "light-orange",
+            "mode": "fixed"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -3769,456 +1511,6 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"mail.skynet:9091\", job=\"mail.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp6s0\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp6s0\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"eth0\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "{device=\"enp1s0\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\"}"
             },
             "properties": [
@@ -4252,40 +1544,44 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 20
+        "y": 24
       },
       "id": 20,
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "expr": "rate(node_network_transmit_packets_total[1m])",
           "format": "time_series",
           "instant": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{device}}-{{instance}}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network packets transmitted (rate per min)",
       "transformations": [
         {
-          "id": "filterFieldsByName",
+          "id": "renameByRegex",
           "options": {
-            "include": {
-              "pattern": "^((?!device=\"lo\").)*$"
-            }
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
           }
         }
       ],
@@ -4293,7 +1589,133 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{device=\"enp1s0\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\"}"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 33
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.1.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
+          "expr": "rate(node_network_receive_packets_total[1m])",
+          "interval": "",
+          "legendFormat": "{{device}}-{{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Network Packets Received (rate per min)",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "/.skynet:9091/",
+            "renamePattern": ""
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "description": "Inbound and outbound data transfer across the secondary cluster",
       "fieldConfig": {
         "defaults": {
@@ -4301,6 +1723,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -4379,10 +1803,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 6,
-        "y": 29
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 35
       },
       "id": 25,
       "interval": "",
@@ -4390,664 +1814,50 @@
         "legend": {
           "calcs": [],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "expr": "sum(rate(node_network_receive_bytes_total[1h])) * 3600",
           "legendFormat": "1h Cluster Data Received, bytes",
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "expr": "sum(rate(node_network_transmit_bytes_total[1h])) * 3600",
           "hide": false,
           "legendFormat": "1h Cluster Data Transmitted, bytes",
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster Aggregate Data Transfer (1 hr Rolling Window)",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"mail.skynet:9091\", job=\"mail.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdudba03.skynet:9091\", job=\"vdudba03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdudba04.skynet:9091\", job=\"vdudba04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vduweb04.skynet:9091\", job=\"vduweb04.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vduweb94.skynet:9091\", job=\"vduweb94.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp6s0\", instance=\"vduweb03.skynet:9091\", job=\"vduweb03.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp6s0\", instance=\"vduweb93.skynet:9091\", job=\"vduweb93.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"eth0\", instance=\"pduprx02.skynet:9091\", job=\"pduprx02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn10.skynet:9091\", job=\"vducdn10.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn11.skynet:9091\", job=\"vducdn11.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn15.skynet:9091\", job=\"vducdn15.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn20.skynet:9091\", job=\"vducdn20.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn22.skynet:9091\", job=\"vducdn22.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn25.skynet:9091\", job=\"vducdn25.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn36.skynet:9091\", job=\"vducdn36.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn40.skynet:9091\", job=\"vducdn40.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn45.skynet:9091\", job=\"vducdn45.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"lo\", instance=\"vducdn47.skynet:9091\", job=\"vducdn47.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdumon01.skynet:9091\", job=\"vdumon01.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"vdumon02.skynet:9091\", job=\"vdumon02.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"skywalker.skynet:9091\", job=\"skywalker.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "semi-dark-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{device=\"enp1s0\", instance=\"mandalorian.skynet:9091\", job=\"mandalorian.skynet_node_exporter\"}"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "light-orange",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 29
-      },
-      "id": 22,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      },
-      "pluginVersion": "8.1.5",
-      "targets": [
-        {
-          "expr": "rate(node_network_receive_packets_total[1m])",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Network Packets Received (rate per min)",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "pattern": "^((?!device=\"lo\").)*$"
-            }
-          }
-        }
-      ],
       "transparent": true,
       "type": "timeseries"
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 30,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -5065,5 +1875,6 @@
   "timezone": "",
   "title": "ADAvault Infrastructure Dashboard",
   "uid": "cZIvoGUMz",
-  "version": 1
+  "version": 6,
+  "weekStart": ""
 }
