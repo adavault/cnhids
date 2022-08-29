@@ -21,7 +21,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #TIMEZONE="Europe/London"                   # Default Timezone for promtail config file, change as needed for your server timezone
 #BRANCH="master"                            # Default branch in repo
 
-#PROM_RETENTION=50GB                         # Default is 15 days, set this to rotate on max data set
+#PROM_RETENTION=30GB                        # Default is 15 days, set this to rotate on max data set (30GB for infra, 60GB for nodes)
 
                                             # Default to a remote monitoring/cnHids installation
                                             # these can also be overridden by args
@@ -30,7 +30,7 @@ NO_INTERNET_MODE="N"                        # To skip checking for auto updates 
 #INSTALL_NODE_EXP=false                     # Install Node Exporter for base OS metrics
 #INSTALL_OSSEC_AGENT=false                  # Install OSSEC agents, used for remote agents (not needed on server)
 #UPGRADE=false                              # Upgrade and preserve data (use with Monitoring and CNHIDS options)
-KEEP_COPY=true                              # When upgrading keep a seperate copy of the data in /~ using cp rather than mv when restoring
+#KEEP_COPY=true                             # When upgrading keep a seperate copy of the data in /~ using cp rather than mv when restoring
 #INSTALL_INF=false                          # Install infrastructure dashboard
 
 GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons and dashboard icons, paths default to ADAvault, edit as needed
@@ -51,7 +51,7 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.31
+SETUP_MON_VERSION=2.0.32
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
@@ -563,10 +563,16 @@ if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
    $DBG dl "$PROM_CONF_URL"
    #Loop for multiple nodes
    for i in "${CNODE_IP[@]}"; do
+   #Do not install cardano node scrape if installing infrastructure dashboard
+   if [[ "$INSTALL_INF" = false ]]; then
    cat >> "$TMP_DIR"/prometheus.yml <<EOF
     - job_name: '${i}_cardano_node'
       static_configs:
       - targets: ['$i:$CNODE_PORT']
+EOF
+   fi
+   #Always install node exporter scrape
+   cat >> "$TMP_DIR"/prometheus.yml <<EOF
     - job_name: '${i}_node_exporter'
       static_configs:
       - targets: ['$i:$NEXP_PORT']
