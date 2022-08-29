@@ -667,8 +667,8 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -773,7 +773,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 20,
+            "fillOpacity": 5,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -1672,6 +1672,6 @@
   "timezone": "",
   "title": "ADAvault Infrastructure Dashboard",
   "uid": "cZIvoGUMz",
-  "version": 6,
+  "version": 2,
   "weekStart": ""
 }
