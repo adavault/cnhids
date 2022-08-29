@@ -434,8 +434,8 @@ fi
 # Main install routine                               #
 ######################################################
 
-#Check whether the install path already exists and exit if not upgrading
-if [[ "$INSTALL_OSSEC_AGENT" = false ]] ; then
+#If we are installing Monitoring or cnHIDS check whether the install path already exists and exit if not upgrading
+if [[ "$INSTALL_MON" = true ]] || [[ "$INSTALL_CNHIDS" = true ]]; then
     if [[ -e "$PROJ_PATH" ]] ; then
        if [[ "$UPGRADE" = false ]] ; then
           myExit 1 "The \"$PROJ_PATH\" directory already exists please move or delete it. If you want to upgrade and preserve data run with -U\nExiting."
