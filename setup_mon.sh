@@ -7,7 +7,7 @@
 # Common variables set in env file   #
 ######################################
 
-NO_INTERNET_MODE="N"                        # To skip checking for auto updates or make outgoing connections to guild-operators github repository
+NO_INTERNET_MODE="N"                        # To skip checking for auto updates or make outgoing connections to github repository
 
 #CNODE_IP=127.0.0.1                         # Default IP/FQDN or pass multiple as args comma delimited string with no whitespace e.g. host1.domain,host2.domain
 #CNODE_PORT=12798                           # Default monitoring port used by node for metrics (can be edited in config.json on node)
@@ -51,17 +51,17 @@ GRAFANA_CUSTOM_ICONS=true                   # Install custom grafana favicons an
 # Static Variables                   #
 ######################################
 DEBUG="N"
-SETUP_MON_VERSION=2.0.32
+SETUP_MON_VERSION=2.0.33
 
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
-PROM_VER=2.38.0
-GRAF_VER=9.1.0
+PROM_VER=2.47.0
+GRAF_VER=10.1.2
 NEXP_VER=1.6.1
-OSSEC_VER=3.6.0
-PROMTAIL_VER=2.6.1
-LOKI_VER=2.6.1
+OSSEC_VER=3.7.0
+PROMTAIL_VER=2.9.1
+LOKI_VER=2.9.1
 OSSEC_METRICS_VER=0.1.0
 NEXP="node_exporter"
 
