@@ -97,8 +97,12 @@ CNHIDS_DB_URL="https://raw.githubusercontent.com/adavault/cnhids/main/grafana-cn
 #Why is this export statement here?...presumably so spawned processes have access to vars? Check....
 export CNODE_IP CNODE_PORT PROJ_PATH TMP_DIR
 
+#Amended to only get the first IP address
+
 IP_ADDRESS=$(hostname -I | xargs)
-echo "Local IP ADDRESS:$IP_ADDRESS" >&2
+echo "Local IP ADDRESS(ES):$IP_ADDRESS" >&2
+IP_ADDRESS=$(hostname -I | xargs | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | head -n 1)
+echo "Local IP ADDRESS we will use:$IP_ADDRESS" >&2
 
 #Override with defaults as needed...
 [[ -z ${PROJ_PATH} ]] && PROJ_PATH=/opt/cardano/monitoring
