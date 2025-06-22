@@ -56,8 +56,8 @@ SETUP_MON_VERSION=2.0.34
 # version information
 ARCHS=("darwin-amd64" "linux-amd64" "linux-armv6" "linux-arm64")
 TMP_DIR=$(mktemp -d "/tmp/cnode_monitoring.XXXXXXXX")
-PROM_VER=2.53.1
-GRAF_VER=11.1.0
+PROM_VER=3.4.1
+GRAF_VER=12.0.2
 NEXP_VER=1.9.1
 OSSEC_VER=3.6.0
 PROMTAIL_VER=2.9.1
