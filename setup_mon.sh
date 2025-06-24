@@ -571,6 +571,7 @@ if [[ "$INSTALL_MON" = true || "$INSTALL_CNHIDS" = true ]] ; then
    if [[ "$INSTALL_INF" = false ]]; then
    cat >> "$TMP_DIR"/prometheus.yml <<EOF
     - job_name: '${i}_cardano_node'
+      fallback_scrape_protocol: PrometheusText0.0.4
       static_configs:
       - targets: ['$i:$CNODE_PORT']
 EOF
